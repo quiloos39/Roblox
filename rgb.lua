@@ -17,7 +17,7 @@ light.Range = 23
 coroutine.resume(coroutine.create(function ()
 local function rotate()
 for i=1, 360 do
-part.CFrame = CFrame.new(0,30,0) *CFrame.fromEulerAnglesXYZ(i/50,i/10,i/10)
+part.CFrame = CFrame.new(0,40,0) *CFrame.fromEulerAnglesXYZ(i/50,i/10,i/10)
 wait()
 end		
 return rotate()
