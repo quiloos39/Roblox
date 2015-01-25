@@ -1,4 +1,47 @@
-wait()
+player = game:GetService("Players").LocalPlayer
+part = Instance.new("Part", player.Character)
+part.FormFactor = "Custom"
+part.Anchored = true
+part.CanCollide = true
+part.Size= Vector3.new(15,12,.1)
+local sound
+local sound = Instance.new("Sound", game.Workspace)
+sound.Name = "AnimeSound"
+sound.Volume = 1
+game:GetService("RunService").RenderStepped:connect(function() part.CFrame = player.Character.Torso.CFrame *CFrame.new(0,5,-7) *CFrame.fromEulerAnglesXYZ(0,math.pi,0) end)
+child1 = Instance.new("SurfaceGui", part)
+child2 = Instance.new("Frame", child1)
+child2.BackgroundColor3 = Color3.new(0.0705882, 0.0745098, 0.0784314)
+child2.BackgroundTransparency = 0
+child2.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+child2.BorderSizePixel = 0
+child2.Rotation = 0
+child2.Position = UDim2.new(0,0,0,0)
+child2.Size = UDim2.new(0.11999999731779,0,1,0)
+child2.Visible = true
+child2.ZIndex = 1
+child2.ClipsDescendants = false
+child2.Draggable = false
+child3 = Instance.new("ScrollingFrame", child1)
+child3.BackgroundColor3 = Color3.new(0.109804, 0.109804, 0.121569)
+child3.BackgroundTransparency = 0
+child3.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+child3.BorderSizePixel = 0
+child3.Rotation = 0
+child3.Position = UDim2.new(0.11999999731779,0,0,0)
+child3.Size = UDim2.new(0.87999999523163,0,1,0)
+child3.Visible = true
+child3.ZIndex = 1
+child3.ClipsDescendants = true
+child3.Draggable = false
+child3.BottomImage = "http://www.roblox.com/asset/?id=188173743"
+child3.CanvasSize = UDim2.new(0,0,2,0)
+child3.MidImage = "http://www.roblox.com/asset/?id=188173743"
+child3.ScrollBarThickness = 12
+child3.ScrollingEnabled = true
+child3.TopImage = "http://www.roblox.com/asset/?id=188173743"
+
+
 table1 = {
 --{Track,Decal,Soundid,Artist,Time,Album,Added,User}
 {"Tokyo Ghoul",173694168,165730729,"Unknown",85,"ROBLOX","12.11.2014","AnimeWiki"};
@@ -25,115 +68,16 @@ table1 = {
 {"Log Horizon Starting 1",186872217,156230892,"Unknown",88,"ROBLOX","15.11,2014","AnimeWiki"};
 }
 
-
-
-player = game:GetService("Players").LocalPlayer
-
-function creategui(parent,face)
-local sf = Instance.new("SurfaceGui", parent)
-sf.Name = face
-sf.Face = face
-local frame = Instance.new("Frame", sf)
-frame.Size = UDim2.new(1,0,1,0)
-frame.BackgroundTransparency = .3
-frame.BorderSizePixel = 0
-if parent.Name == "Screen2" and face == "Front" then
-child3 = Instance.new("ScrollingFrame", sf)
-child3.BackgroundColor3 = Color3.new(0.0705882, 0.0745098, 0.0784314)
-child3.BackgroundTransparency = 0
-child3.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
-child3.BorderSizePixel = 0
-child3.Rotation = 0
-child3.Position = UDim2.new(0,0,0,0)
-child3.Size = UDim2.new(1,0,1,0)
-child3.Visible = true
-child3.ZIndex = 1
-child3.ClipsDescendants = true
-child3.Draggable = false
-child3.BottomImage = "http://www.roblox.com/asset/?id=188173743"
-child3.CanvasSize = UDim2.new(0,0,2,0)
-child3.MidImage = "http://www.roblox.com/asset/?id=188173743"
-child3.ScrollBarThickness = 50
-child3.ScrollingEnabled = true
-child3.TopImage = "http://www.roblox.com/asset/?id=188173743"
-elseif parent.Name == "Screen" and face == "Front" or parent.Name == "Screen3" and face == "Front" then
-child2 = Instance.new("ScrollingFrame", sf)
-child2.BackgroundColor3 = Color3.new(0.0705882, 0.0745098, 0.0784314)
-child2.BackgroundTransparency = 0
-child2.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
-child2.BorderSizePixel = 0
-child2.Rotation = 0
-child2.Position = UDim2.new(0,0,0,0)
-child2.Size = UDim2.new(1,0,1,0)
-child2.Visible = true
-child2.ZIndex = 1
-child2.ClipsDescendants = true
-child2.Draggable = false
-child2.BottomImage = "http://www.roblox.com/asset/?id=188173743"
-child2.CanvasSize = UDim2.new(0,0,2,0)
-child2.MidImage = "http://www.roblox.com/asset/?id=188173743"
-child2.ScrollBarThickness = 0
-child2.ScrollingEnabled = true
-child2.TopImage = "http://www.roblox.com/asset/?id=188173743"
-end
-
-end
-
-
-local screen = Instance.new("Part", player.Character)
-screen.Name = "Screen"
-screen.FormFactor = "Custom"
-screen.Size = Vector3.new(4,8,.1)
-screen.Anchored = true
-screen.Transparency = 1
-screen.Locked = true
-local screen2 = Instance.new("Part", player.Character)
-screen2.Name = "Screen2"
-screen2.FormFactor = "Custom"
-screen2.Size = Vector3.new(4,8,.1)
-screen2.Anchored = true
-screen2.Transparency = 1
-screen2.Locked = true
-local screen3 = Instance.new("Part", player.Character)
-screen3.Name = "Screen3"
-screen3.FormFactor = "Custom"
-screen3.Size = Vector3.new(4,8,.1)
-screen3.Anchored = true
-screen3.Transparency = 1
-screen3.Locked = true
-
-
-
-game:GetService("RunService").RenderStepped:connect(function()
-screen.CFrame = player.Character.Torso.CFrame *CFrame.new(0,2,-5) *CFrame.Angles(0,math.pi,0)
-screen2.CFrame = player.Character.Torso.CFrame *CFrame.new(4,2,-4.9) *CFrame.Angles(0,math.pi -.1,0)
-screen3.CFrame = player.Character.Torso.CFrame *CFrame.new(-4,2,-4.9) *CFrame.Angles(0,math.pi +.1,0)
-
-end)
-
-creategui(screen,"Front")
-creategui(screen2,"Front")
-creategui(screen3,"Front")
-creategui(screen,"Back")
-creategui(screen2,"Back")
-creategui(screen3,"Back")
-
-count = {1}
-parent = screen3:FindFirstChild("Front").ScrollingFrame
-pos = {x = 50,y = 100}
 for k,v in pairs(table1) do
-if count[1] == 2 then
-parent = screen3:FindFirstChild("Front").ScrollingFrame
-elseif count[1] == 4 then
-parent = screen2:FindFirstChild("Front").ScrollingFrame
-elseif count[1] == 7 then
-parent = screen:FindFirstChild("Front").ScrollingFrame
-pos["y"] = pos["y"] + 200
-count[1] = 1	
+game:GetService("ContentProvider"):Preload("http://www.roblox.com/asset/?id="..v[3])
 end
 
-local child4 = Instance.new("ImageButton", parent)
-child4.Name = "Test"
+
+pos = {x = 50,y = 100;}
+music = {playing = false,name}
+function createav(child)
+local child4 = Instance.new("ImageButton", child3)
+child4.Name = child[1]
 child4.AutoButtonColor = false
 child4.Style = "Custom"
 child4.BackgroundColor3 = Color3.new(63/255,63/255,65/255)
@@ -143,17 +87,102 @@ child4.Image = "http://www.roblox.com/asset/?id=186730069"
 child4.ImageTransparency = 0
 child4.Rotation = 0
 child4.Position = UDim2.new(0,pos["x"],0,pos["y"])
-child4.Size = UDim2.new(0,350,0,150)
+child4.Size = UDim2.new(0,130,0,150)
 child4.Visible = true
 child4.ZIndex = 1
 child4.ClipsDescendants = false
 child4.Draggable = false
-print(count[1])
-if count[1] == 1 or count[1] == 3 or count[1] == 5 then
+child4.MouseEnter:connect(function()
+if music["name"] ~= child[1] then
+child4.Image = "http://www.roblox.com/asset/?id=186471261"	
+end
+end)
+child4.MouseLeave:connect(function()
+if music["name"] ~= child[1] then
+child4.Image = "http://www.roblox.com/asset/?id=186730069"
+end
+end)
+child4.MouseButton1Click:connect(function()
+if music["playing"] == false or music["name"] ~= child[1] then
+music["name"] = child[1]
+if music["playing"] == true then sound:Stop() end
+music["playing"] = true
+sound.SoundId = "rbxassetid://"..child[3]
+sound:Play()
+
+child4.Image = "http://www.roblox.com/asset/?id=186471252"
+elseif music["playing"] == true then
+child4.Image = "http://www.roblox.com/asset/?id=186471261"
+sound:Stop()
+music["playing"] = false
+end
+for k,v in pairs(child3:GetChildren()) do
+if v ~= child4 then
+v.Image = "http://www.roblox.com/asset/?id=186730069"
+end
+end
+print(tostring(music["playing"]))
+end)
+local child5 = Instance.new("Frame", child4)
+child5.BackgroundColor3 = Color3.new(0.133333, 0.137255, 0.14902)
+child5.BackgroundTransparency = 0
+child5.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+child5.BorderSizePixel = 0
+child5.Position = UDim2.new(0,0,1,0)
+child5.Size = UDim2.new(1,0,0.30000001192093,0)
+child5.Visible = true
+child5.ZIndex = 1
+child5.ClipsDescendants = false
+child5.Draggable = false
+local child6 = Instance.new("TextLabel", child5)
+child6.BackgroundColor3 = Color3.new(1, 1, 1)
+child6.BackgroundTransparency = 1
+child6.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+child6.BorderSizePixel = 1
+child6.Rotation = 0
+child6.Position = UDim2.new(0,0,0,0)
+child6.Size = UDim2.new(1,0,1,0)
+child6.Visible = true
+child6.ZIndex = 1
+child6.ClipsDescendants = false
+child6.Draggable = false
+child6.Font = "SourceSans"
+child6.FontSize = "Size24"
+child6.Text = child[1]
+child6.TextColor3 = Color3.new(1, 1, 1)
+child6.TextScaled = true
+child6.TextStrokeColor3 = Color3.new(0, 0, 0)
+child6.TextStrokeTransparency = 1
+child6.TextTransparency = 0
+child6.TextWrapped = true
+child6.TextXAlignment = "Center"
+child6.TextYAlignment = "Center"
+local child7 = Instance.new("ImageLabel", child4)
+child7.Size = UDim2.new(1,0,1,0)
+pos["x"] = pos["x"] + 150
+if pos["x"] == 650 then
 pos["x"] = 50
-elseif count[1] == 2 or count[1] == 4 or count[1] == 6 then
-pos["x"] = 450	
+pos["y"] = pos["y"] + 220
+end
 end
 
-count[1] = count[1] + 1
+
+game:GetService("Workspace")	.DescendantRemoving:connect(function(child)
+if child.Name == "AnimeSound" then
+child:Stop()
+sound = child:Clone()
+sound.Parent = game:GetService("Workspace")	
+music["playing"] = false
+for k,v in pairs(child3:GetChildren()) do
+if v.Name == music["name"] then
+v.Image = "http://www.roblox.com/asset/?id=186471261"	
 end
+end
+
+end
+end)
+
+for k,v in pairs(table1) do
+createav(v)
+end
+
