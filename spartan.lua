@@ -4,6 +4,22 @@ _G[v] = func
 end
 end
 
+setMultiGlobal(function(object)
+ra = math.random(1,5)
+if ra == 1 then
+
+elseif ra == 2 then
+warn("I will kill you!")	
+elseif ra == 3 then
+warn("You dummy")
+elseif ra == 4 then
+warn("Fatty!!")
+elseif ra == 5 then
+warn("I love you")			
+end
+end,"w","warn")
+
+
 
 setMultiGlobal(
 function(object) local objectlenght = string.len(object)
@@ -200,9 +216,3 @@ setMultiGlobal(
 function()
 print("https://code.stypi.com/raw/animewikiroblox/Test/spartan.lua")
 end,"link","http")
-
-
-
-
-
-
