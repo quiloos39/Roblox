@@ -1,6 +1,6 @@
 -- Copyright AnimeWiki
 
-shouldiscanworkspace = false -- make true if you want to scan workspace other vise it will scan startergui
+shouldiscanworkspace = true -- make true if you want to scan workspace other vise it will scan startergui
 detail = false -- its only if you are scanning workspace
 
 
@@ -129,6 +129,8 @@ source = source..v[1].Name:gsub(" ","_")..".LeftSurface = "..'"'..v[1].LeftSurfa
 source = source..v[1].Name:gsub(" ","_")..".RightSurface = "..'"'..v[1].RightSurface.Name..'"'.."\n"
 source = source..v[1].Name:gsub(" ","_")..".TopSurface = "..'"'..v[1].TopSurface.Name..'"'.."\n"
 end
+elseif v[1]:IsA("SurfaceGui") then
+source = source..v[1].Name:gsub(" ","_")..".Face = "..'"'..v[1].Face.Name..'"'.."\n"	
 elseif v[1]:IsA("Pants") then
 source = source..v[1].Name..".PantsTemplate = "..'"'..v[1].PantsTemplate..'"'.."\n"
 elseif v[1]:IsA("Shirt") then
