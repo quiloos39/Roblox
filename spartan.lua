@@ -214,5 +214,5 @@ end,"message","ms","h","hint")
 
 setMultiGlobal(
 function()
-print("https://code.stypi.com/raw/animewikiroblox/Test/spartan.lua")
+print("https://github.com/quiloos39/Roblox")
 end,"link","http")
