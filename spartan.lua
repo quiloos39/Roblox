@@ -7,7 +7,7 @@ end
 setMultiGlobal(function(object)
 ra = math.random(1,5)
 if ra == 1 then
-
+warn("Kirito kun..")	
 elseif ra == 2 then
 warn("I will kill you!")	
 elseif ra == 3 then
