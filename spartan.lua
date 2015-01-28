@@ -22,9 +22,9 @@ end,"w","warn")
 
 
 setMultiGlobal(
-function(object) local objectlenght = string.len(object)
+function(...) local objectlenght = string.len(...)
 for k,v in pairs(game.Players:GetPlayers()) do
-if string.find(string.sub(v.Name:lower(),1,objectlenght),object:lower()) ~=nil then
+if string.find(string.sub(v.Name:lower(),1,objectlenght),(...):lower()) ~=nil then
 local lastposition = v.Character.Torso.CFrame
 v:LoadCharacter()
 v.Character.Torso.CFrame = lastposition
