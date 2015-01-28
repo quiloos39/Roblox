@@ -21,16 +21,20 @@ end,"w","warn")
 
 
 
-setMultiGlobal(
-function(...) local objectlenght = string.len(...)
-for k,v in pairs(game.Players:GetPlayers()) do
-if string.find(string.sub(v.Name:lower(),1,objectlenght),(...):lower()) ~=nil then
-local lastposition = v.Character.Torso.CFrame
-v:LoadCharacter()
-v.Character.Torso.CFrame = lastposition
+setMultiGlobal(function(...)
+for k,v in pairs({...}) do
+local objectlenght = #v
+if objectlenght ~= 0 then
+for a,b in pairs(game:GetService("Players"):GetPlayers()) do
+if string.find(string.sub(b.Name:lower(),1,objectlenght),v:lower()) ~=nil then
+local lastposition = b.Character.Torso.CFrame
+b:LoadCharacter()
+b.Character.Torso.CFrame = lastposition
 end
-end		
-end,"r","respawn")
+end
+end	
+end
+end,"r","respawn","rp")
 
 setMultiGlobal(
 function(object) local objectlenght = string.len(object)
