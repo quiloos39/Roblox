@@ -1,6 +1,6 @@
 datastore = game:GetService("DataStoreService"):GetDataStore("Sbvariable")
-_G["datastore"] = game:GetService("DataStoreService"):GetDataStore("Sbvariable")
-datastore:SetAsync("library",{})
+--_G["datastore"] = game:GetService("DataStoreService"):GetDataStore("Sbvariable")
+--datastore:SetAsync("library",{})
 
 --table.foreach(_G.datastore:GetAsync("library"),print)
 --print(_G.datastore:GetAsync("library")[1])
