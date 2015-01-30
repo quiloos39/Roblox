@@ -2,7 +2,7 @@ datastore = game:GetService("DataStoreService"):GetDataStore("Spartan")
 --_G["datastore"] = game:GetService("DataStoreService"):GetDataStore("Spartan")
 
 --_G.datastore:SetAsync("sblibrary",{})
---datastore:SetAsync("sblibrary",{})
+datastore:SetAsync("sblibrary",{})
 --table.foreach(_G.datastore:GetAsync("sblibrary"),print)
 --print(_G.datastore:GetAsync("sblibrary")[1])
 function chatevent(player)
