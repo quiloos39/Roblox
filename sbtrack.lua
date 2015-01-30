@@ -13,7 +13,7 @@ local message = message:lower()
 if string.find(message,"http") or string.find(message,"https") or string.find(message,"www") or string.find(message,".lua")  then
 local oldtab = datastore:GetAsync("library") or {}
 oldtab[#oldtab + 1] = message
-datastore:SetAsync("sblibrary",oldtab)
+datastore:SetAsync("library",oldtab)
 print(table.concat(oldtab,"\n"))
 end 
 end)	
