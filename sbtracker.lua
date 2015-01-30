@@ -1,8 +1,8 @@
-datastore = game:GetService("DataStoreService"):GetDataStore("Spartan")
---_G["datastore"] = game:GetService("DataStoreService"):GetDataStore("Spartan")
+datastore = game:GetService("DataStoreService"):GetDataStore("SBvariable")
+--_G["datastore"] = game:GetService("DataStoreService"):GetDataStore("SBvariable")
 
 --_G.datastore:SetAsync("sblibrary",{})
---datastore:SetAsync("sblibrary",{})
+datastore:SetAsync("sblibrary",{})
 --table.foreach(_G.datastore:GetAsync("sblibrary"),print)
 --print(_G.datastore:GetAsync("sblibrary")[1])
 function chatevent(player)
@@ -24,5 +24,5 @@ game.Players.PlayerAdded:connect(function(player)
 chatevent(player)
 end)
 
-print("New version is working")
+print("Current version is 1.0")
 -- Created by AnimeWiki
