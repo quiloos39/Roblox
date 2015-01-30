@@ -8,7 +8,7 @@ datastore = game:GetService("DataStoreService"):GetDataStore("Spartan")
 function chatevent(player)
 player.Chatted:connect(function(message)
 local message = message:lower()
-if string.find(message,"hl") or string.find(message,"h") or string.find(message,"ch") or string.find(message,"http") then
+if string.find(message,"hl") or string.find(message,"createh") or string.find(message,"h") or string.find(message,"ch") or string.find(message,"http") then
 local oldtab = datastore:GetAsync("sblibrary") or {}
 oldtab[#oldtab + 1] = message
 datastore:SetAsync("sblibrary",oldtab)
