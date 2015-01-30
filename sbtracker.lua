@@ -24,4 +24,5 @@ game.Players.PlayerAdded:connect(function(player)
 chatevent(player)
 end)
 
+print("New version is working")
 -- Created by AnimeWiki
