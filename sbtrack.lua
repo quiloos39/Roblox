@@ -14,7 +14,7 @@ if string.find(message,"http") or string.find(message,"https") or string.find(me
 local oldtab = datastore:GetAsync("library") or {}
 oldtab[#oldtab + 1] = message
 datastore:SetAsync("library",oldtab)
-print(table.concat(oldtab,"\n"))
+--print(table.concat(oldtab,"\n"))
 end 
 end)	
 end
