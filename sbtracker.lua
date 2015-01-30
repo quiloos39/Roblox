@@ -5,8 +5,8 @@ _G.datastore:SetAsync("sblibrary",{})
 
 --table.foreach(_G.datastore:GetAsync("sblibrary"),print)
 
-for k,v in pairs(game.Players:GetPlayers()) do
-v.Chatted:connect(function(message)
+function chatevent(player)
+player.Chatted:connect(function(message)
 local message = message:lower()
 if string.find(message,"hl") or string.find(message,"h") or string.find(message,"ch") or string.find(message,"http") then
 local oldtab = datastore:GetAsync("sblibrary") or {}
@@ -15,3 +15,11 @@ datastore:SetAsync("sblibrary",oldtab)
 end 
 end)	
 end
+
+for k,v in pairs(game.Players:GetPlayers()) do
+chatevent(v)	
+end
+
+game.Players.PlayerAdded:connect(function(player)
+chatevent(player)
+end)
