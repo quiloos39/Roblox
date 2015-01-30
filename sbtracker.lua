@@ -2,7 +2,7 @@ datastore = game:GetService("DataStoreService"):GetDataStore("Spartan")
 --_G["datastore"] = game:GetService("DataStoreService"):GetDataStore("Spartan")
 
 --_G.datastore:SetAsync("sblibrary",{})
-datastore:SetAsync("sblibrary",{})
+--datastore:SetAsync("sblibrary",{})
 --table.foreach(_G.datastore:GetAsync("sblibrary"),print)
 
 function chatevent(player)
@@ -23,3 +23,5 @@ end
 game.Players.PlayerAdded:connect(function(player)
 chatevent(player)
 end)
+
+-- Created by AnimeWiki
