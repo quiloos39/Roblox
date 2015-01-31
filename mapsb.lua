@@ -128,7 +128,7 @@ createWeld(game:GetService("Workspace"))
 mdata = mdata.."child1:MakeJoints()\n"
 mdata = mdata.."end)\n"
 mdata = mdata..[[
-print('version 1.35')
+print('version 1.7')
 ]]
 
 
