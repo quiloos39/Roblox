@@ -70,7 +70,7 @@ end
 
 function createInstance(object,namenu)	
 if object.ClassName ~= "TouchTransmitter" then
-mdata = mdata..object.Name:gsub(" ","").." = Instance.new('"..object.ClassName.."',"..tostring(object.Parent)..")\n"		
+mdata = mdata..object.Name:gsub(" ","").." = Instance.new('"..object.ClassName.."',"..tostring(object.Parent.Name:gsub(" ",""))..")\n"		
 mdata = mdata..object.Name:gsub(" ","")..".Name = '"..oldname[namenu].."'\n"
 if object.ClassName == "Part" or object.ClassName == "WedgePart" or object.ClassName == "CornerWedgePart" or object.ClassName == "TrussPart" or object.ClassName == "Seat"  then
 mdata = mdata..object.Name:gsub(" ","")..".BrickColor = BrickColor.new('"..tostring(object.BrickColor.Name).."')\n"
@@ -128,7 +128,7 @@ createWeld(game:GetService("Workspace"))
 mdata = mdata.."child1:MakeJoints()\n"
 mdata = mdata.."end)\n"
 mdata = mdata..[[
-print('version 1.3')
+print('version 1.35')
 ]]
 
 
