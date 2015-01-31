@@ -31,10 +31,10 @@ Oh and follow version.
 mdata = "pcall(function() \n"
 
 i = 1
-mi = 500
+mi = 200
 oldname = {}
 
-cooldown = false -- turn it on if you are uploading model has more then 500 part. It will upload slowly but it wont crash ur cilent.
+cooldown = true -- turn it on if you are uploading model has more then 500 part. It will upload slowly but it wont crash ur cilent.
 
 script.Name = "Mapmodeller"
 
@@ -72,14 +72,18 @@ function createInstance(object,namenu)
 if object.ClassName ~= "TouchTransmitter" then
 mdata = mdata..object.Name:gsub(" ","").." = Instance.new('"..object.ClassName.."',"..tostring(object.Parent)..")\n"		
 mdata = mdata..object.Name:gsub(" ","")..".Name = '"..oldname[namenu].."'\n"
-if object.ClassName == "Part" or object.ClassName == "Wedge" or object.ClassName == "Seat" or object.ClassName == "CornerWedge" then
+if object.ClassName == "Part" or object.ClassName == "WedgePart" or object.ClassName == "CornerWedgePart" or object.ClassName == "TrussPart" or object.ClassName == "Seat"  then
 mdata = mdata..object.Name:gsub(" ","")..".BrickColor = BrickColor.new('"..tostring(object.BrickColor.Name).."')\n"
 mdata = mdata..object.Name:gsub(" ","")..".Material = '"..tostring(object.Material.Name).."'\n"
 mdata = mdata..object.Name:gsub(" ","")..".Transparency = "..tostring(object.Transparency).."\n"
 mdata = mdata..object.Name:gsub(" ","")..".Anchored = "..tostring(object.Anchored).."\n"
 mdata = mdata..object.Name:gsub(" ","")..".CanCollide = "..tostring(object.CanCollide).."\n"
-mdata = mdata..object.Name:gsub(" ","")..".FormFactor = '"..tostring(object.FormFactor.Name).."'\n"
-mdata = mdata..object.Name:gsub(" ","")..".Shape = '"..tostring(object.Shape.Name).."'\n"
+if object.ClassName ~= "TrussPart" and object.ClassName ~= "CornerWedgePart" then
+mdata = mdata..object.Name:gsub(" ","")..".FormFactor = '"..tostring(object.FormFactor.Name).."'\n"	
+end
+if object.ClassName ~= "WedgePart" and object.ClassName ~= "CornerWedgePart" and object.ClassName ~= "TrussPart" then
+mdata = mdata..object.Name:gsub(" ","")..".Shape = '"..tostring(object.Shape.Name).."'\n"	
+end
 mdata = mdata..object.Name:gsub(" ","")..".BottomSurface = '"..tostring(object.BottomSurface.Name).."'\n"
 mdata = mdata..object.Name:gsub(" ","")..".TopSurface = '"..tostring(object.TopSurface.Name).."'\n"
 mdata = mdata..object.Name:gsub(" ","")..".Size = Vector3.new("..tostring(object.Size)..")\n"
@@ -103,7 +107,14 @@ mdata = mdata..object.Name:gsub(" ","")..".C0 = CFrame.new("..tostring(object.C0
 mdata = mdata..object.Name:gsub(" ","")..".C1 = CFrame.new("..tostring(object.C1)..")\n"
 end	
 
-if cooldown == true then wait(0)end
+print(i)
+if cooldown == true then 
+if i == mi then
+mi = mi + 150
+wait(0)	
+end	
+	
+end
 
 end
 end
@@ -117,7 +128,7 @@ createWeld(game:GetService("Workspace"))
 mdata = mdata.."child1:MakeJoints()\n"
 mdata = mdata.."end)\n"
 mdata = mdata..[[
-print('version 1.1')
+print('version 1.3')
 ]]
 
 
