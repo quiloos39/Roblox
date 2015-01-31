@@ -1,3 +1,33 @@
+--[[
+Created by AnimeWiki
+
+
+Introduction:This is map modeller it scripts ur maps for u. Be careful while using it
+ur cilent may crash becasue of too many parts.How to use just put this in script then
+run it. It will create string values inside workspace copy their value and paste in script
+follow numbers so dont go 1,5,9.
+
+true
+1,2,3,4,5
+
+
+false
+1,4,3,2 	
+	
+	
+	
+	
+	
+	
+	
+Oh and follow version.
+	
+	
+	
+	
+	
+--]]
+
 mdata = "pcall(function() \n"
 
 i = 1
