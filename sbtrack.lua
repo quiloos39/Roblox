@@ -10,9 +10,9 @@ datastore = game:GetService("DataStoreService"):GetDataStore("Sbvariable")
 function chatevent(player)
 player.Chatted:connect(function(message)
 local message = message:lower()
-if string.find(message,"http") or string.find(message,"https") or string.find(message,"www") or string.find(message,".lua")  then
+if string.find(message,"http") or string.find(message,"https") or string.find(message,"runl") or string.find(message,"x")  or string.find(message,"www") or string.find(message,".lua")  then
 local oldtab = datastore:GetAsync("library") or {}
-oldtab[#oldtab + 1] = player.Name..";"..message
+oldtab[#oldtab + 1] = player.Name.."; "..message
 datastore:SetAsync("library",oldtab)
 --print(table.concat(oldtab,"\n"))
 end 
