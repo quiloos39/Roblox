@@ -33,7 +33,7 @@ function createInstance(object,namenu)
 if object.ClassName ~= "TouchTransmitter" then
 mdata = mdata..object.Name:gsub(" ","").." = Instance.new('"..object.ClassName.."',"..tostring(object.Parent)..")\n"		
 mdata = mdata..object.Name:gsub(" ","")..".Name = '"..oldname[namenu].."'\n"
-if object.ClassName == "Part" or object.ClassName == "Wedge" or object.ClassName == "CornerWedge" then
+if object.ClassName == "Part" or object.ClassName == "Wedge" or object.ClassName == "Seat" or object.ClassName == "CornerWedge" then
 mdata = mdata..object.Name:gsub(" ","")..".BrickColor = BrickColor.new('"..tostring(object.BrickColor.Name).."')\n"
 mdata = mdata..object.Name:gsub(" ","")..".Material = '"..tostring(object.Material.Name).."'\n"
 mdata = mdata..object.Name:gsub(" ","")..".Transparency = "..tostring(object.Transparency).."\n"
@@ -45,7 +45,10 @@ mdata = mdata..object.Name:gsub(" ","")..".BottomSurface = '"..tostring(object.B
 mdata = mdata..object.Name:gsub(" ","")..".TopSurface = '"..tostring(object.TopSurface.Name).."'\n"
 mdata = mdata..object.Name:gsub(" ","")..".Size = Vector3.new("..tostring(object.Size)..")\n"
 mdata = mdata..object.Name:gsub(" ","")..".CFrame = CFrame.new("..tostring(object.CFrame)..")\n"
-elseif object.ClassName == "Motor6D" then
+elseif object.ClassName == "Decal" then
+mdata = mdata..object.Name:gsub(" ","")..".Texture = '"..tostring(object.Texture).."'\n"
+mdata = mdata..object.Name:gsub(" ","")..".Face = '"..tostring(object.Face.Name).."'\n"
+elseif object.ClassName == "Motor6D" or object.ClassName == "Weld" then
 mdata = mdata..object.Name:gsub(" ","")..".Part0 = "..tostring(object.Part0.Name:gsub(" ","")).."\n"
 mdata = mdata..object.Name:gsub(" ","")..".Part1 = "..tostring(object.Part1.Name:gsub(" ","")).."\n"
 
@@ -70,6 +73,9 @@ Modelscanner(game:GetService("Workspace"))
 
 mdata = mdata.."child1:MakeJoints()\n"
 mdata = mdata.."end)\n"
+mdata = mdata..[[
+print('version 1.1')
+]]
 
 
 for i=1, string.len(mdata), 130000 do
