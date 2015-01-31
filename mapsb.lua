@@ -42,20 +42,29 @@ script.Name = "Mapmodeller"
 function Modelscanner(child)
 	
 
-if child.ClassName ~= "Workspace" and child.ClassName ~= "Terrain" and child.Name ~= "BasePlate"  and child.ClassName ~= "Camera" and child ~= script then
+if child.ClassName ~= "Workspace" and child.ClassName ~= "ManualWeld" and child.ClassName ~= "Motor6D" and child.ClassName ~= "Terrain" and child.Name ~= "BasePlate"  and child.ClassName ~= "Camera" and child ~= script then
 oldname[i] = child.Name
-if child.Name ~= "Head" and child.Name ~= "Torso" and child.Name ~= "HumanoidRootPart" and child.Name ~= "Left Arm" and child.Name ~= "Right Arm" and child.Name ~= "Right Leg" and child.Name ~= "Left Leg" then
+if child.Name ~= "Head"  and child.Name ~= "Torso" and child.Name ~= "HumanoidRootPart" and child.Name ~= "Left Arm" and child.Name ~= "Right Arm" and child.Name ~= "Right Leg" and child.Name ~= "Left Leg" then
 child.Name = "child"..i		
 end
 createInstance(child,i)	
 i = i + 1
-
 end
 
 for _,v in pairs(child:GetChildren()) do Modelscanner(v) end	
 
 end
 
+
+function createWeld(child)
+if child.ClassName == "Motor6D" then
+i = i + 1
+oldname[i] = child.Name
+child.Name = "child"..i
+createInstance(child,i)	
+end
+for _,v in pairs(child:GetChildren()) do createWeld(v) end		
+end
 
 
 
@@ -78,10 +87,6 @@ mdata = mdata..object.Name:gsub(" ","")..".CFrame = CFrame.new("..tostring(objec
 elseif object.ClassName == "Decal" then
 mdata = mdata..object.Name:gsub(" ","")..".Texture = '"..tostring(object.Texture).."'\n"
 mdata = mdata..object.Name:gsub(" ","")..".Face = '"..tostring(object.Face.Name).."'\n"
-elseif object.ClassName == "Motor6D" or object.ClassName == "Weld" then
-mdata = mdata..object.Name:gsub(" ","")..".Part0 = "..tostring(object.Part0.Name:gsub(" ","")).."\n"
-mdata = mdata..object.Name:gsub(" ","")..".Part1 = "..tostring(object.Part1.Name:gsub(" ","")).."\n"
-
 elseif object.ClassName == "SpecialMesh" or object.ClassName == "BlockMesh" or object.ClassName == "CylinderMesh" then
 if object.ClassName == "SpecialMesh" then
 mdata = mdata..object.Name:gsub(" ","")..".MeshId = '"..tostring(object.MeshId).."'\n"
@@ -90,6 +95,12 @@ mdata = mdata..object.Name:gsub(" ","")..".TextureId = '"..tostring(object.Textu
 end
 mdata = mdata..object.Name:gsub(" ","")..".Offset = Vector3.new("..tostring(object.Offset)..")\n"
 mdata = mdata..object.Name:gsub(" ","")..".Scale = Vector3.new("..tostring(object.Scale)..")\n"
+elseif object.ClassName == "Motor6D" or object.ClassName == "Weld" or object.ClassName == "ManualWeld" then
+print(object.Part0,object.Part1)
+mdata = mdata..object.Name:gsub(" ","")..".Part0 = "..tostring(object.Part0.Name:gsub(" ","")).."\n"
+mdata = mdata..object.Name:gsub(" ","")..".Part1 = "..tostring(object.Part1.Name:gsub(" ","")).."\n"
+mdata = mdata..object.Name:gsub(" ","")..".C0 = CFrame.new("..tostring(object.C0)..")\n"
+mdata = mdata..object.Name:gsub(" ","")..".C1 = CFrame.new("..tostring(object.C1)..")\n"
 end	
 
 if cooldown == true then wait(0)end
@@ -99,6 +110,8 @@ end
 
 
 Modelscanner(game:GetService("Workspace"))
+
+createWeld(game:GetService("Workspace"))
 
 
 mdata = mdata.."child1:MakeJoints()\n"
