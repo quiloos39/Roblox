@@ -1,0 +1,1 @@
+if v[1].Name == "Head" or v[1].Name == "Torso" or v[1].Name == "Left Arm" or v[1].Name == "Right Arm" or v[1].Name == "Left Leg" or v[1].Name == "Right Leg" and shouldiscanworkspace == true then
