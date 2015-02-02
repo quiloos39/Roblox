@@ -38,7 +38,7 @@ oldname = {}
 
 function createstring()
 si = si + 1
-mdata = mdata.."wait(1)"
+mdata = mdata.."wait(0)"
 local stringva = Instance.new("StringValue", workspace)
 stringva.Name = si
 stringva.Value = mdata
