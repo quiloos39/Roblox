@@ -28,7 +28,7 @@ Oh and follow version.
 	
 --]]
 
-require(script.TotalObject)
+--require(script.TotalObject)
 
 mdata = "pcall(function() \n"
 
