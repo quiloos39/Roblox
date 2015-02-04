@@ -63,9 +63,14 @@ while wait() do
 if rotation == 360 then
 rotation = 0	
 end
+
+for i=#settings.storage,1,-1 do --loop backwards so that table.remove doesnt cause any error
+if settings.storage[i]==nil or settings.storage[i].Parent==nil then pcall(function()settings.storage[i]:Destroy()end)table.remove(settings.storage,i) end --checks if tab doesnt exist and removes it from storage
+end
+
 local angle = 360/#settings.storage	
 for k,v in pairs(settings.storage) do
-v.CFrame = CFrame.new(player.Character.Torso.Position)	 *CFrame.fromEulerAnglesXYZ(0,math.rad(k*angle + rotation),rotation/10) *CFrame.new(0,0,-#settings.storage/2-5) 
+v.CFrame=CFrame.new(v.CFrame.p:Lerp((CFrame.new(player.Character.Torso.Position) *CFrame.fromEulerAnglesXYZ(0,math.rad(k*angle+rotation),0) *CFrame.new(Vector3.new(0,0,(-#settings.storage)/2-5))).p,.15))
 end
 rotation = rotation + 1
 end
