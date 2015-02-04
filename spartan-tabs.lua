@@ -14,7 +14,7 @@ commands = {
 
 player.Chatted:connect(function(message)
 for k,v in pairs(commands) do
-if string.sub(commands:lower(),1,string.len(message)) == message:lower() then
+if string.sub(v:lower(),1,string.len(message)) == message:lower() then
 print(v)
 end
 end
