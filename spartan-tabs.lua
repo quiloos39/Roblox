@@ -22,7 +22,13 @@ local sc = Instance.new("SelectionBox", part)
 sc.Adornee = part
 sc.Color = BrickColor.new(settings.selectionboxcolor)
 local cd = Instance.new("ClickDetector", part)
-cd.MouseClick:connect(function() part:Destroy() end)
+cd.MouseClick:connect(function(func) 
+for i=10,1,-1 do
+part.Transparency = i/10
+wait()	
+end
+wait(1)
+part:remove() end)
 local bg = Instance.new("BillboardGui", part)
 bg.Size = UDim2.new(1,0,1,0)
 bg.StudsOffset = Vector3.new(-1,3.5,0)
