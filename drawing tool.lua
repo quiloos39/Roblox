@@ -12,9 +12,10 @@ par.Name = "line"
 par.FormFactor = "Custom"
 par.Anchored = true 
 par.BrickColor = BrickColor.White() -- problem starts here..
-par.Size = Vector3.new(3,.1,2)  -- it doesnt read whole properties.
+par.Size = Vector3.new(1,.1,1)  -- it doesnt read whole properties.
 par.CFrame = CFrame.new(mouse.Hit.X,y,mouse.Hit.Z)  -- does it matter ._. so it wont show rotate
 par.CanCollide = false
+local mesh = Instance.new("BlockMesh", par)
 until a == true
 end)
 
