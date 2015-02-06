@@ -7,7 +7,7 @@ mouse.Button1Down:connect(function()
 local y = mouse.Hit.Y
 a = false
 repeat wait() 
-local par = Instance.new("Part", workspace) 
+local par = Instance.new("Part", player.Character) 
 par.Name = "line"
 par.FormFactor = "Custom"
 par.Anchored = true 
