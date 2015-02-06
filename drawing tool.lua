@@ -16,6 +16,7 @@ par.Size = Vector3.new(1,.1,1)  -- it doesnt read whole properties.
 par.CFrame = CFrame.new(mouse.Hit.X,y,mouse.Hit.Z)  -- does it matter ._. so it wont show rotate
 par.CanCollide = false
 local mesh = Instance.new("BlockMesh", par)
+mesh.Scale = Vector3.new(.5,.1,.5)
 until a == true
 end)
 
