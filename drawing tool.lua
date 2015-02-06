@@ -6,7 +6,7 @@ a = false
 mouse.Button1Down:connect(function()
 local y = mouse.Hit.Y
 a = false
-repeat wait() 
+repeat wait(0) 
 local par = Instance.new("Part", player.Character) 
 par.Name = "line"
 par.FormFactor = "Custom"
@@ -16,7 +16,7 @@ par.Size = Vector3.new(1,.1,1)  -- it doesnt read whole properties.
 par.CFrame = CFrame.new(mouse.Hit.X,y,mouse.Hit.Z)  -- does it matter ._. so it wont show rotate
 par.CanCollide = false
 local mesh = Instance.new("BlockMesh", par)
-mesh.Scale = Vector3.new(.5,.1,.5)
+mesh.Scale = Vector3.new(1,.1,2)
 until a == true
 end)
 
