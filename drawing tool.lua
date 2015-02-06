@@ -5,7 +5,7 @@ a = false
 
 mouse.Button1Down:connect(function()
 a = false
-repeat wait(.01) 
+repeat wait() 
 local par = Instance.new("Part", workspace) 
 par.Name = "line"
 par.FormFactor = "Custom"
