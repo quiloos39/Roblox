@@ -4,6 +4,7 @@ mouse = player:GetMouse()
 a = false
 
 mouse.Button1Down:connect(function()
+local y = mouse.Hit.Y
 a = false
 repeat wait() 
 local par = Instance.new("Part", workspace) 
@@ -11,8 +12,8 @@ par.Name = "line"
 par.FormFactor = "Custom"
 par.Anchored = true 
 par.BrickColor = BrickColor.White() -- problem starts here..
-par.Size = Vector3.new(1,.1,1)  -- it doesnt read whole properties.
-par.CFrame = CFrame.new(mouse.Hit)  -- does it matter ._. so it wont show rotate
+par.Size = Vector3.new(5,.1,5)  -- it doesnt read whole properties.
+par.CFrame = CFrame.new(mouse.Hit.X,y,mouse.Hit.Z)  -- does it matter ._. so it wont show rotate
 par.CanCollide = false
 until a == true
 end)
