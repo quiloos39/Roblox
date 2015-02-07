@@ -6,7 +6,7 @@ a.sbcolor = "Bright green"
 a.c = ":"
 a.cmds = {
 "dt","cmds","ban","kick","colors","ping","respawn","ff","shutdown","unff","uff","time",
-"god","ungod","ugod","walkspeed","wp","notools","notool","btools"
+"god","ungod","ugod","walkspeed","wp","notools","notool","btools","hats"
 }
 a.bin = {}
 a.bl = {}
@@ -32,6 +32,7 @@ function calculatetime()
 local part = createTab("time")
 coroutine.wrap(function()
 repeat wait()
+
 local t = os.time()	
 part:FindFirstChild("BillboardGui").TextLabel.Text = ("%.2d:%.2d:%.2d"):format(t/3600%24,t/60%60,t%60)    	
 until part == nil or part.Parent ==nil
@@ -49,6 +50,19 @@ if v:lower() == "dt" then
 for k,v in pairs(a.bin) do
 v:remove()	
 end
+elseif v:lower() == "hats" then
+	
+createTab("Creepy Bunny",nil,nil,"http://www.roblox.com/asset/?id=85849146","http://www.roblox.com/asset/?id=85849108"):WaitForChild("ClickDetector").MouseClick:connect(function()
+local hat = Instance.new("Hat", player.Character)
+hat.Name = "Creepy Bunny"
+local handle = Instance.new("Part", hat)
+handle.Name = "Handle"
+local sp = Instance.new("SpecialMesh", handle)
+sp.MeshId = "http://www.roblox.com/asset/?id=85849146"
+sp.TextureId = "http://www.roblox.com/asset/?id=85849108"
+end)
+createTab("Dark Conjurer",nil,nil,"http://www.roblox.com/asset/?id=93129244","http://www.roblox.com/asset/?id=93129336")	
+
 elseif v:lower() == "btools" then
 pcall(function()	
 for i=1, 3 do
@@ -181,7 +195,7 @@ end
 end
 end)
 
-function createTab(text,brickcolor,sccolor)
+function createTab(text,brickcolor,sccolor,mesh,mt)
 local part = Instance.new("Part", workspace)
 part.FormFactor = "Custom"
 part.Size = Vector3.new(2,2,.1)
@@ -228,8 +242,16 @@ tl.TextStrokeTransparency = 0
 tl.TextTransparency = .2  
 tl.TextStrokeColor3 = Color3.new(BrickColor.new("Yellow"))
 
+if mesh ~=nil then
+local sp  = Instance.new("SpecialMesh", part)
+sp.MeshId = mesh
+sp.TextureId = mt
+part.Transparency = 0
+sc:remove()	
+end
+
 cd.MouseClick:connect(function(pl)
-if pl == player then
+if pl == player and mesh ==nil then
 	
 for i=.5,1.1,.2 do 
 part.Transparency = i 
