@@ -1,54 +1,32 @@
---[[
-	
-Scripted by AnimeWiki
-
-
-Be careful while using it. If people find out that you are using chat logger
-you might get banned.
-
---Updates
-
-Now its using datastore so you wont lose ur data when server restarts.
-
-
-Source = 
-
---]]
-
-
-
-
-
-datastore = game:GetService("DataStoreService"):GetDataStore("Spartan")
-local _ = datastore:GetAsync("sb") or datastore:SetAsync("sb",{})
-
-function logg(player,message)
-pcall(function()
-	
-local oldTable = _
-
-table.insert(oldTable,player.Name..":"..message.."\n")
-
-_:SetAsync("sb",oldTable)
-
-if message:lower() == "log" or message:lower() == "logs" then
-for k,v in pairs(_) do
-print(k,v)	
-end
-end	
-
-end)
-
-end
+datastore = game:GetService("DataStoreService"):GetDataStore("Statics")
+_G._ = datastore:GetAsync("playerwhojoined") or datastore:SetAsync("playerwhojoined",{})
 
 for k,v in pairs(game:GetService("Players"):GetPlayers()) do
-v.Chatted:connect(function(message)
-logg(v,message)
-end)
+local oldTable = _G._
+if oldTable[v] ==nil then
+table.insert(v.Character,oldTable)	
+oldTable = _G._
+end
 end
 
+
 game:GetService("Players").PlayerAdded:connect(function(player)
-player.Chatted:connect(function(message)
-logg(player,message)	
+local oldTable = _G._
+if oldTable[player] ==nil then
+table.insert(player.Character,oldTable)	
+oldTable = _G._
+end
 end)
-end)
+
+coroutine.wrap(function()
+while wait() do
+for k,v in pairs(_G._) do
+local k = v.Name
+end	
+end
+end)()
+
+
+
+
+
