@@ -1,94 +1,115 @@
 --[[
-Not done yet.
-]]
+	
+	
+Scripted by AnimeWiki
 
-c = CFrame.new
-v = Vector3.new
-u = UDim2.new
-b = BrickColor.new
-c = Color3.new
-
-bin = ""
+Not done.
 
 
-P = {
-'Name','BrickColor','Parent','Transparency','Reflectance','CFrame','FormFactor',
-'Shape','Size','BottomSurface','BackSurface','FrontSurface','LeftSurface','RightSurface',
-'TopSurface',"MeshType";	
-}
-
-I = {
-'Accoutrement','Animation','AnimationController','ArcHandles','Backpack','BillboardGui','BindableEvent','BindableFunction',
-'BodyColors','BoolValue','BrickColorValue','Camera','CFrameValue','CharacterMesh','ClickDetector','Color3Value','CornerWedgePart',
-'Decal','Explosion','Flag','FlagStand','TouchTransmitter','TouchTransmitter','FloorWire','Folder','ForceField','Frame','Glue',
-'Handles','Hat','Hole','HopperBin','Humanoid','ImageButton','ImageLabel','IntValue','LocalScript','Message','Model','ModuleScript',
-'Motor','MotorFeature','NumberValue','ObjectValue','Pants','Part','RayValue','RemoteEvent','RemoteFunction','RotateP','RotateV',
-'ScreenGui','Script','ScrollingFrame','Seat','SelectionBox','SelectionPartLasso','SelectionPointLasso','Shirt','ShirtGraphic',
-'SkateboardPlatform','Skin','Snap','Sound','SpawnLocation','StringValue','SurfaceGui','SurfaceSelection','TerrainRegion',
-'TextBox','TextButton','TextLabel','Texture','TextureTrail','Tool','TrussPart','Vector3Value','VehicleSeat','VelocityMotor',
-'WedgePart','Weld';	
-}
 
 
-O = {
-'Br. yellowish green','Bright yellow','Bright orange','Bright red','Bright violet','Bright blue','Bright bluish green',
-'Bright green','Institutional white','White','Light stone grey','Mid gray','Medium stone grey','Dark stone grey','Black',
-'Really black','Grime','Br. yellowish orange','Light orange','Sand red','Lavender','Sand blue','Medium blue','Sand green',
-'Brick yellow','Cool yellow','Neon orange','Medium red','Light reddish violet','Pastel Blue','Teal','Medium green',
-'Pastel brown','Pastel yellow','Pastel orange','Pink','Pastel violet','Pastel light blue','Pastel blue-green','Pastel green',
-'Olive','New Yeller','Deep orange','Really red','Hot pink','Really blue','Toothpaste','Lime green','Brown','Nougat','Dark orange',
-'Royal purple','Alder','Cyan','Light blue','Camo','Reddish brown','CGA brown','Dusty Rose','Magenta','Deep blue','Navy blue',
-'Dark green','Earth green','Brick','Custom','Plate','Symmetric','Block','Ball','Cylinder';
-}
+
+	
+--]]
+
+a = {};
+
+i,c = 0,0;
+a.b = {"BrickColor","Material","Reflectance","Transparency","Rotation","Position",
+"RotVelocity","Velocity","Anchored","CanCollide","Locked","Elasticity",
+"FormFactor","Friction","Shape","Size","BackSurface","BottomSurface","FrontSurface",
+"LeftSurface","RightSurface","TopSurface","MeshId","MeshType","Offset","Scale",
+"TextureId","VertexColor"};
+a.c = [[
+--Scripted by AnimeWiki
 
 
-function createInstance(child)
-local x = ""
-for k,v in pairs(I) do
-if child.ClassName == v then
-bin = bin.."i("..k..","..child.Parent.Name..")\n"
-for a,b in pairs(P) do
+]];
+function makeString()
 pcall(function()
-if child[b] ~=nil then
-if b == "BrickColor" then
-for c,d in pairs(O) do
-if child[b].Name == d then
-x = "b("..tonumber(c).."))"
-end
-end	
-elseif b == "FormFactor" then
-for c,d in pairs(O) do
-if child[b].Name == d then
-x = tonumber(c)..")"
-end
-end	
-elseif b == "Shape" then
-for c,d in pairs(O) do
-if child[b].Name == d then
-x = tonumber(c)..")"
-end
-end		
-elseif b == "CFrame" then
-x = "c("..tostring(child[b]).."))"
-elseif b == "Size" then
-x = "v("..tostring(child[b]).."))"
-else 
-x = tostring(child[b])..")"	
+c = c + 1;
+local val = Instance.new("StringValue", game:GetService("Workspace"));
+val.Name = c;
+val.Value = a.c;
+a.c = "";
+end)
 end
 
-bin = bin.."p("..child.Name..","..a..","..x.."\n"
-print(bin)
+function createObject(object)
+i = i + 1;
+local oldName = object.Name
+object.Name = "q"..i;
+a.c = a.c..object.Name.." = ".."Instance.new('"..object.ClassName.."',"..object.Parent.Name..")\n";
+a.c = a.c..object.Name..".Name = '"..oldName.."'\n";
+
+for k,v in pairs(a.b) do
+pcall(function()
+if object[v] ~=nil then
+
+local isVector3 = pcall(function() return object[v].magnitude; end);
+local isCFrame = pcall(function() return object[v].vectorToWorldSpace; end);	
+
+if isVector3 == true then
+if object.ClassName == "Part" then
+if v ~= "Rotation" and v ~= "Position" then
+a.c = a.c..object.Name.."."..v.." = Vector3.new("..tostring(object[v])..")\n"
+end	
+else
+print(v,isVector3)
+a.c = a.c..object.Name.."."..v.." = Vector3.new("..tostring(object[v])..")\n"	
+
+end	
+elseif isCFrame == true then
+a.c = a.c..object.Name.."."..v.." = CFrame.new("..tostring(object[v])..")\n"	
+else
+pcall(function()
+if object[v].Name ~=nil then
+a.c = a.c..object.Name.."."..v.." = '"..tostring(object[v].Name).."'\n"
+else
 
 end
 end)
+
+if type(object[v]) == "number" or type(object[v]) == "bolean" then
+a.c = a.c..object.Name.."."..v.." = "..tostring(object[v]).."\n"
+	
 end
---[[elseif child.ClassName ~= v then
-table.insert(I,v)
---]]
+--[[if type(object[v]) == "string" then
+a.c = a.c..object.Name.."."..v.." = '"..tostring(object[v]).."'\n"
+else
+a.c = a.c..object.Name.."."..v.." = "..tostring(object[v]).."\n"
+	
+end	]]
+	
 end
 
+end	
+end);	
+end	
+
+
+if string.len(a.c) >= 150000 then
+makeString();
+wait();
+end
+end
+
+function scanchild(object)
+for k,v in pairs(object:GetChildren()) do
+if v.Parent == game:GetService("Workspace") then
+if v.ClassName ~= "Camera" and v.ClassName ~= "Terrain" then
+createObject(v);
+end	
+else
+createObject(v);
+end
+scanchild(v);
 end
 end
 
 
-createInstance(workspace.BasePlate)
+
+scanchild(game:GetService("Workspace"))
+print(a.c)
+--print('Done.')
+makeString()
