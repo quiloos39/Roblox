@@ -1,24 +1,20 @@
-a = {}
-
-
+datastore = game:GetService("DataStoreService"):GetDataStore("Spartan")
+a = datastore:GetAsync("logs") or _G.datastore:SetAsync("logs",{})
+_G.a = datastore:GetAsync("logs")
 
 local function ms(player,message)
 if #a == 0  then
 a[#a + 1] = player.Name;
 a[player.Name] = {};
 a[player.Name][1] = "";
-else
-if a[player.Name] ==nil then
+elseif a[player.Name] ==nil then
 a[#a + 1] = player.Name;
 a[player.Name] = {}	;
 a[player.Name][1] = "";
-elseif a[player.Name] ~=nil then
+end;
 local oldMessage = a[player.Name][1];
-oldMessage = oldMessage..message.."  "..("%.2d:%.2d:%.2d"):format(os.time()/3600%24,os.time()/60%60,os.time()%60).."\n";
+oldMessage = oldMessage..message.."\n";
 a[player.Name][1] = oldMessage;
-print(table.concat(a,","),oldMessage);
-end	
-end	
 end;
 
 
