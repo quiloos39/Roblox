@@ -15,6 +15,7 @@ end;
 local oldMessage = a[player.Name][1];
 oldMessage = oldMessage..message.."\n";
 a[player.Name][1] = oldMessage;
+datastore:SetAsync("logs",a)
 end;
 
 
