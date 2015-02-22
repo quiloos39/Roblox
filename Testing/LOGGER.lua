@@ -1,6 +1,13 @@
-datastore = game:GetService("DataStoreService"):GetDataStore("Spartan")
-a = datastore:GetAsync("logs") or _G.datastore:SetAsync("logs",{})
-_G.a = datastore:GetAsync("logs")
+datastore = game:GetService("DataStoreService"):GetDataStore("Spartan");
+
+local a;
+
+if datastore:GetAsync("logs") ==nil then
+a = datastore:SetAsync("logs",{});	
+else
+a = datastore:GetAsync("logs")	;
+end;
+
 
 local function ms(player,message)
 if #a == 0  then
