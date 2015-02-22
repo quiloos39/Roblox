@@ -1,32 +1,44 @@
-datastore = game:GetService("DataStoreService"):GetDataStore("Statics")
-_G._ = datastore:GetAsync("playerwhojoined") or datastore:SetAsync("playerwhojoined",{})
+datastore = game:GetService("DataStoreService"):GetDataStore("Spartan")
 
-for k,v in pairs(game:GetService("Players"):GetPlayers()) do
-local oldTable = _G._
-if oldTable[v] ==nil then
-table.insert(v.Character,oldTable)	
-oldTable = _G._
-end
-end
+a = datastore:GetAsync("logs") or datastore:SetAsync("logs",{})
+
+
+local function ms(player,message)
+if #a == 0  then
+a[#a + 1] = player.Name;
+a[player.Name] = {};
+a[player.Name][1] = "";
+local oldMessage = a[player.Name][1];
+oldMessage = oldMessage..message.."  "..("%.2d:%.2d:%.2d"):format(os.time()/3600%24,os.time()/60%60,os.time()%60).."\n";
+a[player.Name][1] = oldMessage;
+datastore:SetAsync("logs",a);
+print(table.concat(a,","),oldMessage);
+else
+if a[player.Name] ==nil then
+a[#a + 1] = player.Name;
+a[player.Name] = {}	;
+a[player.Name][1] = "";
+local oldMessage = a[player.Name][1];
+oldMessage = oldMessage..message.."  "..("%.2d:%.2d:%.2d"):format(os.time()/3600%24,os.time()/60%60,os.time()%60).."\n";
+a[player.Name][1] = oldMessage;
+datastore:SetAsync("logs",a);
+print(table.concat(a,","),oldMessage);
+elseif a[player.Name] ~=nil then
+local oldMessage = a[player.Name][1];
+oldMessage = oldMessage..message.."  "..("%.2d:%.2d:%.2d"):format(os.time()/3600%24,os.time()/60%60,os.time()%60).."\n";
+a[player.Name][1] = oldMessage;
+datastore:SetAsync("logs",a);
+print(table.concat(a,","),oldMessage);
+end	
+end	
+end;
 
 
 game:GetService("Players").PlayerAdded:connect(function(player)
-local oldTable = _G._
-if oldTable[player] ==nil then
-table.insert(player.Character,oldTable)	
-oldTable = _G._
-end
-end)
-
-coroutine.wrap(function()
-while wait() do
-for k,v in pairs(_G._) do
-local k = v.Name
-end	
-end
-end)()
+player.Chatted:connect(function(message) return ms(player,message); end);	
+end);
 
 
-
-
-
+for k,v in pairs(game:GetService("Players"):GetPlayers()) do
+v.Chatted:connect(function(message) return ms(v,message); end);
+end;
