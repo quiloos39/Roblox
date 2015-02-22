@@ -25,7 +25,7 @@ end;
 local oldMessage = a[player.Name][1];
 oldMessage = oldMessage..message.."\n";
 a[player.Name][1] = oldMessage;
-table.foreach(a,print)
+for k,v in pairs(a) do print(k) end
 datastore:SetAsync("logs",a)
 end;
 
