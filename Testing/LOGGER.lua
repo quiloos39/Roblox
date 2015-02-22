@@ -10,14 +10,17 @@ end;
 
 
 local function ms(player,message)
+print(pcall(function() return a[player.Name] end))	
 if #a == 0  then
 a[#a + 1] = player.Name;
 a[player.Name] = {};
 a[player.Name][1] = "";
-elseif a[player.Name] ==nil then
+elseif #a ~= 0 then
+if a[player.Name] ==nil then
 a[#a + 1] = player.Name;
 a[player.Name] = {}	;
 a[player.Name][1] = "";
+end;
 end;
 local oldMessage = a[player.Name][1];
 oldMessage = oldMessage..message.."\n";
