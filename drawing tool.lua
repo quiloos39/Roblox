@@ -7,6 +7,7 @@ color = "White"
 player.Chatted:connect(function(message)
 if message:sub(1,5) == "color" then
 color = message:sub(6)
+print("new color is",color)
 end
 end)
 
