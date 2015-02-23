@@ -1,6 +1,6 @@
 player = game.Players.LocalPlayer
 mouse = player:GetMouse()
-
+--b
 a = false
 color = "White"
 
