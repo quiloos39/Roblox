@@ -14,6 +14,9 @@ end)
 local gp = Instance.new("Part", player.Character)
 gp.FormFactor = "Custom"
 gp.Size = Vector3.new(20,10,.1)
+gp.Anchored = true
+
+
 
 game:GetService("RunService").RenderStepped:connect(function()
 gp.CFrame = player.Character.Torso.CFrame * CFrame.new(0,5,-8)
@@ -194,7 +197,6 @@ child10.Position = child4.Position
 
 function movePlayer(pos,x,y)
 
-print(pos)
 
 if child12.AbsolutePosition.Y + child12.AbsoluteSize.Y + y >= child14.AbsolutePosition.Y
 
