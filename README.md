@@ -1,2 +1,2 @@
 # Lua
-From beginning it was enjoying to script in lua.
+From beginning it was enjoying to script in roblox lua.
