@@ -205,7 +205,7 @@ child12.AbsolutePosition.X + child12.AbsoluteSize.X + x >= child14.AbsolutePosit
 and
 child12.AbsolutePosition.X + child12.AbsoluteSize.X + x <= child14.AbsoluteSize.X + child14.AbsolutePosition.X
 then
-child12.Position = child12.Position + pos
+child10.Position = child10.Position + pos
 
 end
 --script.Parent.Position = script.Parent.Position + pos
