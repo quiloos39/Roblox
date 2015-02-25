@@ -77,6 +77,9 @@ end;
 
 function scanparent(object)
 for k,v in pairs(object:GetChildren()) do
+if v.ClassName == "LocalScript" or v.ClassName == "Script" then
+v.Disabled = true;	
+end
 scanFrame(v);
 scanparent(v);
 end;
