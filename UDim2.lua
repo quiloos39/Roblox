@@ -27,6 +27,7 @@ p = {"BackgroundColor3","BackgroundTransparency","BorderColor3","BorderSizePixel
 "AutoButtonColor","Active","Modal","Selected"};
 
 local parent = game:GetService("StarterGui"); -- change parent here.
+disablescripts = true
 
 m = [[
 pcall(function()
@@ -71,13 +72,14 @@ end);
 end;
 if string.len(m) >= 15000 then
 createstring();
+wait();
 end;
 end;
 
 
 function scanparent(object)
 for k,v in pairs(object:GetChildren()) do
-if v.ClassName == "LocalScript" or v.ClassName == "Script" then
+if disablescripts == true and v.ClassName == "LocalScript" or v.ClassName == "Script" then
 v.Disabled = true;	
 end
 scanFrame(v);
@@ -90,4 +92,5 @@ scanparent(parent);
 
 m = m..[[
 end)]];
+print("Done.")
 createstring();
