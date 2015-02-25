@@ -58,14 +58,12 @@ m = m..object.Name.."."..v.." = Color3.new("..tostring(object[v])..")\n";
 elseif v== "Size" or v == "Position" then
 m = m..object.Name.."."..v.." = UDim2.new("..tostring(object[v].X.Scale)..","..tostring(object[v].X.Offset)..","..tostring(object[v].Y.Scale)..","..tostring(object[v].Y.Offset)..")\n";
 else
-pcall(function()
-if type(object[v].Name) ~=nil then
+if type(object[v]) == "string" then
 m = m..object.Name.."."..v.." = '"..tostring(object[v]).."'\n";
 else
-m = m..object.Name.."."..v.." = "..tostring(object[v]).."\n";
+m = m..object.Name.."."..v.." = "..tostring(object[v]).."\n";		
+end
 
-end	;
-end);
 
 end
 end
