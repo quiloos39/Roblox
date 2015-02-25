@@ -185,8 +185,13 @@ end
 
 game:GetService("Workspace").DescendantRemoving:connect(function(child)
 if child == sound then
+child:Stop()	
 sound = child:Clone()
-child:Stop()
+if lastsound == child.SoundId then
+soundpos = child.TimePosition
+end	
+wait()
+sound:Play()
 sound.Parent = game:GetService("Workspace")
 end	
 end)
