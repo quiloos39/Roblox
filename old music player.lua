@@ -1,7 +1,8 @@
 player = game:GetService("Players").LocalPlayer or owner
 repeat wait() until player.Character ~=nil
 player.Character:WaitForChild('Humanoid')
-par = Instance.new("Part", game:GetService("Workspace"))
+par = Instance.new("Part", player.Character)
+par.Anchored = true
 par.FormFactor = "Custom"
 par.Size = Vector3.new(20,10,.1)
 
@@ -173,6 +174,7 @@ end
 game:GetService("Workspace").DescendantRemoving:connect(function(child)
 if child == sound then
 sound = child:Clone()
+child:Stop()
 sound.Parent = game:GetService("Workspace")
 end	
 end)
