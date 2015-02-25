@@ -5,7 +5,7 @@ par = Instance.new("Part", player.Character)
 par.Anchored = true
 par.FormFactor = "Custom"
 par.Size = Vector3.new(20,10,.1)
-
+local lastsound = nil
 
 game:GetService('RunService').RenderStepped:connect(function()
 par.CFrame = player.Character.Torso.CFrame *CFrame.new(0,5,-5)
@@ -14,6 +14,7 @@ end)
 a = {209864226,209864226,209864226}
 local pos = .05
 local sound = Instance.new("Sound", game:GetService("Workspace"))
+local soundpos = 0
 local function createTab(soundid)
 
 local fm = Instance.new('Frame',q2)
@@ -96,6 +97,9 @@ pos = pos + .15
 
 tb.MouseButton1Click:connect(function()
 if tb.Text == ">" then
+if lastsound == "rbxassetid://"..soundid then
+soundpos = sound.TimePosition
+end	
 sound:Pause()
 for k,v in pairs(q2:GetChildren()) do
 if v.ClassName == "Frame" then
@@ -113,8 +117,13 @@ v.TextButton.Text = "M"
 end
 end	
 
+if lastsound == "rbxassetid://"..soundid then
+sound.TimePosition = soundpos
+end	
+
 tb.Text = ">"
 sound.SoundId = "rbxassetid://"..soundid
+lastsound = sound.SoundId
 sound:Play()
 end
 
