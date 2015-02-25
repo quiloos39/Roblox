@@ -7,9 +7,12 @@ par.FormFactor = "Custom"
 par.Size = Vector3.new(20,10,.1)
 local lastsound = nil
 
-game:GetService('RunService').RenderStepped:connect(function()
-par.CFrame = player.Character.Torso.CFrame *CFrame.new(0,5,-5)
-end)
+coroutine.wrap(function()
+while wait() do
+par.CFrame = player.Character.Torso.CFrame *CFrame.new(0,5,-5)	
+end
+end)()
+
 
 a = {209864226,209864226,209864226}
 local pos = .05
