@@ -96,7 +96,7 @@ pos = pos + .15
 
 tb.MouseButton1Click:connect(function()
 if tb.Text == ">" then
-	
+sound:Pause()
 for k,v in pairs(q2:GetChildren()) do
 if v.ClassName == "Frame" then
 v.TextButton.Text = "M"	
@@ -114,7 +114,8 @@ end
 end	
 
 tb.Text = ">"
-
+sound.SoundId = "rbxassetid://"..soundid
+sound:Play()
 end
 
 
