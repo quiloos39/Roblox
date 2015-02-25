@@ -26,7 +26,7 @@ p = {"BackgroundColor3","BackgroundTransparency","BorderColor3","BorderSizePixel
 "ImageRectOffset","ImageRectSize","ImageTransparency",
 "AutoButtonColor","Active","Modal","Selected"};
 
-local parent = game:GetService("StarterGui") -- change parent here.
+local parent = game:GetService("StarterGui"); -- change parent here.
 
 m = [[
 pcall(function()
@@ -62,17 +62,17 @@ if type(object[v]) == "string" then
 m = m..object.Name.."."..v.." = '"..tostring(object[v]).."'\n";
 else
 m = m..object.Name.."."..v.." = "..tostring(object[v]).."\n";		
-end
+end;
 
 
-end
-end
-end)	
-end
+end;
+end;
+end);	
+end;
 if string.len(m) >= 15000 then
 createstring();
-end
-end
+end;
+end;
 
 
 function scanparent(object)
@@ -86,5 +86,5 @@ end;
 scanparent(parent);
 
 m = m..[[
-end)]]
+end)]];
 createstring();
