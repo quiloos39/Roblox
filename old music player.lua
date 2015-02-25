@@ -13,7 +13,6 @@ end)
 a = {209864226,209864226,209864226}
 local pos = .05
 local sound = Instance.new("Sound", game:GetService("Workspace"))
-local spos = 0
 local function createTab(soundid)
 
 local fm = Instance.new('Frame',q2)
@@ -173,11 +172,7 @@ end
 
 game:GetService("Workspace").DescendantRemoving:connect(function(child)
 if child == sound then
-local spos = child.TimePosition	
-child:Pause()
 sound = child:Clone()
-child.Parent = game:GetService("Workspace")
-child.TimePosition = spos
-child:Play()
+sound.Parent = game:GetService("Workspace")
 end	
 end)
