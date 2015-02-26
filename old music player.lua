@@ -14,7 +14,7 @@ end
 end)()
 
 
-a = {209864226,209864226,209864226}
+a = {209864226,196917825,142397652}
 local pos = .05
 local sound = Instance.new("Sound", game:GetService("Workspace"))
 local soundpos = 0
