@@ -14,11 +14,25 @@ end
 end)()
 
 
-a = {209864226,196917825,142397652}
+a = {209864226,209864226,209864226}
+
 local pos = .05
+
+
 local sound = Instance.new("Sound", game:GetService("Workspace"))
 local soundpos = 0
-local function createTab(soundid)
+local isplaying = false
+
+function findtime()
+coroutine.wrap(function()
+repeat wait()
+print(sound.TimePosition)
+until sound.TimePosition == sound.TimeLenght  or isplaying == false
+end)()
+end
+
+
+function createTab(soundid)
 
 local fm = Instance.new('Frame',q2)
 fm.BackgroundColor3 = Color3.new(1, 1, 1)
@@ -98,6 +112,7 @@ tb.Selected = false
 pos = pos + .15
 
 
+
 tb.MouseButton1Click:connect(function()
 if tb.Text == ">" then
 if lastsound == "rbxassetid://"..soundid then
@@ -105,7 +120,7 @@ soundpos = sound.TimePosition
 end	
 sound:Pause()
 for k,v in pairs(q2:GetChildren()) do
-if v.ClassName == "Frame" then
+if v.ClassName == "Frame" and v.Name ~= "Timeline" then
 v.TextButton.Text = "M"	
 end
 end	
@@ -115,15 +130,18 @@ tb.Text = "l l"
 else
 	
 for k,v in pairs(q2:GetChildren()) do
-if v.ClassName == "Frame" then
+if v.ClassName == "Frame" and v.Name ~= "Timeline" then
 v.TextButton.Text = "M"	
 end
 end	
+isplaying = true
 
 if lastsound == "rbxassetid://"..soundid then
 sound.TimePosition = soundpos
 end	
 
+
+findtime()
 tb.Text = ">"
 sound.SoundId = "rbxassetid://"..soundid
 lastsound = sound.SoundId
@@ -136,9 +154,8 @@ end
 
 
 q1 = Instance.new('SurfaceGui',par)
-q1.Face = 'Back'
-q1.Name = 'ScreenGui'
 q1.Archivable = true
+q1.Face = "Back"
 q2 = Instance.new('Frame',q1)
 q2.BackgroundColor3 = Color3.new(0.0705882, 0.0745098, 0.0784314)
 q2.BackgroundTransparency = 0
@@ -177,6 +194,40 @@ q3.ImageRectOffset = Vector2.new(0, 0)
 q3.ImageRectSize = Vector2.new(0, 0)
 q3.ImageTransparency = 0
 q3.Active = false
+q4 = Instance.new('Frame',q2)
+q4.BackgroundColor3 = Color3.new(0.0666667, 0.0705882, 0.0784314)
+q4.BackgroundTransparency = 0
+q4.BorderColor3 = Color3.new(0.0666667, 0.0705882, 0.0784314)
+q4.BorderSizePixel = 1
+q4.Name = 'Timeline'
+q4.Position = UDim2.new(0.94999998807907,0,0,0)
+q4.Rotation = 0
+q4.Size = UDim2.new(0.050000000745058,0,1,0)
+q4.SizeConstraint = Enum.SizeConstraint.RelativeXY
+q4.Style = Enum.FrameStyle.Custom
+q4.Visible = true
+q4.ZIndex = 1
+q4.Archivable = true
+q4.ClipsDescendants = false
+q4.Draggable = false
+q4.Active = false
+q5 = Instance.new('Frame',q4)
+q5.BackgroundColor3 = Color3.new(1, 1, 1)
+q5.BackgroundTransparency = 0
+q5.BorderColor3 = Color3.new(1, 1, 1)
+q5.BorderSizePixel = 1
+q5.Position = UDim2.new(0,0,0,0)
+q5.Rotation = 0
+q5.Size = UDim2.new(0.10000000149012,0,1,0)
+q5.SizeConstraint = Enum.SizeConstraint.RelativeXY
+q5.Style = Enum.FrameStyle.Custom
+q5.Visible = true
+q5.ZIndex = 1
+q5.Archivable = true
+q5.ClipsDescendants = false
+q5.Draggable = false
+q5.Active = false
+
 
 for k,v in pairs(a) do
 createTab(v)
