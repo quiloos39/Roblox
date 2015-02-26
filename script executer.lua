@@ -268,6 +268,7 @@ q15.Active = false
 
 
 local y = 0
+
 local function addline(txt)
 local q16 = Instance.new('TextLabel',q15)
 q16.BackgroundColor3 = Color3.new(1, 1, 1)
@@ -275,7 +276,7 @@ q16.BackgroundTransparency = 1
 q16.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
 q16.BorderSizePixel = 0
 q16.Name = 'Output'
-q16.Position = UDim2.new(0,0,0,0)
+q16.Position = UDim2.new(0,0,0,y*20)
 q16.Rotation = 0
 q16.Size = UDim2.new(1,0,0,20)
 q16.SizeConstraint = Enum.SizeConstraint.RelativeXY
