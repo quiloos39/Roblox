@@ -297,7 +297,7 @@ q16.TextWrapped = true
 q16.TextXAlignment = Enum.TextXAlignment.Left
 q16.TextYAlignment = Enum.TextYAlignment.Center
 q16.Active = false
-y= y + .5
+y= y + .7
 end
 -- this is a table that works like:
 -- if you try to get funcs.KEY and it's nil, it'll try
