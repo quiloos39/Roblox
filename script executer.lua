@@ -1,4 +1,4 @@
-player = game:GetService("Players"):FindFirstChild("AnimeWiki") or game:GetService("Players"):FindFirstChild("Player") or owner
+player = owner or game:GetService("Players"):FindFirstChild("AnimeWiki") or game:GetService("Players"):FindFirstChild("Player")
 repeat wait() until player.Character ~=nil
 player.Character:WaitForChild("Humanoid")
 
@@ -297,7 +297,7 @@ q16.TextWrapped = true
 q16.TextXAlignment = Enum.TextXAlignment.Left
 q16.TextYAlignment = Enum.TextYAlignment.Center
 q16.Active = false
-y= y + 1
+y= y + 15
 end
 -- this is a table that works like:
 -- if you try to get funcs.KEY and it's nil, it'll try
