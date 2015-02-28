@@ -14,7 +14,7 @@ end
 end)()
 
 
-a = {209864226,209864226,209864226}
+a = {196917825,209864226,207300402}
 
 local pos = .05
 
@@ -26,8 +26,8 @@ local isplaying = false
 function findtime()
 coroutine.wrap(function()
 repeat wait()
-print(sound.TimePosition)
-until sound.TimePosition == sound.TimeLenght  or isplaying == false
+q5.Size = UDim2.new(.1,0,(math.floor(sound.TimePosition)/sound.TimeLength),0)
+until sound.TimePosition >= sound.TimeLength  or isplaying == false
 end)()
 end
 
