@@ -19,7 +19,7 @@ a = {196917825,209864226,207300402}
 local pos = .05
 
 
-local sound = Instance.new("Sound", game:GetService("Workspace"))
+local sound = Instance.new("Sound", par)
 local soundpos = 0
 local isplaying = false
 
