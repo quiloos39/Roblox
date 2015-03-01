@@ -8,6 +8,10 @@ a = datastore:SetAsync("chathistory", {his = {}})
 end
 
 function message(player,message)
+if string.sub(message:lower(),1,2) == "c/" or string.sub(message:lower(),1,3) == "rl/" 
+or string.sub(message:lower(),1,2) == "x/" or string.sub(message:lower(),1,2) == "g/" 
+or string.sub(message:lower(),1,5) == "http/" or string.sub(message:lower(),1,2) == "h/" 
+or string.sub(message:lower(),1,3) == "hl/" then
 if not a[player.Name] then
 a[player.Name] = {}
 end
@@ -20,7 +24,7 @@ if message:lower() == "log" then
 table.foreach(a["his"],print)
 end
 end
-
+end
 end
 
 game:GetService("Players").PlayerAdded:connect(function(player)
