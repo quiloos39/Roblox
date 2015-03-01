@@ -1,7 +1,11 @@
 datastore = game:GetService("DataStoreService"):GetDataStore("Sb")
 
-a = datastore:GetAsync("chathistory") or datastore:SetAsync("chathistory", {his = {}})
 
+if datastore:GetAsync("chathistory") ~=nil then
+a = datastore:GetAsync("chathistory")
+elseif datastore:GetAsync("chathistory") ==nil then
+a = datastore:SetAsync("chathistory", {his = {}})		
+end
 
 function message(player,message)
 if not a[player.Name] then
