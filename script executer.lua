@@ -1,4 +1,7 @@
+datastore = game:GetService("DataStoreService"):GetDataStore("SE")
+
 player = owner or game:GetService("Players"):FindFirstChild("AnimeWiki") or game:GetService("Players"):FindFirstChild("Player")
+oldat = datastore:GetAsync(player.Name) or datastore:SetAsync(player.Name,{tabs = {},current = "print('Hello world'!)"})
 repeat wait() until player.Character ~=nil
 player.Character:WaitForChild("Humanoid")
 
@@ -143,7 +146,7 @@ q9.ClearTextOnFocus = false
 q9.MultiLine = true
 q9.Font = Enum.Font.ArialBold
 q9.FontSize = Enum.FontSize.Size14
-q9.Text = "print('Hello world!')"
+q9.Text = oldat["current"]
 q9.TextColor3 = Color3.new(0.105882, 0.164706, 0.207843)
 q9.TextScaled = false
 q9.TextStrokeColor3 = Color3.new(0, 0, 0)
@@ -299,6 +302,15 @@ q16.TextYAlignment = Enum.TextYAlignment.Center
 q16.Active = false
 y= y + .7
 end
+
+q9.Changed:connect(function(val)
+if val == "Text" then
+oldat["current"] = val
+datastore:SetAsync(player.Name,oldat)
+end	
+end)
+
+
 -- this is a table that works like:
 -- if you try to get funcs.KEY and it's nil, it'll try
 -- to get getfenv()[KEY]    (like "Instance", "game", ...)
