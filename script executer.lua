@@ -1,4 +1,4 @@
-datastore = game:GetService("DataStoreService"):GetDataStore("SE2")
+datastore = game:GetService("DataStoreService"):GetDataStore("SE")
 
 player = owner or game:GetService("Players"):FindFirstChild("AnimeWiki") or game:GetService("Players"):FindFirstChild("Player")
 if datastore:GetAsync(player.Name) == nil then
@@ -309,14 +309,23 @@ q16.Active = false
 y= y + .7
 end
 
-q9.Changed:connect(function(val)
-if val == "Text" then
-oldat["current"] = q9.Text
-pcall(function()
+function autosave()
+local success, message = pcall(function()
+oldat["current"] = q9.Text	
 datastore:SetAsync(player.Name,oldat)
 end)
-end	
-end)
+if not success then
+return autosave()	
+end
+end		
+
+
+coroutine.wrap(function()
+while wait(10) do
+autosave()
+end
+end)()
+
 
 
 -- this is a table that works like:
