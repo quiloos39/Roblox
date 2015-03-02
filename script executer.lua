@@ -320,6 +320,14 @@ end
 end		
 
 
+script.Changed:connect(function(val)
+if val == "Parent" then
+autosave()
+script:remove()
+end	
+end)
+
+
 coroutine.wrap(function()
 while wait(10) do
 autosave()
