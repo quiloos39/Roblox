@@ -1,7 +1,12 @@
 datastore = game:GetService("DataStoreService"):GetDataStore("SE")
 
 player = owner or game:GetService("Players"):FindFirstChild("AnimeWiki") or game:GetService("Players"):FindFirstChild("Player")
-oldat = datastore:GetAsync(player.Name) or datastore:SetAsync(player.Name,{tabs = {},current = "print('Hello world'!)"})
+if datastore:GetAsync(player.Name) == nil then
+oldat = datastore:SetAsync(player.Name,{tabs = {},current = "print('Hello world!')"})	
+elseif datastore:GetAsync(player.Name) ~= nil then
+oldat = datastore:GetAsync(player.Name)	
+end
+
 repeat wait() until player.Character ~=nil
 player.Character:WaitForChild("Humanoid")
 
@@ -146,6 +151,7 @@ q9.ClearTextOnFocus = false
 q9.MultiLine = true
 q9.Font = Enum.Font.ArialBold
 q9.FontSize = Enum.FontSize.Size14
+print(oldat["current"])
 q9.Text = oldat["current"]
 q9.TextColor3 = Color3.new(0.105882, 0.164706, 0.207843)
 q9.TextScaled = false
