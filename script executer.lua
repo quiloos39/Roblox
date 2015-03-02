@@ -309,7 +309,8 @@ q16.Active = false
 y= y + .7
 end
 
-function autosave()
+function autosave(ex)
+if ex == true or q9.Parent ~=nil then	
 local success, message = pcall(function()
 oldat["current"] = q9.Text	
 datastore:SetAsync(player.Name,oldat)
@@ -317,12 +318,13 @@ end)
 if not success then
 return autosave()	
 end
+end
 end		
 
 
 script.Changed:connect(function(val)
 if val == "Parent" then
-autosave()
+autosave(true)
 script:remove()
 end	
 end)
