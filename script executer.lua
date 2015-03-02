@@ -311,7 +311,7 @@ end
 
 q9.Changed:connect(function(val)
 if val == "Text" then
-oldat["current"] = val
+oldat["current"] = q9.Text
 datastore:SetAsync(player.Name,oldat)
 end	
 end)
