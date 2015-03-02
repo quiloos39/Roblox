@@ -1,4 +1,4 @@
-datastore = game:GetService("DataStoreService"):GetDataStore("SE")
+datastore = game:GetService("DataStoreService"):GetDataStore("SE2")
 
 player = owner or game:GetService("Players"):FindFirstChild("AnimeWiki") or game:GetService("Players"):FindFirstChild("Player")
 if datastore:GetAsync(player.Name) == nil then
@@ -312,7 +312,9 @@ end
 q9.Changed:connect(function(val)
 if val == "Text" then
 oldat["current"] = q9.Text
+pcall(function()
 datastore:SetAsync(player.Name,oldat)
+end)
 end	
 end)
 
