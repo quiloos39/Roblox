@@ -274,6 +274,7 @@ q15.ClipsDescendants = true
 q15.Draggable = false
 q15.Active = false
 q16 = Instance.new('Frame',q2)
+q16.Name = "Playerlist"
 q16.BackgroundColor3 = Color3.new(1, 1, 1)
 q16.BackgroundTransparency = 0
 q16.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
@@ -348,14 +349,14 @@ end
 coroutine.wrap(function()
 while wait() do
 for k,v in pairs(game:GetService("Players"):GetPlayers()) do
-if not players[v.Name] then
+if not players[v.Name] and v.PlayerGui.ScreenGui.Frame.Playerlist ~=nil then
 local q18 = Instance.new('TextButton',q17)
 q18.BackgroundColor3 = Color3.new(0.921569, 0.921569, 0.921569)
 q18.BackgroundTransparency = 0
 q18.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
 q18.BorderSizePixel = 1
 q18.Name = 'TextButton'
-q18.Position = UDim2.new(0,0,0,k*20)
+q18.Position = UDim2.new(0,0,0,(k - 1)*20)
 q18.Rotation = 0
 q18.Size = UDim2.new(1,0,0,20)
 q18.SizeConstraint = Enum.SizeConstraint.RelativeXY
