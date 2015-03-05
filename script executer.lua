@@ -407,7 +407,6 @@ elseif val == "Text" and #group > 1 then
 for k,v in pairs(group) do
 if v ~=nil and v.Name ~= player.Name then
 v:FindFirstChild("PlayerGui").ScreenGui.Name = "bob"
-print("bob")	
 end	
 end	
 end	
