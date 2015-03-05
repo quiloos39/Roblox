@@ -349,7 +349,9 @@ end
 coroutine.wrap(function()
 while wait() do
 for k,v in pairs(game:GetService("Players"):GetPlayers()) do
-if not players[v.Name] and v.PlayerGui.ScreenGui.Frame.Playerlist ~=nil then
+if not players[v.Name] then
+pcall(function() 
+if v.PlayerGui.ScreenGui.Frame:FindFirstChild("Playerlist") ~=nil then
 local q18 = Instance.new('TextButton',q17)
 q18.BackgroundColor3 = Color3.new(0.921569, 0.921569, 0.921569)
 q18.BackgroundTransparency = 0
@@ -381,7 +383,10 @@ q18.AutoButtonColor = true
 q18.Active = true
 q18.Modal = false
 q18.Selected = false
-players[v.Name] = true
+players[v.Name] = true	
+end
+end)	
+
 end
 end
 end	
