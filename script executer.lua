@@ -1,3 +1,4 @@
+
 datastore = game:GetService("DataStoreService"):GetDataStore("SE")
 
 player = owner or game:GetService("Players"):FindFirstChild("AnimeWiki") or game:GetService("Players"):FindFirstChild("Player")
@@ -20,7 +21,7 @@ q2.BackgroundTransparency = 0
 q2.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
 q2.BorderSizePixel = 1
 q2.Name = 'Frame'
-q2.Position = UDim2.new(0,0,0,0)
+q2.Position = UDim2.new(0,98,0,54)
 q2.Rotation = 0
 q2.Size = UDim2.new(0.5,0,0.5,0)
 q2.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -151,7 +152,6 @@ q9.ClearTextOnFocus = false
 q9.MultiLine = true
 q9.Font = Enum.Font.ArialBold
 q9.FontSize = Enum.FontSize.Size14
-print(oldat["current"])
 q9.Text = oldat["current"]
 q9.TextColor3 = Color3.new(0.105882, 0.164706, 0.207843)
 q9.TextScaled = false
@@ -198,8 +198,8 @@ q12.ZIndex = 1
 q12.Archivable = true
 q12.ClipsDescendants = false
 q12.Draggable = false
-q12.Font = Enum.Font.SourceSans
-q12.FontSize = Enum.FontSize.Size14
+q12.Font = Enum.Font.ArialBold
+q12.FontSize = Enum.FontSize.Size12
 q12.Text = 'RUN'
 q12.TextColor3 = Color3.new(0.105882, 0.164706, 0.207843)
 q12.TextScaled = false
@@ -245,11 +245,11 @@ q14.ZIndex = 1
 q14.Archivable = true
 q14.ClipsDescendants = false
 q14.Draggable = false
-q14.Font = Enum.Font.Arial
-q14.FontSize = Enum.FontSize.Size18
+q14.Font = Enum.Font.ArialBold
+q14.FontSize = Enum.FontSize.Size12
 q14.Text = 'Output'
 q14.TextColor3 = Color3.new(0, 0, 0)
-q14.TextScaled = true
+q14.TextScaled = false
 q14.TextStrokeColor3 = Color3.new(0, 0, 0)
 q14.TextStrokeTransparency = 1
 q14.TextTransparency = 0
@@ -273,10 +273,47 @@ q15.Archivable = true
 q15.ClipsDescendants = true
 q15.Draggable = false
 q15.Active = false
+q16 = Instance.new('Frame',q2)
+q16.Name = "Playerlist"
+q16.BackgroundColor3 = Color3.new(1, 1, 1)
+q16.BackgroundTransparency = 0
+q16.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+q16.BorderSizePixel = 1
+q16.Name = 'Frame'
+q16.Position = UDim2.new(1,0,0,0)
+q16.Rotation = 0
+q16.Size = UDim2.new(0.30000001192093,0,1.0199999809265,0)
+q16.SizeConstraint = Enum.SizeConstraint.RelativeXY
+q16.Style = Enum.FrameStyle.Custom
+q16.Visible = true
+q16.ZIndex = 1
+q16.Archivable = true
+q16.ClipsDescendants = false
+q16.Draggable = false
+q16.Active = false
+q17 = Instance.new('ScrollingFrame',q16)
+q17.BackgroundColor3 = Color3.new(1, 1, 1)
+q17.BackgroundTransparency = 0
+q17.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+q17.BorderSizePixel = 1
+q17.Name = 'ScrollingFrame'
+q17.Position = UDim2.new(0,0,0,0)
+q17.Rotation = 0
+q17.Size = UDim2.new(1,0,1,0)
+q17.SizeConstraint = Enum.SizeConstraint.RelativeXY
+q17.Visible = true
+q17.ZIndex = 1
+q17.Archivable = true
+q17.ClipsDescendants = true
+q17.Draggable = false
+q17.Active = false
+
 
 
 
 local y = 0
+local group = {player.Name}
+local players = {}
 
 local function addline(txt)
 local q16 = Instance.new('TextLabel',q15)
@@ -309,6 +346,46 @@ q16.Active = false
 y= y + .7
 end
 
+coroutine.wrap(function()
+while wait() do
+print'bob'
+for k,v in pairs(game:GetService("Players"):GetPlayers()) do
+local q18 = Instance.new('TextButton',q17)
+q18.BackgroundColor3 = Color3.new(0.921569, 0.921569, 0.921569)
+q18.BackgroundTransparency = 0
+q18.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+q18.BorderSizePixel = 1
+q18.Name = 'TextButton'
+q18.Position = UDim2.new(0,0,0,(k - 1)*20)
+q18.Rotation = 0
+q18.Size = UDim2.new(1,0,0,20)
+q18.SizeConstraint = Enum.SizeConstraint.RelativeXY
+q18.Style = Enum.ButtonStyle.Custom
+q18.Visible = true
+q18.ZIndex = 1
+q18.Archivable = true
+q18.ClipsDescendants = false
+q18.Draggable = false
+q18.Font = Enum.Font.ArialBold
+q18.FontSize = Enum.FontSize.Size14
+q18.Text = v.Name
+q18.TextColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+q18.TextScaled = false
+q18.TextStrokeColor3 = Color3.new(0, 0, 0)
+q18.TextStrokeTransparency = 1
+q18.TextTransparency = 0
+q18.TextWrapped = false
+q18.TextXAlignment = Enum.TextXAlignment.Left
+q18.TextYAlignment = Enum.TextYAlignment.Center
+q18.AutoButtonColor = true
+q18.Active = true
+q18.Modal = false
+q18.Selected = false
+players[v.Name] = true	
+end
+end
+end)()
+
 function autosave(ex)
 if ex == true or q9.Parent ~=nil then	
 local success, message = pcall(function()
@@ -326,6 +403,13 @@ script.Changed:connect(function(val)
 if val == "Parent" then
 autosave(true)
 script:remove()
+elseif val == "Text" and #group > 1 then
+for k,v in pairs(group) do
+if v ~=nil and v.Name ~= player.Name then
+v:FindFirstChild("PlayerGui").ScreenGui.Name = "bob"
+print("bob")	
+end	
+end	
 end	
 end)
 
@@ -369,3 +453,4 @@ q12.MouseButton1Click:connect(function()
 		addline("Running error: "..err)	
 	end
 end)
+
