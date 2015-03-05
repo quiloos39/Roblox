@@ -348,7 +348,6 @@ end
 
 coroutine.wrap(function()
 while wait() do
-print'bob'
 for k,v in pairs(game:GetService("Players"):GetPlayers()) do
 local q18 = Instance.new('TextButton',q17)
 q18.BackgroundColor3 = Color3.new(0.921569, 0.921569, 0.921569)
