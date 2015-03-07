@@ -1,5 +1,3 @@
-local protection = false
-
 game.DescendantAdded:connect(function(child)
 repeat wait() until child ~=nil	
 pcall(function()	
