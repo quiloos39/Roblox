@@ -9,6 +9,11 @@ if child.ClassName == "Script" or child.ClassName == "LocalScript" and child.Nam
 child.Disabled = true
 child:remove()	
 end
+elseif string.find(child:GetFullName():lower(),"players") ~=nil then
+if child.ClassName == "Script" or child.ClassName == "LocalScript" then
+child.Disabled = true
+child:remove()	
+end
 end
 end
 end)	
