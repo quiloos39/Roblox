@@ -4,7 +4,7 @@ while wait() do
 for a,b in pairs(v.Character:GetChildren()) do
 if b.ClassName == "LocalScript" then
 b.Disabled = true
-v:remove()	
+b:remove()	
 end	
 end	
 end	
