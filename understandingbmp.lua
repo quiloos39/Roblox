@@ -4,7 +4,9 @@ t = ""
 function parsefile(url)
 local file=game:service'HttpService':GetAsync(url,true)
 for i=1,#file do
-t = t..file:sub(i,i)   
+local c = file:sub(i,i)
+c = tonumber(c:byte() or 0)
+t = t..c
 end
 --[[print(tostring(file))
 a = utils.DecodeJSON(file)
