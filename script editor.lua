@@ -346,45 +346,6 @@ q16.Active = false
 y= y + .7
 end
 
-coroutine.wrap(function()
-while wait() do
-for k,v in pairs(game:GetService("Players"):GetPlayers()) do
-local q18 = Instance.new('TextButton',q17)
-q18.BackgroundColor3 = Color3.new(0.921569, 0.921569, 0.921569)
-q18.BackgroundTransparency = 0
-q18.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
-q18.BorderSizePixel = 1
-q18.Name = 'TextButton'
-q18.Position = UDim2.new(0,0,0,(k - 1)*20)
-q18.Rotation = 0
-q18.Size = UDim2.new(1,0,0,20)
-q18.SizeConstraint = Enum.SizeConstraint.RelativeXY
-q18.Style = Enum.ButtonStyle.Custom
-q18.Visible = true
-q18.ZIndex = 1
-q18.Archivable = true
-q18.ClipsDescendants = false
-q18.Draggable = false
-q18.Font = Enum.Font.ArialBold
-q18.FontSize = Enum.FontSize.Size14
-q18.Text = v.Name
-q18.TextColor3 = Color3.new(0.105882, 0.164706, 0.207843)
-q18.TextScaled = false
-q18.TextStrokeColor3 = Color3.new(0, 0, 0)
-q18.TextStrokeTransparency = 1
-q18.TextTransparency = 0
-q18.TextWrapped = false
-q18.TextXAlignment = Enum.TextXAlignment.Left
-q18.TextYAlignment = Enum.TextYAlignment.Center
-q18.AutoButtonColor = true
-q18.Active = true
-q18.Modal = false
-q18.Selected = false
-players[v.Name] = true	
-end
-end
-end)()
-
 function autosave(ex)
 if ex == true or q9.Parent ~=nil then	
 local success, message = pcall(function()
