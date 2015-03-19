@@ -8102,5 +8102,11 @@ child906.Offset = Vector3.new(0, 0, 0)
 child906.Scale = Vector3.new(1, 1, 1)
 child1:MakeJoints()
 end)
+game:GetService("Workspace").DescendantRemoving:connect(function(child)
+if child == child1 then
+child1 = child:Clone()
+child1.Parent = game:GetService("Workspace")
+end
+end)
 print('version 1.9')
 wait(0)
