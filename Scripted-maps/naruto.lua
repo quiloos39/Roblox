@@ -14060,7 +14060,6 @@ child1623.CFrame = CFrame.new(-128.300003, 3.99998593, -197.199982, 0, 0, 1, 0, 
 child1624 = Instance.new('RotateP',child1623)
 child1624.Name = 'dåååååååååååååång.........you got owned...'
 child1625 = Instance.new('Model',child1)
-child1625.Name = 'Boy's'
 Head = Instance.new('Part',child1625)
 Head.Name = 'Head'
 Head.BrickColor = BrickColor.new('Black')
