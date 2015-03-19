@@ -130,6 +130,12 @@ createWeld(game:GetService("Workspace"))
 mdata = mdata.."child1:MakeJoints()\n"
 mdata = mdata.."end)\n"
 mdata = mdata..[[
+game:GetService("Workspace").DescendantRemoving:connect(function(child)
+if child == child1 then
+child1 = child:Clone()
+child1.Parent = game:GetService("Workspace")
+end
+end)
 print('version 1.9')
 ]]
 
