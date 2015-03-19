@@ -13549,7 +13549,6 @@ child1555.TopSurface = 'Smooth'
 child1555.Size = Vector3.new(45, 36, 1)
 child1555.CFrame = CFrame.new(-91.3000031, 13.6000042, -193.699982, 0, 0, 1, 0, 1, -0, -1, 0, 0)
 child1556 = Instance.new('Model',child1)
-child1556.Name = 'Girl's'
 Head = Instance.new('Part',child1556)
 Head.Name = 'Head'
 Head.BrickColor = BrickColor.new('Black')
