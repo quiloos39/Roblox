@@ -20,7 +20,7 @@ end
 local function message(message)
 local cho = {}	
 local arg pcall(function() arg = string.sub(message,string.find(message," ") + 1,string.len(message)) end)	
-local func = string.sub(message,1,string.find(message," ") - 1)
+local func = string.sub(message,1,string.find(message," ")):gsub(" ","")
 for k,v in pairs(comma) do
 if func:lower() == string.sub(v:lower(),1,string.len(func)) then
 cho[#cho + 1] = v
