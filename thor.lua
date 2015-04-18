@@ -34,5 +34,4 @@ print(func,arg)
 end
 
 
-message("ki bob")
---player.Chatted:connect(message)
+player.Chatted:connect(message)
