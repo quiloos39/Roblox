@@ -30,9 +30,9 @@ end
 if #cho == 1 then
 runf(cho[1],arg)	
 end
-
+print(func,arg)
 end
 
 
-
-player.Chatted:connect(message)
+message("ki bob")
+--player.Chatted:connect(message)
