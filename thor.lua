@@ -1,14 +1,13 @@
 local player = game:GetService("Players").LocalPlayer or game:GetService("Players"):FindFirstChild("AnimeWiki")
 
-
 local comma = {"kill"}
 local function runf(func,arg)
-print(func,arg[2])
+
 if func == "kill" then
-if arg ~=nil then
+if arg[1] ~=nil then
 
 else
-player.Character:FindFirstChild("Humanoid"):TakeDamage(player.Character:FindFirstChild("Humanoid").MaxHealth)
+pcall(function() player.Character:FindFirstChild("Humanoid"):TakeDamage(player.Character:FindFirstChild("Humanoid").MaxHealth) end)
 end
 end
 end
@@ -24,7 +23,9 @@ if string.sub(v:lower(),1,string.len(func)) == func:lower() and string.len(func)
 co[#co + 1] = v
 end	
 end
+
 if string.len(arg) > 0 then
+print'bob'
 for com in string.gmatch(arg,",") do
 player[#player + 1] = string.sub(arg,1,string.find(arg,",") - 1)
 arg = string.sub(arg,string.find(arg,",") + 1,string.len(arg))
