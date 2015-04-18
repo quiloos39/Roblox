@@ -35,7 +35,7 @@ end
 if #co >= 2 then
 
 else
-runf(func,player)	
+runf(co[1],player)	
 end
 	
 end
