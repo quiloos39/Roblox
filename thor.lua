@@ -1,3 +1,6 @@
+--bob
+
+
 firstargument = ":"
 
 commands = {"kill"}
