@@ -17,10 +17,10 @@ local function message(message)
 if string.sub(message,1,1) == ":" then
 local player = {}
 local co = {}
-local func = "" pcall(function() if string.find(message, " ") ~=nil then func = string.sub(message,1,string.find(message," ") - 1) else func = string.sub(message,2,string.len(message))  end  end) 
+local func = "" pcall(function() if string.find(message, " ") ~=nil then func = string.sub(message,2,string.find(message," ") - 1) else func = string.sub(message,2,string.len(message))  end  end) 
 local arg = "" pcall(function() arg = string.sub(message,string.find(message," ") + 1,string.len(message)) end) 
 for k,v in pairs(comma)  do
-if string.sub(v:lower(),1,string.len(func)) == func:lower() then
+if string.sub(v:lower(),1,string.len(func)) == func:lower() and string.len(func) > 0 then
 co[#co + 1] = v
 end	
 end
@@ -43,5 +43,5 @@ end
 
 
 player.Chatted:connect(message)
---message(":kill an,bob")
+--message(":k")
 --message(":ki an,bob")
