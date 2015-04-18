@@ -15,3 +15,6 @@ end
 
 
 player = game:GetService("Players"):FindFirstChild("AnimeWiki") or game:GetService("Players").LocalPlayer
+
+
+player.Chatted:connect(message)
