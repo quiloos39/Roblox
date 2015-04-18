@@ -1,4 +1,4 @@
-player = game:GetService("Players").LocalPlayer
+player = game:GetService("Players").LocalPlayer or owner
 player.Character:WaitForChild("Humanoid")
 mouse = player:GetMouse()
 pk = {}
