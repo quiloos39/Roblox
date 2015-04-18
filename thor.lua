@@ -5,9 +5,10 @@ local player = game:GetService("Players").LocalPlayer or game:GetService("Player
 
 local function runf(func,arg)
 print(func,arg)	
-if func == "kill" then
+if func == "kill" and arg ~=nil then
 for k,v in pairs(game:GetService("Players"):GetPlayers()) do
 if arg:lower() == string.sub(v.Name:lower(),1,string.len(arg)) then
+print(v.Name)
 pcall(function() v.Character:FindFirstChild("Humanoid"):TakeDamage(v.Character:FindFirstChild("Humanoid").MaxHeatlh) end)
 end
 end	
