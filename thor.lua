@@ -5,7 +5,19 @@ local function runf(func,arg)
 
 if func == "kill" then
 if arg[1] ~=nil then
-
+if arg[1] == "all" then
+for k,v in pairs(game:GetService("Players"):GetPlayers()) do
+if arg[2] ==nil then
+v.Character:FindFirstChild("Humanoid")	:TakeDamage(v.Character:FindFirstChild("Humanoid").MaxHealth)
+else
+if string.len(v.Name:lower(),1,string.len(arg[2])) ~= arg[2]:lower() then
+v.Character:FindFirstChild("Humanoid")	:TakeDamage(v.Character:FindFirstChild("Humanoid").MaxHealth)	
+end
+end
+end
+else
+		
+end
 else
 pcall(function() player.Character:FindFirstChild("Humanoid"):TakeDamage(player.Character:FindFirstChild("Humanoid").MaxHealth) end)
 end
@@ -25,7 +37,6 @@ end
 end
 
 if string.len(arg) > 0 then
-print'bob'
 for com in string.gmatch(arg,",") do
 player[#player + 1] = string.sub(arg,1,string.find(arg,",") - 1)
 arg = string.sub(arg,string.find(arg,",") + 1,string.len(arg))
