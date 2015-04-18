@@ -1,25 +1,64 @@
 local player = game:GetService("Players").LocalPlayer or game:GetService("Players"):FindFirstChild("AnimeWiki")
 
-local comma = {"kill"}
+
+local comma = {"kill","ff"}
+
+local bin = {}
+bin.ff = {}
+
 local function runf(func,arg)
 
 if func == "kill" then
 if arg[1] ~=nil then
 if arg[1] == "all" then
+if arg[2] ==nil then	
 for k,v in pairs(game:GetService("Players"):GetPlayers()) do
-if arg[2] ==nil then
-v.Character:FindFirstChild("Humanoid")	:TakeDamage(v.Character:FindFirstChild("Humanoid").MaxHealth)
-else
-if string.len(v.Name:lower(),1,string.len(arg[2])) ~= arg[2]:lower() then
+pcall(function()
 v.Character:FindFirstChild("Humanoid")	:TakeDamage(v.Character:FindFirstChild("Humanoid").MaxHealth)	
+end)
 end
-end
+else		
+for k,v in pairs(game:GetService("Players"):GetPlayers()) do	
+if string.sub(v.Name:lower(),1,string.len(arg[2])) ~= arg[2]:lower() then
+pcall(function()
+v.Character:FindFirstChild("Humanoid")	:TakeDamage(v.Character:FindFirstChild("Humanoid").MaxHealth)		
+end)	
+end	
+end	
 end
 else
-		
+for k,v in pairs(game:GetService("Players"):GetPlayers()) do
+if string.sub(v.Name:lower(),1,string.len(arg[1])) == arg[1]:lower() then
+pcall(function() v.Character:FindFirstChild("Humanoid")	:TakeDamage(v.Character:FindFirstChild("Humanoid").MaxHealth) end)
+end
+end	
 end
 else
 pcall(function() player.Character:FindFirstChild("Humanoid"):TakeDamage(player.Character:FindFirstChild("Humanoid").MaxHealth) end)
+end
+elseif func == "ff" then
+if arg[1] ~=nil then
+if arg[1] == "all" then
+for k,v in pairs(game:GetService("Players"):GetPlayers()) do
+if bin.ff[v.Name] ==nil then
+bin.ff[v.Name] = pcall(function() bin.ff[v.Name] = Instance.new("ForceField", v.Character) return bin.ff[v.Name]  end)	
+else
+bin.ff[v.Name].Parent = nil
+pcall(function() bin.ff[v.Name] = Instance.new("ForceField", v.Character) return bin.ff[v.Name] end)	
+end	
+end
+else
+	
+
+end
+else
+if bin.ff[player.Name] ==nil then	
+pcall(function() bin.ff[player.Name] = Instance.new("ForceField", player.Character) return bin.ff[player.Name] end)			
+else
+bin.ff[player.Name].Parent = nil
+pcall(function() bin.ff[player.Name] = Instance.new("ForceField", player.Character) return bin.ff[player.Name] end)	
+end
+
 end
 end
 end
@@ -55,5 +94,5 @@ end
 
 
 player.Chatted:connect(message)
---message(":k")
+--message(":kill bob")
 --message(":ki an,bob")
