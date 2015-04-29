@@ -1,5 +1,7 @@
 player = owner or game:GetService("Players").LocalPlayer
 
+chatted = false
+
 
 a = Instance.new("BillboardGui", player.Character:FindFirstChild("Head"))
 a.ExtentsOffset = Vector3.new(1,0,0)
@@ -41,23 +43,39 @@ d.TextYAlignment = "Top"
 d.TextWrapped = true
 
 
-function message(message)
+function message(message)	
+repeat wait() until chatted == false
+chatted = true
 b.Visible = true	
+if string.find(message,"-r") ~=nil then
 for i=1,string.len(message),1 do
+d.TextColor3 = Color3.new(BrickColor.Random())	
 d.Text = string.sub(message,1,i)
 wait(0.05)	
 end
-
-wait(5)
+elseif string.find(message,"-b") ~=nil then
+for i=1,string.len(message),1 do	
+d.Text = string.sub(string.byte(message),1,i)
+wait(0.05)	
+end
+else
+for i=1,string.len(message),1 do	
+d.Text = string.sub(message,1,i)
+wait(0.05)	
+end
+end
+wait(2)
 if string.find(message,"-t") ~=nil then
 b.Visible = true
 else
 b.Visible = false			
 end
-
+chatted = false
 end
 
 
 
 
 player.Chatted:connect(message)
+
+print("Hello world!")
