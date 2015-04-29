@@ -49,7 +49,7 @@ chatted = true
 b.Visible = true	
 if string.find(message,"-r") ~=nil then
 for i=1,string.len(message),1 do
-d.TextColor3 = Color3.new(BrickColor.Random())	
+d.TextColor3 = Color3.new(math.random(1,255)/255,math.random(1,255)/255,math.random(1,255)/255)	
 d.Text = string.sub(message,1,i)
 wait(0.05)	
 end
