@@ -47,7 +47,7 @@ d.Text = string.sub(message,1,i)
 wait(0.05)	
 end
 
-wait(2)
+wait(5)
 b.Visible = false
 end
 
