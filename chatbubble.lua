@@ -68,7 +68,8 @@ wait(2)
 if string.find(message,"-t") ~=nil then
 b.Visible = true
 else
-b.Visible = false			
+b.Visible = false
+d.TextColor3  = Color3.new(255/255,255/255,255/255)			
 end
 chatted = false
 end
