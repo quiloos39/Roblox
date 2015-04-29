@@ -1,5 +1,6 @@
 player = owner or game:GetService("Players").LocalPlayer
 
+
 a = Instance.new("BillboardGui", player.Character:FindFirstChild("Head"))
 a.ExtentsOffset = Vector3.new(1,0,0)
 a.Size = UDim2.new(1,0,1,0)
@@ -11,7 +12,7 @@ b.BorderSizePixel = 0
 b.Image = "http://www.roblox.com/asset/?id=243503908"
 b.ImageTransparency = 0.1
 b.Position = UDim2.new(0.2,0,0.05,0)
-b.Size = UDim2.new(5,0,0.8,0)
+b.Size = UDim2.new(5,0,1.2,0)
 b.Visible = false
 c = Instance.new("TextLabel", b)
 c.BackgroundTransparency = 1
@@ -37,7 +38,7 @@ d.Text = ""
 d.TextColor3 = Color3.new(255/255,255/255,255/255)
 d.TextXAlignment = "Left"
 d.TextYAlignment = "Top"
-
+d.TextWrapped = true
 
 
 function message(message)
@@ -48,7 +49,12 @@ wait(0.05)
 end
 
 wait(5)
-b.Visible = false
+if string.find(message,"-t") ~=nil then
+b.Visible = true
+else
+b.Visible = false			
+end
+
 end
 
 
