@@ -1,5 +1,5 @@
 pcall(function()
-q1 = Instance.new('ScreenGui',StarterGui)
+q1 = Instance.new('ScreenGui',owner.PlayerGui)
 q1.Name = 'ScreenGui'
 q1.Archivable = true
 q2 = Instance.new('Frame',q1)
