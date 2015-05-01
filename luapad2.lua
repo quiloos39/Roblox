@@ -2842,3 +2842,6 @@ q108.MouseButton1Click:connect(function()
 loadstring(q6.Text)
 end)
 end)
+
+
+print("Hello world")
