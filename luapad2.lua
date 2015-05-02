@@ -163,12 +163,12 @@ q10.Active = true
 q10.Modal = false
 q10.Selected = false
 
-local a = {}
+a = {}
 
-q6.Changed:connect(function(v)
-if v == "TextBounds" then
-if not a[q6.TextBounds.Y] then	
-local line = Instance.new("TextLabel",q5)
+
+
+function line()
+local line = Instance.new("TextLabel",q3)
 line.Text = q6.TextBounds.Y/18
 line.BackgroundTransparency = 1
 line.BorderSizePixel = 0
@@ -177,8 +177,18 @@ line.Size = UDim2.new(0.025,0,0,20)
 line.FontSize = "Size18"
 line.Font = "SourceSans"
 line.TextColor3 = Color3.new(0/255,0/255,0/255)
+line.ZIndex = 3
+line.Visible = true
+a[q6.TextBounds.Y] = line    
+end
 
-a[q6.TextBounds.Y] = line
+line()
+
+
+q6.Changed:connect(function(v)
+if v == "TextBounds" then
+if not a[q6.TextBounds.Y] then	
+line()
 else
 if a[q6.TextBounds.Y + 18] then
 a[q6.TextBounds.Y + 18]:remove()
