@@ -1,6 +1,14 @@
-local q1 = Instance.new('ScreenGui', owner:FindFirstChild("PlayerGui") or game:GetService("Players").LocalPlayer:FindFirstChild("PlayerGui") )
+wait()
+local q1 = Instance.new('ScreenGui', owner:FindFirstChild("PlayerGui"))
 q1.Name = 'ScreenGui'
 q1.Archivable = true
+local part = Instance.new("Part", q1.Parent.Parent.Character)
+part.FormFactor = "Custom"
+part.Size = Vector3.new(20,15,.1)
+part.Anchored = true
+part.CFrame = owner.Character.Torso.CFrame * CFrame.new(0,0,-5)
+local surface = Instance.new("SurfaceGui", part)
+
 local q2 = Instance.new('Frame',q1)
 q2.BackgroundColor3 = Color3.new(1, 1, 1)
 q2.BackgroundTransparency = 0
@@ -162,41 +170,129 @@ q10.AutoButtonColor = true
 q10.Active = true
 q10.Modal = false
 q10.Selected = false
+local q11 = Instance.new("ScrollingFrame", q2)
+q11.BackgroundTransparency = 11
+q11.BorderSizePixel = 0
+q11.Position = UDim2.new(0,0,0.6,0)
+q11.Size = UDim2.new(0.983,0,1,0)
+q11.Name = "q11"
+q11.ZIndex = 2
+q11.CanvasSize = UDim2.new(0,0,1,0)
+q11.ScrollBarThickness = 0
 
-a = {}
+
+local q2clone = q2:Clone()
+
+q2clone.Frame:remove()
+q2clone.Parent = surface
+q2clone.Size = UDim2.new(1,0,1,0)
+q2clone.Position = UDim2.new(0,0,0,0)
+q2clone.ScrollingFrame.Size = UDim2.new(1,0,1,0)
+q2clone.ScrollingFrame.Position = UDim2.new(0,0,0,0)
+q2clone.q11:remove()
+local a = {}
+a.lines={}
+a.out = {}
 
 
-
-function line()
-local line = Instance.new("TextLabel",q3)
-line.Text = q6.TextBounds.Y/18
-line.BackgroundTransparency = 1
-line.BorderSizePixel = 0
-line.Position = UDim2.new(0,0,0,((q6.TextBounds.Y/18) - 1 )*20)
-line.Size = UDim2.new(0.025,0,0,20)
-line.FontSize = "Size18"
-line.Font = "SourceSans"
-line.TextColor3 = Color3.new(0/255,0/255,0/255)
-line.ZIndex = 3
-line.Visible = true
-a[q6.TextBounds.Y] = line    
+function update()
+--count returns
+local space=1
+for i=1,#q6.Text do
+local c=q6.Text:sub(i,i)
+if string.byte(c)==10 then
+space=space+1
+end
+end
+local add=false
+for i=1,space do
+--add new line
+if not a.lines[i] then
+local q11 = Instance.new("TextLabel",q3)
+q11.Size = UDim2.new(0.025,0,0,18)
+q11.FontSize = "Size18"
+q11.Font = "SourceSans"
+q11.Text = i
+q11.BackgroundTransparency = 1
+q11.Position=UDim2.new(0,0,0,q11.Size.Y.Offset*(i-1))
+q11:Clone().Parent = q2clone.ScrollingFrame
+a.lines[i]=q11
+add=true --here
+-- i have idea but idk it might be buggy.
+-- to make multiplayer support. lol why its going to be like stypi but we need invatation menu or something we need to dedice how its gonna work -- -_- ok
+-- i can make empty box and if u type code there it will show ur friend script ? 
+end
+--remove extra lines
+for i=1,#a.lines do
+if i>space then
+if a.lines[i] then a.lines[i]:Destroy()end -- remove e.e remove lag e.e e.e .e. e.e .e.e.e.e.e
+a.lines[i]=nil 
+end
+end
 end
 
-line()
-
-
-q6.Changed:connect(function(v)
-if v == "TextBounds" then
-if not a[q6.TextBounds.Y] then	
-line()
-else
-if a[q6.TextBounds.Y + 18] then
-a[q6.TextBounds.Y + 18]:remove()
-a[q6.TextBounds.Y + 18] = nil	
-end
-end
+q3.CanvasSize=UDim2.new(0,0,0,18*space)
+if add==true then
+q3.CanvasPosition=Vector2.new(0,18*space) -- thats to make it scroll down if a person types down the page
+-- where is add bool changes ?
 end
 
-end)
+end
+
+
+function output(v)
+local out = Instance.new("TextLabel",q11)
+out.BackgroundTransparency = 1
+out.BorderSizePixel = 0
+out.Size = UDim2.new(1,0,0,20)
+out.Position = UDim2.new(0,0,0,#a.out*20)
+out.Text = v
+out.Font = "SourceSans"
+out.FontSize = "Size18"
+out.TextColor3 = Color3.new(195/255,1/255,1/255)
+out.TextWrapped = true
+out.TextXAlignment = Enum.TextXAlignment.Left
+out.TextYAlignment = Enum.TextYAlignment.Center
+a.out[#a.out + 1] = v
+
+end
+
+
+
+-- this is a table that works like:
+-- if you try to get funcs.KEY and it's nil, it'll try
+-- to get getfenv()[KEY]    (like "Instance", "game", ...)
+local funcs = setmetatable({},{__index=getfenv()})
+-- Add our custom print, so it prints to our output window
+-- lets test it then ._. because i dont know envoriments yet.
+function funcs.print(...)
+	local res = ""
+	for i=1,select("#",...) do
+		res = res.." "..tostring(select(i,...))	
+	end output(res:sub(2))
+end
+
+
+
+local env = setmetatable({},{__index=funcs})
+
+
+q6.Changed:connect(function(v) if v == "Text" then  update()   q2clone.ScrollingFrame.TextBox.Text = q6.Text end end) -- doesnt fire
+
+
+q10.MouseButton1Click:connect(function()
+local suc,err = loadstring(q6.Text)
+	if not suc then -- so print it and return if there is parsing error
+		return output("Parsing error: "..err)	
+	end setfenv(suc,env) -- set environment to 'env'
+	suc,err = pcall(suc) -- run it in pcall to get error
+	if not suc then -- if error during running, print it
+		output("Running error: "..err)	
+	end
+	
+	
+end) -- i forget ()    
+
+
 
 
