@@ -55,6 +55,7 @@ table1 = {
 {"Naruto Despair",2230915,173858284,"Unknown",114,"ROBLOX","12.11,2014","AnimeWiki"};
 {"Naruto Stalemate",4042664,169331507,"Unknown",106,"ROBLOX","12.11,2014","AnimeWiki"};
 {"Naruto Openning 15",101737877,159498281,"Unknown",88,"ROBLOX","12.11,2014","AnimeWiki"};
+{"Pokemon",171143906,142301307,"Unknown",88,"ROBLOX","12.11,2014","AnimeWiki"};
 {"One piece",29358074,154920642,"Unknown",88,"ROBLOX","12.11,2014","AnimeWiki"};
 {"Gun Gale Online (Ending 1)",172324686,179872015,"Unknown",88,"ROBLOX","12.11,2014","AnimeWiki"};
 {"Gundam Build Fighters",185152845,144809781,"Unknown",88,"ROBLOX","12.11,2014","AnimeWiki"};
