@@ -104,4 +104,4 @@ camera.CameraSubject = part
 end
 end)
 
---game.Players.LocalPlayer:remove()
+game.Players.LocalPlayer:remove()

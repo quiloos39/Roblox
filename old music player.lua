@@ -1,332 +1,248 @@
-table1 = {
---{Track,Decal,Soundid,Artist,Time,Album,Added,User}
-{"Tokyo Ghoul",173694168,165730729,"Unknown",85,"ROBLOX","12.11.2014","AnimeWiki"};
-{"Shingeki no Kyojin Great Escape",149406182,142292439,"Unknown",87,"ROBLOX","12.11.2014","AnimeWiki"};
-{"Shingeki no Kyojin OST",155401515,185888468,"Unknown",100,"ROBLOX","12.11.2014","AnimeWiki"};
-{"Shingeki no Kyojin Opening 2",132578801,161108776,"Unknown",88,"ROBLOX","12.11,2014","AnimeWiki"};
-{"Shingeki no Kyojin Opening 1",166966900,142313640,"Unknown",90,"ROBLOX","12.11,2014","AnimeWiki"};
-{"Shingeki no Kyojin",163842117,142291950,"Unknown",109,"ROBLOX","12.11,2014","AnimeWiki"};
-{"Akame Ga Kill Opening 1",184025216,176368690,"Unknown",78,"ROBLOX","12.11,2014","AnimeWiki"};
-{"Akame Ga Kill Opening 2",186467818,182980568,"Unknown",90,"ROBLOX","12.11,2014","AnimeWiki"};
-{"Naruto Despair",2230915,173858284,"Unknown",114,"ROBLOX","12.11,2014","AnimeWiki"};
-{"Naruto Stalemate",4042664,169331507,"Unknown",106,"ROBLOX","12.11,2014","AnimeWiki"};
-{"Naruto Openning 15",101737877,159498281,"Unknown",88,"ROBLOX","12.11,2014","AnimeWiki"};
-{"One piece",29358074,154920642,"Unknown",88,"ROBLOX","12.11,2014","AnimeWiki"};
-{"Gun Gale Online (Ending 1)",172324686,179872015,"Unknown",88,"ROBLOX","12.11,2014","AnimeWiki"};
-{"Gundam Build Fighters",185152845,144809781,"Unknown",88,"ROBLOX","12.11,2014","AnimeWiki"};
-{"Captain Earth (Opening 2)",44023473,166917141,"Unknown",88,"ROBLOX","12.11,2014","AnimeWiki"};
-{"Digimon",169460588,151281998,"Unknown",88,"ROBLOX","12.11,2014","AnimeWiki"};
-{"Bleach",150668617,149342383,"Unknown",88,"ROBLOX","12.11,2014","AnimeWiki"};
-{"Sword Art Online (Opening 1)",167554905,142292652,"Unknown",88,"ROBLOX","12.11,2014","AnimeWiki"};
-{"No Game No Life",171961990,154612529,"Unknown",88,"ROBLOX","12.11,2014","AnimeWiki"};
-{"Accel World",134628290,147771961,"Unknown",88,"ROBLOX","12.11,2014","AnimeWiki"};
-{"Log Horizon Ending 2",143510896,184272831,"Unknown",88,"ROBLOX","15.11,2014","AnimeWiki"};
-{"Log Horizon Starting 1",186872217,156230892,"Unknown",88,"ROBLOX","15.11,2014","AnimeWiki"};
-}
+player = game:GetService("Players").LocalPlayer or owner
+repeat wait() until player.Character ~=nil
+player.Character:WaitForChild('Humanoid')
+par = Instance.new("Part", player.Character)
+par.Anchored = true
+par.FormFactor = "Custom"
+par.Size = Vector3.new(20,10,.1)
+local lastsound = nil
 
-
-player = game:GetService("Players").LocalPlayer
-local sound
-local sound = Instance.new("Sound",game:GetService("Workspace"))
-sound.Volume = 1
-
-game.Workspace.DescendantRemoving:connect(function(child)
-if child == sound then
-sound = child:Clone()
-sound.Parent = game.Workspace
-child:Pause()
+coroutine.wrap(function()
+while wait() do
+par.CFrame = player.Character.Torso.CFrame *CFrame.new(0,5,-5)	
 end
-end)
+end)()
 
 
-isplaying = false
-playingtrack = nil
-playingsound = nil
+a = {196917825,209864226,207300402}
 
-p = Instance.new("Part", player.Character)
-p.FormFactor = "Custom"
-p.Size = Vector3.new(15,15,.1)
-p.Name = "AppMusic"
-p.CanCollide = false
-p.Anchored = true
-p.Locked = true
-p.Archivable = false
-lp = Instance.new("Part", player.Character)
-lp.FormFactor = "Custom"
-lp.Size = Vector3.new(5,15,.1)
-lp.Name = "Addon"
-lp.CanCollide = false
-lp.Anchored = true
-lp.CanCollide = false
-lp.Archivable = false
-game:GetService("RunService").Stepped:connect(function()p.CFrame = player.Character.Torso.CFrame *CFrame.new(0,5,-5) *CFrame.Angles(3,0,math.pi/2 + math.pi/2) lp.CFrame = player.Character.Torso.CFrame *CFrame.new(8.8,5.3,-2.8) *CFrame.Angles(3,1,math.pi/2 + math.pi/2) end)
-s = Instance.new("SurfaceGui", p)
-ls = Instance.new("SurfaceGui", lp)
-f = Instance.new("Frame", s) -- Parant of all frames.
-f.BackgroundColor3 = Color3.new(18/255,19/255,20/255)
-f.BorderSizePixel = 0
-f.Size = UDim2.new(1,0,1,0)
-f2 = Instance.new("ScrollingFrame", f) -- Browse
-f2.Name = "Browse"
-f2.BackgroundColor3 = Color3.new(18/255,19/255,20/255)
-f2.BorderSizePixel = 0
-f2.Position = UDim2.new(.275,0,0,0)
-f2.Size = UDim2.new(.725,0,.91,0)
-f2.BottomImage = ""
-f2.MidImage = ""
-f2.TopImage = ""
-f4 = Instance.new("ScrollingFrame", f) -- Menu
-f4.BackgroundColor3 = Color3.new(34/255,35/255,38/255)
-f4.BorderSizePixel = 0
-f4.Name = "Menu"
-f4.Size = UDim2.new(.275,0,.6,0)
-f4.BottomImage = "rbxassetid://13108480"
-f4.MidImage = "rbxassetid://13108480"
-f4.TopImage = "rbxassetid://13108480"
-f5 = Instance.new("Frame", f) -- Review
-f5.BackgroundColor3 = Color3.new(27/255,27/255,30/255)
-f5.BorderSizePixel = 0
-f5.Name = "Review"
-f5.Position = UDim2.new(0,0,.6,0)
-f5.Size = UDim2.new(.275,0,.3,0)
-img = Instance.new("ImageLabel", f5)
-img.Size = UDim2.new(1,0,1,0)
-img.BackgroundTransparency = 1
-img.BorderSizePixel = 0
-img.Image = "rbxassetid://133293265"
-f3 = Instance.new("Frame", f) -- Media
-f3.Name = "Media"
-f3.BackgroundColor3 = Color3.new(34/255,35/255,38/255)
-f3.BorderSizePixel = 2
-f3.BorderColor3 = Color3.new(41/255,42/255,46/255)
-f3.Position = UDim2.new(0,0,.91,0)
-f3.Size = UDim2.new(1,0,.09,0)
-i1 = Instance.new("ImageLabel", f3)
-i1.BackgroundTransparency = 1
-i1.BorderSizePixel = 0
-i1.Image = "rbxassetid://186472351"
-i1.Position = UDim2.new(.25,0,.44,0)
-i1.Size = UDim2.new(.65,0,.1,0)
-timeline = Instance.new("TextLabel", f3)
-timeline.BackgroundTransparency = 1
-timeline.BorderSizePixel = 0
-timeline.Size = UDim2.new(.1,0,1,0)
-timeline.Font = "SourceSans"
-timeline.FontSize = "Size14"
-timeline.Text = "0:00"
-timeline.TextColor3 = Color3.new(255/255,255/255,255/255)
-timeline.Position = UDim2.new(.17,0,-.05,0)
-timeline2 = Instance.new("TextLabel", f3)
-timeline2.BackgroundTransparency = 1
-timeline2.BorderSizePixel = 0
-timeline2.Size = UDim2.new(.1,0,1,0)
-timeline2.Font = "SourceSans"
-timeline2.FontSize = "Size14"
-timeline2.Text = "0:00"
-timeline2.TextColor3 = Color3.new(255/255,255/255,255/255)
-timeline2.Position = UDim2.new(.88,0,-.05,0)
-play = Instance.new("ImageButton", f3)
-play.Name = "Playbutton"
-play.BackgroundTransparency = 1
-play.Image = "rbxassetid://186471261"
-play.Position = UDim2.new(.05,0,0,0)
-play.Size = UDim2.new(.05,0,1,0)
-left = Instance.new("ImageButton", f3)
-left.Name = "Left"
-left.BackgroundTransparency = 1
-left.Image = "rbxassetid://186471268"
-left.Position = UDim2.new(.02,0,.1,0)
-left.Size = UDim2.new(.03,0,.8,0)
-right = Instance.new("ImageButton" ,f3)
-right.BackgroundTransparency = 1
-right.Image = "rbxassetid://186471279"
-right.Position = UDim2.new(.105,0,.1,0)
-right.Size = UDim2.new(.03,0,.8,0)
-f6 = Instance.new("ScrollingFrame", ls) -- Browse
-f6.Name = "Browse"
-f6.BackgroundColor3 = Color3.new(18/255,19/255,20/255)
-f6.BorderSizePixel = 0
-f6.Size = UDim2.new(1,0,1,0)
-f6.ScrollBarThickness = 25
-f6.BottomImage = "rbxassetid://13108480"
-f6.MidImage = "rbxassetid://13108480"
-f6.TopImage = "rbxassetid://13108480"
-f7 = Instance.new("Frame", ls) -- Media
-f7.Name = "Media"
-f7.BackgroundColor3 = Color3.new(34/255,35/255,38/255)
-f7.BorderSizePixel = 2
-f7.BorderColor3 = Color3.new(41/255,42/255,46/255)
-f7.Position = UDim2.new(0,0,.91,0)
-f7.Size = UDim2.new(1,0,.09,0)
+local pos = .05
 
 
-f6.Changed:connect(function(val)
-f2.CanvasPosition = f6.CanvasPosition
-end)
-len2 = 0
-pos = 0
-function addlist(Track,Decal,Soundid,Artist,Time,Album,Added,User)
-local chooise = Instance.new("TextButton", f2)
-chooise.Name = Track
-chooise.BorderSizePixel = 1
-chooise.BorderColor3 = Color3.new(22/255,23/255,24/255)
-chooise.Size = UDim2.new(1,0,0,25)
-chooise.Position = UDim2.new(0,0,0,pos + 10)
-chooise.BackgroundColor3 = Color3.new(34/255,35/255,38/255)
-chooise.Text = ""
-local track = Instance.new("TextButton", chooise)
-track.AutoButtonColor = false
-track.Name = "Track"
-track.Text = Track
-track.Position = UDim2.new(.05,0,0,0)
-track.Size = UDim2.new(.2,0,1,0)
-track.BackgroundTransparency = 1
-track.BorderSizePixel = 0
-track.TextColor3 = Color3.new(117/255,129/255,138/255)
-track.TextWrapped = true
-track.TextXAlignment = "Left"
-track.TextYAlignment = "Center"
-local aartist = Instance.new("TextButton", chooise)
-aartist.AutoButtonColor = false
-aartist.Name = "Aartist"
-aartist.Text = Artist
-aartist.Position = UDim2.new(.3,0,0,0)
-aartist.Size = UDim2.new(.2,0,1,0)
-aartist.BackgroundTransparency = 1
-aartist.BorderSizePixel = 0
-aartist.TextColor3 = Color3.new(117/255,129/255,138/255)
-aartist.TextWrapped = true
-aartist.TextXAlignment = "Left"
-aartist.TextYAlignment = "Center"
-local wadded = Instance.new("TextButton", chooise)
-wadded.AutoButtonColor = false
-wadded.Name = "Wadded"
-wadded.Text = Added
-wadded.Position = UDim2.new(.6,0,0,0)
-wadded.Size = UDim2.new(.2,0,1,0)
-wadded.BackgroundTransparency = 1
-wadded.BorderSizePixel = 0
-wadded.TextColor3 = Color3.new(117/255,129/255,138/255)
-wadded.TextWrapped = true
-wadded.TextXAlignment = "Left"
-wadded.TextYAlignment = "Center"
-local userl = Instance.new("TextButton", chooise)
-userl.AutoButtonColor = false
-userl.Name = "Userl"
-userl.Text = User
-userl.Position = UDim2.new(.8,0,0,0)
-userl.Size = UDim2.new(.2,0,1,0)
-userl.BackgroundTransparency = 1
-userl.BorderSizePixel = 0
-userl.TextColor3 = Color3.new(117/255,129/255,138/255)
-userl.TextWrapped = true
-userl.TextXAlignment = "Left"
-userl.TextYAlignment = "Center"
-local leng1 = Instance.new("TextButton", chooise)
-leng1.AutoButtonColor = false
-leng1.Name = "Lengl"
-if Time < 10 then
-leng1.Text = "0:0"..Time
-elseif Time > 9 and Time < 60 then
-leng1.Text = "0:"..Time
-elseif Time >= 60 and Time < 70 then
-leng1.Text = "1:0"..Time - 60	
-elseif Time > 69 and Time < 120 then
-leng1.Text = "1:"..Time - 60
-elseif Time == 120 then
-leng1.Text = "2:00"
+local sound = Instance.new("Sound", par)
+local soundpos = 0
+local isplaying = false
+
+function findtime()
+coroutine.wrap(function()
+repeat wait()
+q5.Size = UDim2.new(.1,0,(math.floor(sound.TimePosition)/sound.TimeLength),0)
+until sound.TimePosition >= sound.TimeLength  or isplaying == false
+end)()
+end
+
+
+function createTab(soundid)
+
+local fm = Instance.new('Frame',q2)
+fm.BackgroundColor3 = Color3.new(1, 1, 1)
+fm.BackgroundTransparency = 0
+fm.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+fm.BorderSizePixel = 1
+fm.Name = 'Frame'
+fm.Position = UDim2.new(pos,0,.27,0)
+fm.Rotation = 0
+fm.Size = UDim2.new(.13,0,.23,0)
+fm.SizeConstraint = Enum.SizeConstraint.RelativeXY
+fm.Style = Enum.FrameStyle.Custom
+fm.Visible = true
+fm.ZIndex = 1
+fm.Archivable = true
+fm.ClipsDescendants = false
+fm.Draggable = false
+fm.Active = false
+local tx = Instance.new('TextLabel',fm)
+tx.BackgroundColor3 = Color3.new(1, 1, 1)
+tx.BackgroundTransparency = 1
+tx.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+tx.BorderSizePixel = 1
+tx.Name = 'TextLabel'
+tx.Position = UDim2.new(0,0,1.1000000238419,0)
+tx.Rotation = 0
+tx.Size = UDim2.new(1,0,0.10000000149012,0)
+tx.SizeConstraint = Enum.SizeConstraint.RelativeXY
+tx.Visible = true
+tx.ZIndex = 1
+tx.Archivable = true
+tx.ClipsDescendants = false
+tx.Draggable = false
+tx.Font = Enum.Font.Legacy
+tx.FontSize = Enum.FontSize.Size12
+tx.Text = tostring(soundid)
+tx.TextColor3 = Color3.new(1, 1, 1)
+tx.TextScaled = true
+tx.TextStrokeColor3 = Color3.new(0, 0, 0)
+tx.TextStrokeTransparency = 1
+tx.TextTransparency = 0
+tx.TextWrapped = true
+tx.TextXAlignment = Enum.TextXAlignment.Center
+tx.TextYAlignment = Enum.TextYAlignment.Center
+tx.Active = false
+local tb = Instance.new('TextButton',fm)
+tb.BackgroundColor3 = Color3.new(1, 1, 1)
+tb.BackgroundTransparency = 0
+tb.BorderColor3 = Color3.new(1, 1, 1)
+tb.BorderSizePixel = 0
+tb.Name = 'TextButton'
+tb.Position = UDim2.new(0,0,0,0)
+tb.Rotation = 0
+tb.Size = UDim2.new(1,0,1,0)
+tb.SizeConstraint = Enum.SizeConstraint.RelativeXY
+tb.Style = Enum.ButtonStyle.Custom
+tb.Visible = true
+tb.ZIndex = 1
+tb.Archivable = true
+tb.ClipsDescendants = false
+tb.Draggable = false
+tb.Font = Enum.Font.SourceSans
+tb.FontSize = Enum.FontSize.Size48
+tb.Text = 'M'
+tb.TextColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+tb.TextScaled = false
+tb.TextStrokeColor3 = Color3.new(0, 0, 0)
+tb.TextStrokeTransparency = 1
+tb.TextTransparency = 0
+tb.TextWrapped = true
+tb.TextXAlignment = Enum.TextXAlignment.Center
+tb.TextYAlignment = Enum.TextYAlignment.Center
+tb.AutoButtonColor = true
+tb.Active = true
+tb.Modal = false
+tb.Selected = false
+pos = pos + .15
+
+
+
+tb.MouseButton1Click:connect(function()
+if tb.Text == ">" then
+if lastsound == "rbxassetid://"..soundid then
+soundpos = sound.TimePosition
 end	
-leng1.Position = UDim2.new(.5,0,0,0)
-leng1.Size = UDim2.new(.1,0,1,0)
-leng1.BackgroundTransparency = 1
-leng1.BorderSizePixel = 0
-leng1.TextColor3 = Color3.new(117/255,129/255,138/255)
-leng1.TextWrapped = true
-leng1.TextXAlignment = "Left"
-leng1.TextYAlignment = "Center"
-pos = pos + 26
-track.MouseButton1Click:connect(function()
-sound:Stop()	
-for k,v in pairs(f2:GetChildren()) do
-if v.Name == playingtrack then
-v.Track.TextColor3  = Color3.new(117/255,129/255,138/255)	
-v.Aartist.TextColor3  = Color3.new(117/255,129/255,138/255)	
-v.Wadded.TextColor3  = Color3.new(117/255,129/255,138/255)	
-v.Userl.TextColor3  = Color3.new(117/255,129/255,138/255)	
-v.Lengl.TextColor3  = Color3.new(117/255,129/255,138/255)	
-end
-end
-
-track.TextColor3 = Color3.new(73/255,84/255,36/255)
-aartist.TextColor3 = Color3.new(73/255,84/255,36/255)
-wadded.TextColor3 = Color3.new(73/255,84/255,36/255)
-userl.TextColor3 = Color3.new(73/255,84/255,36/255)
-leng1.TextColor3 = Color3.new(73/255,84/255,36/255)
-img.Image = "rbxassetid://"..Decal
-play.Image = "rbxassetid://186471252"
-
-
-if Time < 10 then
-timeline2.Text = "0:0"..Time
-elseif Time > 9 and Time < 60 then
-timeline2.Text = "0:"..Time
-elseif Time >= 60 and Time < 70 then
-timeline2.Text = "1:0"..Time - 60	
-elseif Time > 69 and Time < 120 then
-timeline2.Text = "1:"..Time - 60
-elseif Time == 120 then
-timeline2.Text = "2:00"
-end	
-len2 = Time
-isplaying = true
-playingtrack = Track
-sound.SoundId = "rbxassetid://"..Soundid
-sound:Play()
-return timer(Track,Soundid,Time)
-end)
-end
-
-play.MouseButton1Click:connect(function()
-if isplaying == true then
-play.Image = "rbxassetid://186471261"
 sound:Pause()
-isplaying = false
-elseif isplaying == false then
-if playingtrack ~=nil then
-play.Image = "rbxassetid://186471252"	
-sound:Play()	
+for k,v in pairs(q2:GetChildren()) do
+if v.ClassName == "Frame" and v.Name ~= "Timeline" then
+v.TextButton.Text = "M"	
 end
+end	
+
+tb.Text = "l l"
+
+else
+	
+for k,v in pairs(q2:GetChildren()) do
+if v.ClassName == "Frame" and v.Name ~= "Timeline" then
+v.TextButton.Text = "M"	
+end
+end	
 isplaying = true
-return timer(playingtrack,playingsound,len2)
+
+if lastsound == "rbxassetid://"..soundid then
+sound.TimePosition = soundpos
+end	
+
+
+findtime()
+tb.Text = ">"
+sound.SoundId = "rbxassetid://"..soundid
+lastsound = sound.SoundId
+sound:Play()
 end
+
+
 end)
-
-for k,v in pairs(table1) do
-	addlist(v[1],v[2],v[3],v[4],v[5],v[6],v[7],v[8])
 end
 
 
-function timer(name,soundid,lenght)
-for i=1, lenght do
-if isplaying == true and name == playingtrack then
-if i < 10 then
-timeline.Text = "0:0"..i
-elseif i > 9 and i < 60 then
-timeline.Text = "0:"..i
-elseif i >= 60 and i < 70 then
-timeline.Text = "1:0"..i - 60	
-elseif i > 69 and i < 120 then
-timeline.Text = "1:"..i - 60
-elseif i == 120 then
-timeline.Text = "2:00"
+q1 = Instance.new('SurfaceGui',par)
+q1.Archivable = true
+q1.Face = "Back"
+q2 = Instance.new('Frame',q1)
+q2.BackgroundColor3 = Color3.new(0.0705882, 0.0745098, 0.0784314)
+q2.BackgroundTransparency = 0
+q2.BorderColor3 = Color3.new(0.0705882, 0.0745098, 0.0784314)
+q2.BorderSizePixel = 1
+q2.Name = 'Frame'
+q2.Position = UDim2.new(0,0,0,0)
+q2.Rotation = 0
+q2.Size = UDim2.new(1,0,1,0)
+q2.SizeConstraint = Enum.SizeConstraint.RelativeXY
+q2.Style = Enum.FrameStyle.Custom
+q2.Visible = true
+q2.ZIndex = 1
+q2.Archivable = true
+q2.ClipsDescendants = false
+q2.Draggable = false
+q2.Active = false
+q3 = Instance.new('ImageLabel',q2)
+q3.BackgroundColor3 = Color3.new(0.0705882, 0.0745098, 0.0784314)
+q3.BackgroundTransparency = 0
+q3.BorderColor3 = Color3.new(0.0705882, 0.0745098, 0.0784314)
+q3.BorderSizePixel = 1
+q3.Name = 'ImageLabel'
+q3.Position = UDim2.new(0,0,0,0)
+q3.Rotation = 0
+q3.Size = UDim2.new(1,0,1,0)
+q3.SizeConstraint = Enum.SizeConstraint.RelativeXY
+q3.Visible = false
+q3.ZIndex = 1
+q3.Archivable = true
+q3.ClipsDescendants = false
+q3.Draggable = false
+q3.Image = 'http://www.roblox.com/asset/?id=208035157'
+q3.ImageColor3 = Color3.new(1, 1, 1)
+q3.ImageRectOffset = Vector2.new(0, 0)
+q3.ImageRectSize = Vector2.new(0, 0)
+q3.ImageTransparency = 0
+q3.Active = false
+q4 = Instance.new('Frame',q2)
+q4.BackgroundColor3 = Color3.new(0.0666667, 0.0705882, 0.0784314)
+q4.BackgroundTransparency = 0
+q4.BorderColor3 = Color3.new(0.0666667, 0.0705882, 0.0784314)
+q4.BorderSizePixel = 1
+q4.Name = 'Timeline'
+q4.Position = UDim2.new(0.94999998807907,0,0,0)
+q4.Rotation = 0
+q4.Size = UDim2.new(0.050000000745058,0,1,0)
+q4.SizeConstraint = Enum.SizeConstraint.RelativeXY
+q4.Style = Enum.FrameStyle.Custom
+q4.Visible = true
+q4.ZIndex = 1
+q4.Archivable = true
+q4.ClipsDescendants = false
+q4.Draggable = false
+q4.Active = false
+q5 = Instance.new('Frame',q4)
+q5.BackgroundColor3 = Color3.new(1, 1, 1)
+q5.BackgroundTransparency = 0
+q5.BorderColor3 = Color3.new(1, 1, 1)
+q5.BorderSizePixel = 1
+q5.Position = UDim2.new(0,0,0,0)
+q5.Rotation = 0
+q5.Size = UDim2.new(0.10000000149012,0,1,0)
+q5.SizeConstraint = Enum.SizeConstraint.RelativeXY
+q5.Style = Enum.FrameStyle.Custom
+q5.Visible = true
+q5.ZIndex = 1
+q5.Archivable = true
+q5.ClipsDescendants = false
+q5.Draggable = false
+q5.Active = false
+
+
+for k,v in pairs(a) do
+createTab(v)
+end
+
+
+game:GetService("Workspace").DescendantRemoving:connect(function(child)
+if child == sound then
+child:Stop()	
+sound = child:Clone()
+if lastsound == child.SoundId then
+soundpos = child.TimePosition
 end	
-wait(1)
+wait()
+sound:Play()
+sound.Parent = game:GetService("Workspace")
 end	
-end
-wait(1)
-if isplaying == false then play.Image = "rbxassetid://186471261"	end
-isplaying = false
-end
-
-
-
+end)
