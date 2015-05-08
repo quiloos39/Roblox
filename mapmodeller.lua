@@ -1,19 +1,19 @@
 local env = {}
 local _time = tick() 
 
-local properties = {"BrickColor","Material","Reflenctance","Name","Parent","Position","Rotation","RotVelocity","Velocity","Anchored"
+local properties = {"BrickColor","Material","Reflectance","Name","Parent","Position","Rotation","RotVelocity","Velocity","Anchored"
 ,"Archivable","CanCollide","Locked","Elasticity","FormFactor","Friction","Shape","Size","BackParamA","BackParamB","BackSurfaceInput",
-"BottomParamA","BottomParamB","BottomSurfaceInput","FrontParamA","FrontParamB","FrontSurfaceInput","LeftParamA","LeftParamB","LeftSurfaceInput","RightParamA"
+"BottomParamA","BottomParamB","BottomSurfaceInput","FrontParamA","FrontParamB","FrontSurfaceInput","LeftParamA","LeftParamB","LeftSurfaceInput","RightParamA","TopParamA","TopParamB"
 ,"RightParamB","TopSurfaceInput","BackSurface","BottomSurface","FrontSurface","LeftSurface","RightSurface","TopSurface","CFrame","HeadsUpDisplay"
 ,"MaxSpeed","Steer","Throttle","Torque","TurnSpeed","FieldOfView","CameraType","Angle","Brightness","Color","Enabled","Face","Range","Shadows","LinkedSource"
 ,"Disabled","Offset","Scale","VertexColor","Shiny","Specular","Texture","Transparency","Face","D","maxTorque","P","CurrentAngle","DesiredAngle","MaxVeloctiy","Part0","Part1"
 ,"BaseTextureId","BodyPart","MeshId","OverlayTextureId","MeshType","MeshId","TextureId","C0","C1","AnimationId","Value","HeadColor","LeftArmColor"
-,"LeftLegColor","RightArmColor","RightLegColor","TorsoColor"}
+,"LeftLegColor","RightArmColor","RightLegColor","TorsoColor","Text"}
 
 
 local source = [[
 local function i(v,p) local a pcall(function() a = Instance.new(v) end)for k,v in pairs(p) do pcall(function() a[k] = v end) end return a end;	
-workshop = workspace
+workshop = owner.Character
 ]]
 
 
@@ -34,7 +34,7 @@ for i=#env,1,-1 do
 env[i][1].Name = "q"..i
 end
 for i=1,#env,1 do
-if env[i][1].ClassName ~= "Weld" and  env[i][1].ClassName ~= "Motor6D" then
+if env[i][1].ClassName ~= "Weld" and  env[i][1].ClassName ~= "Motor6D"  and env[i][1].ClassName ~= "ManualWeld"  then
 source = source..env[i][1].Name.." = i('"..env[i][1].ClassName.."',{\n"
 for k,v in pairs(properties) do
 pcall(function()
@@ -65,7 +65,14 @@ if type(env[i][1][v]) == "userdata" then
 
 pcall(function()
 if env[i][1][v].magnitude ~=nil then	
+if env[i][1].ClassName == "Part" then
+if v ~= "Rotation" and v ~= "Position" then
+source = source..v.." = Vector3.new("..tostring(env[i][1][v]).."),\n"	
+end	
+else
 source = source..v.." = Vector3.new("..tostring(env[i][1][v]).."),\n"
+end
+
 end
 end)
 
@@ -84,10 +91,18 @@ end)
 
 
 pcall(function()
-if env[i][1][v].r ~=nil then	
+if env[i][1][v].Color ~=nil then	
 source = source..v.." = BrickColor.new('"..tostring(env[i][1][v]).."'),\n"
 end
 end)
+
+
+pcall(function()
+if env[i][1][v].r ~=nil and  env[i][1].ClassName ~= "Part" then	
+source = source..v.." = Color3.new('"..tostring(env[i][1][v]).."'),\n"
+end
+end)
+
 
 end
 end)
@@ -95,18 +110,19 @@ end)
 end	
 end)
 
-
+if string.len(source) >= 120000 then
+save()	
+end
 end
 source = source.."});\n"
 
-if string.len(source) >= 130000 then
-save()	
+
+
 end
 
 end
-end
 for i=1,#env,1 do
-if env[i][1].ClassName == "Weld" or env[i][1].ClassName == "Motor6D" then
+if env[i][1].ClassName == "Weld" or env[i][1].ClassName == "Motor6D" or env[i][1].ClassName == "ManualWeld"  then
 source = source..env[i][1].Name.." = i('"..env[i][1].ClassName.."',{\n"	
 for k,v in pairs(properties) do
 pcall(function()
@@ -184,3 +200,5 @@ save()
 
 
 print('it took '..tick() - _time)
+
+return true
