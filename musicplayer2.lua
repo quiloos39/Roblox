@@ -21,7 +21,7 @@ sound("bob2",nil,nil)
 
 --print(ms[1].Active)
 
-_G.sound = function(n,d,s) sound(n,d,s) end
+_G.sound = function(n,d,s) ms[#ms + 1]  = {Name = n or "NONAME",Decal = d or 186730069,SoundId = s or 0,Active = false} end
 
 local _time = tick()
 
@@ -233,10 +233,14 @@ end
 
 end
 
+local event  = coroutine.wrap(function()
+while wait() do
+update()
+end
+	
+end)()
 
-
-
-event = game:GetService("RunService").Heartbeat:connect(function() update() end)
+--event = game:GetService("RunService").Heartbeat:connect(function() update() end)
 
 player.Chatted:connect(function(message)
 if message:sub(1,4):lower() == "save" then
