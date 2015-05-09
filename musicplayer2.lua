@@ -16,10 +16,9 @@ end
 end)
 
 
-local function sound(n,d,s) ms[#ms + 1]  = {Name = n or "NONAME",Decal = d or 186730069,SoundId = s or 0} end
+--local function sound(n,d,s) ms[#ms + 1]  = {Name = n or "NONAME",Decal = d or 186730069,SoundId = s or 0} end
+_G.sound = function(n,d,s) ms[#ms + 1]  = {Name = n or "NONAME",Decal = d or 186730069,SoundId = s or 0} end
 
-sound("bob",nil,nil)
-sound("bob2",nil,nil)
 
 local _time = tick()
 
