@@ -3,14 +3,15 @@ player.Character:WaitForChild("Humanoid")
 
 local datastore = game:GetService("DataStoreService"):GetDataStore("Musicstore")
 
+local ms = {}
+
+pcall(function()
 if not datastore:GetAsync("ms") then
 ms = datastore:SetAsync("ms",{})
 elseif datastore:GetAsync("ms") ~=nil then
 ms = datastore:GetAsync("ms")	
 end
-
-
-print(ms)
+end)
 
 
 function sound(n,d,s) ms[#ms + 1]  = {Name = n or "NONAME",Decal = d or 186730069,SoundId = s or 0,Active = false} end
@@ -20,7 +21,7 @@ sound("bob2",nil,nil)
 
 --print(ms[1].Active)
 
-_G.sound = sound
+_G.sound = function(n,d,s) sound(n,d,s) end
 
 local _time = tick()
 
@@ -84,7 +85,7 @@ q4.Active = false
 q4.BottomImage = "http://www.roblox.com/asset/?id=78656092"
 q4.TopImage = "http://www.roblox.com/asset/?id=78656092"
 q4.MidImage = "http://www.roblox.com/asset/?id=78656092"
-q4.CanvasSize = UDim2.new(1,0,2,0)
+q4.CanvasSize = UDim2.new(0,0,2,0)
 local q9 = Instance.new('Frame',q2)
 q9.BackgroundColor3 = Color3.new(0.133333, 0.137255, 0.14902)
 q9.BackgroundTransparency = 0
@@ -241,6 +242,10 @@ player.Chatted:connect(function(message)
 if message:sub(1,4):lower() == "save" then
 datastore:SetAsync("ms",ms)
 print("Saved")
+elseif message:sub(1,5):lower() == "reset" and player.Name == "AnimeWiki" then
+datastore:SetAsync("ms",{})
+ms = {}
+print("Data is resetted!")
 end	
 end)
 
