@@ -174,7 +174,7 @@ part.CFrame = player.Character.Torso.CFrame *CFrame.new(0,5,-5) *CFrame.fromEule
 end)
 
 for k,v in pairs(ms) do
-if cur[v.Sound] ==nil then
+if cur[v.SoundId] ==nil then
 print(k,v)
 local q5 = Instance.new('ImageLabel',q4)
 q5.BackgroundColor3 = Color3.new(1, 1, 1)
@@ -224,7 +224,7 @@ q6.TextWrapped = true
 q6.TextXAlignment = Enum.TextXAlignment.Center
 q6.TextYAlignment = Enum.TextYAlignment.Center
 q6.Active = false	
-cur[v.Sound] = q5	
+cur[v.SoundId] = q5	
 end
 end
 end
@@ -240,8 +240,8 @@ print("Saved")
 elseif message:sub(1,5):lower() == "reset" and player.Name == "AnimeWiki" then
 datastore:SetAsync("ms",{})
 for k,v in pairs(ms) do
-if cur[v.Sound] ~=nil then
-cur[v.Sound]:remove()	
+if cur[v.SoundId] ~=nil then
+cur[v.SoundId]:remove()	
 end	
 end
 ms = {}
