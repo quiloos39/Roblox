@@ -81,7 +81,10 @@ q4.Archivable = true
 q4.ClipsDescendants = true
 q4.Draggable = false
 q4.Active = false
-
+q4.BottomImage = "http://www.roblox.com/asset/?id=78656092"
+q4.TopImage = "http://www.roblox.com/asset/?id=78656092"
+q4.MidImage = "http://www.roblox.com/asset/?id=78656092"
+q4.CanvasSize = UDim2.new(2,0,20)
 local q9 = Instance.new('Frame',q2)
 q9.BackgroundColor3 = Color3.new(0.133333, 0.137255, 0.14902)
 q9.BackgroundTransparency = 0
