@@ -166,9 +166,9 @@ q12.Active = true
 
 
 local function update()
-if part.Parent == nil then
-event:disconnect()
-end
+--if part.Parent == nil then
+--event:disconnect()
+--end
 pcall(function()
 part.CFrame = player.Character.Torso.CFrame *CFrame.new(0,5,-5) *CFrame.fromEulerAnglesXYZ(0,math.pi,0)
 end)
