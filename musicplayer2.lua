@@ -96,7 +96,7 @@ q5.TopImage = 'http://www.roblox.com/asset/?id=188173743'
 
 -------------------------------------------------------------------------
 
-local serverstore = {{Id = 1,Name = "NONAME",SoundId = 242317880,DecalId = 186730069},}
+local serverstore = {{Id = 1,Name = "NONAME",SoundId = 235855135,DecalId = 186730069},}
 
 local backgroundrefresh = true
 
@@ -178,9 +178,8 @@ local backgroundimg = {
 player.Chatted:connect(function(message)
 print(message,message:sub(1,4))	
 if string.sub(message,1,4):lower() == "play" then
-print("yas")
 for k,v in pairs(serverstore) do
-print(string.sub(v.Name:lower(),1,string.len(string.sub(message,5,string.len(message)))))	
+print(string.sub(v.Name:lower(),1,string.len(string.sub(message,5,string.len(message)))),string.sub(message,5,string.len(message)):lower())	
 if string.sub(v.Name:lower(),1,string.len(string.sub(message,5,string.len(message))))	== string.sub(message,5,string.len(message)):lower() then
 print(v.Name)
 if sound.IsPlaying == false then
