@@ -14,7 +14,7 @@ end
 end)
 
 
-function sound(n,d,s) ms[#ms + 1]  = {Name = n or "NONAME",Decal = d or 186730069,SoundId = s or 0,Active = false} end
+local function sound(n,d,s) ms[#ms + 1]  = {Name = n or "NONAME",Decal = d or 186730069,SoundId = s or 0,Active = false} end
 
 sound("bob",nil,nil)
 sound("bob2",nil,nil)
@@ -178,6 +178,7 @@ end)
 
 
 for k,v in pairs(ms) do
+print(k,v.Name)
 if v.Active == false then
 v.Active = true
 local q5 = Instance.new('ImageLabel',q4)
