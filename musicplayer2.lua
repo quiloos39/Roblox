@@ -166,9 +166,9 @@ q12.Active = true
 
 
 local function update()
---if part.Parent == nil then
---event:disconnect()
---end
+if part.Parent == nil then
+event:disconnect()
+end
 pcall(function()
 part.CFrame = player.Character.Torso.CFrame *CFrame.new(0,5,-5) *CFrame.fromEulerAnglesXYZ(0,math.pi,0)
 end)
@@ -231,8 +231,8 @@ end
 
 
 
-event = game:GetService("RunService").Heartbeat:connect(function() update() end)
-
+game:GetService("RunService").Heartbeat:connect(function() update() end)
+--event = game:GetService("RunService").Heartbeat:connect(function() update() end)
 player.Chatted:connect(function(message)
 if message:sub(1,4):lower() == "save" then
 datastore:SetAsync("ms",ms)
