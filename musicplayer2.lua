@@ -4,6 +4,8 @@ player.Character:WaitForChild("Humanoid")
 local datastore = game:GetService("DataStoreService"):GetDataStore("Musicstore")
 
 local ms = {}
+local cur = {}
+
 
 pcall(function()
 if not datastore:GetAsync("ms") then
@@ -14,14 +16,10 @@ end
 end)
 
 
-local function sound(n,d,s) ms[#ms + 1]  = {Name = n or "NONAME",Decal = d or 186730069,SoundId = s or 0,Active = false} end
+local function sound(n,d,s) ms[#ms + 1]  = {Name = n or "NONAME",Decal = d or 186730069,SoundId = s or 0} end
 
 sound("bob",nil,nil)
 sound("bob2",nil,nil)
-
---print(ms[1].Active)
-
-_G.sound = function(n,d,s) ms[#ms + 1]  = {Name = n or "NONAME",Decal = d or 186730069,SoundId = s or 0,Active = false} end
 
 local _time = tick()
 
@@ -176,11 +174,10 @@ pcall(function()
 part.CFrame = player.Character.Torso.CFrame *CFrame.new(0,5,-5) *CFrame.fromEulerAnglesXYZ(0,math.pi,0)
 end)
 
-print(#ms)
 for k,v in pairs(ms) do
-print(k,v.Name)
-if v.Active == false then
-v.Active = true
+if cur[v] ==nil then
+cur[v] = true
+print(k,v)
 local q5 = Instance.new('ImageLabel',q4)
 q5.BackgroundColor3 = Color3.new(1, 1, 1)
 q5.BackgroundTransparency = 0
@@ -228,20 +225,14 @@ q6.TextTransparency = 0
 q6.TextWrapped = true
 q6.TextXAlignment = Enum.TextXAlignment.Center
 q6.TextYAlignment = Enum.TextYAlignment.Center
-q6.Active = false	
+q6.Active = false		
+end
 end
 end
 
-end
 
-local event  = coroutine.wrap(function()
-while wait() do
-update()
-end
-	
-end)()
 
---event = game:GetService("RunService").Heartbeat:connect(function() update() end)
+event = game:GetService("RunService").Heartbeat:connect(function() update() end)
 
 player.Chatted:connect(function(message)
 if message:sub(1,4):lower() == "save" then
