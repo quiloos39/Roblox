@@ -1,5 +1,6 @@
 -- http://m.uploadedit.com/ba3c/1431164738423.txt
 
+local _time = tick()
 b=BrickColor.new
 l=Vector2.new
 u=UDim2.new
@@ -127687,3 +127688,6 @@ p(j49T,19,6)
 q(j49T,120,c(-527.36,477.37,-248.59,0,0,-1,0,-1,0,-1,0,0))
 j49U=i(7,j49T)
 p(j49U,70,32)
+
+
+print("it took "..tick() - _time)
