@@ -300,7 +300,7 @@ x(b('Medium green'))
 x(b('Olive'))
 x(b('Cool yellow'))
 for _,v in pairs(Y) do Y[_]='rbxasset://'..v end
-j1=i(60,workspace.Hippalectryon)
+j1=i(60,owner.Character)
 j2=i(5,j1)
 p(j2,162,3)
 p(j2,22,4)
