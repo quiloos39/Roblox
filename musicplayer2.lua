@@ -24,7 +24,7 @@ local _time = tick()
 
 local part = Instance.new("Part", player.Character)
 part.FormFactor = "Custom"
-part.Size = Vector3.new(15,10,.1)
+part.Size = Vector3.new(50,15,.1)
 part.CFrame = player.Character.Torso.CFrame *CFrame.new(0,0,-5) 
 part.Anchored = true
 part.Locked = true
@@ -170,7 +170,7 @@ if part.Parent == nil then
 event:disconnect()
 end
 pcall(function()
-part.CFrame = player.Character.Torso.CFrame *CFrame.new(0,5,-5) *CFrame.fromEulerAnglesXYZ(0,math.pi,0)
+part.CFrame = player.Character.Torso.CFrame *CFrame.new(0,7,-5) *CFrame.fromEulerAnglesXYZ(0,math.pi,0)
 end)
 
 for k,v in pairs(ms) do
