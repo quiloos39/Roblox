@@ -10,7 +10,7 @@ ms = datastore:GetAsync("ms")
 end
 
 
-
+print(ms)
 
 
 function sound(n,d,s) ms[#ms + 1]  = {Name = n or "NONAME",Decal = d or 186730069,SoundId = s or 0,Active = false} end
