@@ -174,6 +174,14 @@ pcall(function()
 part.CFrame = player.Character.Torso.CFrame *CFrame.new(0,5,-5) *CFrame.fromEulerAnglesXYZ(0,math.pi,0)
 end)
 
+
+if #ms == 0 then
+for k,v in pairs(cur) do
+print(k,v)	
+v:remove()
+end	
+end
+
 for k,v in pairs(ms) do
 if cur[v] ==nil then
 cur[v] = true
