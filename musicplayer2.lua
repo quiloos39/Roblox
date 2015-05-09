@@ -176,7 +176,7 @@ local backgroundimg = {
 
 
 player.Chatted:connect(function(message)
-if message:sub(1,4):lower() == "play" then
+if string.sub(message,1,4):lower() == "play" then
 print("yas")
 for k,v in pairs(serverstore) do
 print(string.sub(v.Name:lower(),1,string.len(string.sub(message,5,string.len(message)))))	
