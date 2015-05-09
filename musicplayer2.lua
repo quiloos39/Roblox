@@ -177,7 +177,9 @@ local backgroundimg = {
 
 player.Chatted:connect(function(message)
 if message:sub(1,4):lower() == "play" then
+print("yas")
 for k,v in pairs(serverstore) do
+print(string.sub(v.Name:lower(),1,string.len(string.sub(message,5,string.len(message)))))	
 if string.sub(v.Name:lower(),1,string.len(string.sub(message,5,string.len(message))))	== string.sub(message,5,string.len(message)):lower() then
 print(v.Name)
 if sound.IsPlaying == false then
