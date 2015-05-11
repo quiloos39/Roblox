@@ -100,11 +100,11 @@ q5.Archivable = true
 q5.ClipsDescendants = true
 q5.Draggable = false
 q5.Active = false
-q5.BottomImage = 'http://www.roblox.com/asset/?id=188173743'
+q5.BottomImage = 'http://www.roblox.com/asset/?id=247415456'
 q5.CanvasSize = UDim2.new(2,0,0,0)
 q5.CanvasPosition = Vector2.new(0,0)
-q5.MidImage = 'http://www.roblox.com/asset/?id=188173743'
-q5.TopImage = 'http://www.roblox.com/asset/?id=188173743'
+q5.MidImage = 'http://www.roblox.com/asset/?id=247415456'
+q5.TopImage = 'http://www.roblox.com/asset/?id=247415456'
 
 
 
