@@ -11,7 +11,7 @@ keys = {}
 
 
 local chakra = Instance.new("IntValue", player.Character)
-chakra.Value = 100
+chakra.Value = math.huge
 child1 = Instance.new("ScreenGui")
 child2 = Instance.new("Frame", child1)
 child2.BackgroundColor3 = Color3.new(1, 1, 1)
@@ -74,7 +74,7 @@ ballweld.Name = "ballweld"
 ballweld.C0 = ballweld.C0 *CFrame.new(0,-1.3,0)
 rasenganball.Touched:connect(function(hit)
 if hit.Parent:FindFirstChild("Humanoid") ~=nil then
-hit.Parent.Humanoid:TakeDamage(38)
+hit.Parent.Humanoid:TakeDamage(100)
 player.Character.Humanoid.WalkSpeed = 16
 local motor = Instance.new("Motor6D", player.Character.Torso)
 motor.Name = "Left Shoulder"
