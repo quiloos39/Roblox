@@ -11,7 +11,7 @@ keys = {}
 
 
 local chakra = Instance.new("IntValue", player.Character)
-chakra.Value = math.huge
+chakra.Value = 999999999
 child1 = Instance.new("ScreenGui")
 child2 = Instance.new("Frame", child1)
 child2.BackgroundColor3 = Color3.new(1, 1, 1)
