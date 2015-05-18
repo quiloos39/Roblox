@@ -10,8 +10,8 @@ cooldown = false
 keys = {}
 
 
-local chakra = Instance.new("IntValue", player.Character)
-chakra.Value = 999999999
+--local chakra = Instance.new("IntValue", player.Character)
+---chakra.Value = 999999999
 child1 = Instance.new("ScreenGui")
 child2 = Instance.new("Frame", child1)
 child2.BackgroundColor3 = Color3.new(1, 1, 1)
@@ -40,16 +40,15 @@ child3.Draggable = false
 child1.Parent = player.PlayerGui
 
 
-chakra.Changed:connect(function()
-child3.Size = UDim2.new(chakra.Value/100,0,1,0)
-end)
+--chakra.Changed:connect(function()
+--child3.Size = UDim2.new(chakra.Value/100,0,1,0)
+--end)
 
 
 mouse.KeyDown:connect(function(key)
 if key:lower() == "r" then
-if cooldown == false and chakra.Value >= 25 then
+if cooldown == false  then
 cooldown = true
-chakra.Value = chakra.Value - 25
 local leftarm = Instance.new("Weld", player.Character.Torso)
 leftarm.Part0 = player.Character.Torso
 leftarm.Part1 = player.Character["Left Arm"]
@@ -123,7 +122,7 @@ end)
 end
 
 elseif key:lower() == "c" then
-if cooldown == false and chakra.Value ~= 100 then
+if cooldown == false then
 keys[key] = true
 cooldown = true
 local leftarm = Instance.new("Weld", player.Character.Torso)
@@ -148,8 +147,7 @@ rightleg.Part0 = player.Character.Torso
 rightleg.Part1 = player.Character["Right Leg"]
 rightleg.C0 = CFrame.new(.6,-1.9,0) *CFrame.fromEulerAnglesXYZ(0,0,.2)
 repeat wait(.10)
-chakra.Value = chakra.Value + 2	
-until keys[key] == false or chakra.Value >= 100	
+until keys[key] == false 
 local motor = Instance.new("Motor6D", player.Character.Torso)
 motor.Name = "Left Shoulder"
 motor.Part0 = player.Character.Torso
@@ -191,9 +189,7 @@ player.Character.Torso["Right Shoulder"].C1 = lastrightarmC1 *CFrame.fromEulerAn
 player.Character.Torso["Left Shoulder"].C1 = lastleftarmC1 *CFrame.fromEulerAnglesXYZ(0,0,-2)
 player.Character.HumanoidRootPart.RootJoint.C0 = player.Character.HumanoidRootPart.RootJoint.C0 *CFrame.fromEulerAnglesXYZ(.2,0,0)
 player.Character.Humanoid.WalkSpeed = 35
-repeat wait(.10)
-chakra.Value = chakra.Value - 1
-until chakra.Value <= 0 or keys[key] == false
+
 player.Character.Torso["Right Shoulder"].C0,player.Character.Torso["Right Shoulder"].C1 = lastrightarmC0,lastrightarmC1
 player.Character.Torso["Left Shoulder"].C0,player.Character.Torso["Left Shoulder"].C1 = lastleftarmC0,lastleftarmC1
 player.Character.HumanoidRootPart.RootJoint.C0 = player.Character.HumanoidRootPart.RootJoint.C0 *CFrame.fromEulerAnglesXYZ(-.2,0,0)
@@ -201,9 +197,8 @@ player.Character.Humanoid.WalkSpeed = 16
 cooldown = false
 end
 elseif key:lower() == "f" then
-if cooldown == false and chakra.Value >= 15 then
+if cooldown == false then
 cooldown = true
-chakra.Value = chakra.Value - 15
 local leftarm = Instance.new("Weld", player.Character.Torso)
 leftarm.Part0 = player.Character.Torso
 leftarm.Part1 = player.Character["Left Arm"]
