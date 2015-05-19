@@ -1,3 +1,5 @@
+local _time = tick()
+
 game.DescendantAdded:connect(function(child)
 repeat wait() until child ~=nil	
 pcall(function()	
@@ -17,4 +19,5 @@ end
 end)	
 end)
 
-print("it took "..tick())
+
+print("it took ".._time - tick())
