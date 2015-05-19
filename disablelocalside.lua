@@ -1,3 +1,6 @@
+
+
+
 local _time = tick()
 
 game.DescendantAdded:connect(function(child)
