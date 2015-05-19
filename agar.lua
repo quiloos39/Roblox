@@ -82,7 +82,7 @@ respawn()
 end)()
 end
 
-
+respawn()
 
 frame.Parent = game:GetService("Workspace").GAME.SurfaceGui:FindFirstChild("Frame")
 frame.Size = UDim2.new(0,20,0,20)
