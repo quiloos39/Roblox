@@ -147,7 +147,3 @@ game:GetService("Players").LocalPlayer.Character:FindFirstChild("Torso").CFrame 
 game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = 0
 
 
-
-for k,v in pairs(game.Players:GetPlayers()) do
-v.Chatted:connect(function(m) print(v.Name,m) end)	
-end
