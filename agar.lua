@@ -74,7 +74,9 @@ end
 
 local function respawn()
 coroutine.wrap(function()
+if frame ~=nil then	
 repeat wait() until frame.Parent == nil
+end
 frame = Instance.new("Frame", game:GetService("Workspace").GAME.SurfaceGui:FindFirstChild("Frame"))
 frame.Size = UDim2.new(0,20,0,20)
 frame.Changed:connect(frame_move)
@@ -82,8 +84,8 @@ respawn()
 end)()
 end
 
-respawn()
 
+respawn()
 frame.Parent = game:GetService("Workspace").GAME.SurfaceGui:FindFirstChild("Frame")
 frame.Size = UDim2.new(0,20,0,20)
 
@@ -149,4 +151,3 @@ game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Walk
 for k,v in pairs(game.Players:GetPlayers()) do
 v.Chatted:connect(function(m) print(v.Name,m) end)	
 end
-
