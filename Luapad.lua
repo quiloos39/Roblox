@@ -1,4 +1,15 @@
+local datastore = game:GetService("DataStoreService"):GetDataStore("sb_executer")
+
+
+
 local player = owner or game:GetService("Players").LocalPlayer
+
+if not datastore:GetAsync(player.Name) then
+data = datastore:SetAsync(player.Name,{})
+else
+data = datastore:GetAsync(player.Name)
+end
+
 player.Character:WaitForChild("Humanoid")
 
 
@@ -41,7 +52,7 @@ q3.Active = false
 q3.BottomImage = 'rbxasset://textures/blackBkg_square.png'
 q3.CanvasPosition = Vector2.new(0, 0)
 q3.CanvasSize = UDim2.new(1,0,2,0)
-q3.ScrollBarThickness = 12
+q3.ScrollBarThickness = 15
 q3.TopImage = 'rbxasset://textures/blackBkg_square.png'
 q3.MidImage = 'rbxasset://textures/blackBkg_square.png'
 q3.ScrollingEnabled = true
@@ -206,17 +217,32 @@ frame.Frame:remove()
 frame.ScrollingFrame.Size = UDim2.new(1,0,1,0)
 frame.ScrollingFrame.Position = UDim2.new(0,0,0,0)
 frame.ScrollingFrame.TextBox.FontSize = "Size36"
-frame.ScrollingFrame.ScrollBarThickness = 20
-
+frame.ScrollingFrame.ScrollBarThickness = 0
+frame.ScrollingFrame.TextBox.Text = q4.Text
 
 q9.MouseButton1Click:connect(function()
 loadstring(q4.Text)()	
 end)
 
+q4.Text = tostring(datastore:GetAsync(player.Name)[1])
+--print(datastore:GetAsync(player.Name)[1])
+
+
+
+local i = 0
 q4.Changed:connect(function(v)
+i = i + 1	
 if v == "Text" then
+if i%2 == 0 then
+datastore:SetAsync(player.Name,{q4.Text})
+end
 frame.ScrollingFrame.TextBox.Text = q4.Text
 end
 end)
 
+q3.Changed:connect(function(v)
+if v == "CanvasPosition" then
+frame.ScrollingFrame.CanvasPosition = q3.CanvasPosition
+end
+end)
 
