@@ -1,3 +1,8 @@
+--[[
+Scripted by AnimeWiki respect.
+
+]]
+
 local datastore = game:GetService("DataStoreService"):GetDataStore("sb_executer")
 
 
@@ -186,13 +191,15 @@ q9.Modal = false
 q9.Selected = false
 
 
+
+
 local part = Instance.new("Part", player.Character)
 part.FormFactor = "Custom"
 part.Size = Vector3.new(26,16,.1)
 part.BrickColor = BrickColor.new("Institutional white")
 part.Locked = true
 part.Anchored = true
-part.CFrame = player.Character.Torso.CFrame *CFrame.new(0,5,-5) *CFrame.fromEulerAnglesXYZ(math.pi,0,math.pi)
+part.CFrame = player.Character:FindFirstChild("Torso").CFrame *CFrame.new(0,5,-10) *CFrame.fromEulerAnglesXYZ(math.pi,0,math.pi)
 part.BottomSurface = "Smooth"
 part.TopSurface = "Smooth"
 part.Transparency = 1
@@ -220,6 +227,8 @@ frame.ScrollingFrame.TextBox.FontSize = "Size36"
 frame.ScrollingFrame.ScrollBarThickness = 0
 frame.ScrollingFrame.TextBox.Text = q4.Text
 
+
+
 q9.MouseButton1Click:connect(function()
 loadstring(q4.Text)()	
 end)
@@ -245,4 +254,7 @@ if v == "CanvasPosition" then
 frame.ScrollingFrame.CanvasPosition = q3.CanvasPosition
 end
 end)
+
+
+
 
