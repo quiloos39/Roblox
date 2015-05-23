@@ -1,1 +1,2 @@
-Hello world!
+# New Generation Admin
+Soon.
