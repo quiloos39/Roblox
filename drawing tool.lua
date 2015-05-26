@@ -1,44 +1,42 @@
-player = game.Players.LocalPlayer
-mouse = player:GetMouse()
---b
-a = false
-color = "White"
-
-player.Chatted:connect(function(message)
-if message:sub(1,5) == "color" then
-color = message:sub(6)
-print("new color is",color)
+local player = game:GetService("Players").LocalPlayer
+local mouse = player:GetMouse()
+local down = false
+local color = BrickColor.new("White")
+game:GetService("UserInputService").InputBegan:connect(function(Input, Bool)	
+if Input.UserInputType == Enum.UserInputType.MouseButton1 and down == false then
+down = true	
+local i = 0	
+local y = mouse.Hit.Y
+repeat 
+i = i + 1
+if i%2 == 0 then
+wait(0)	
+end	
+local part = Instance.new("Part", player.Character)
+part.FormFactor = "Custom"
+part.CanCollide = false
+part.Anchored = true
+part.BottomSurface = "Smooth"
+part.TopSurface = "Smooth"
+part.CFrame = CFrame.new(mouse.Hit.X,y,mouse.Hit.Z)
+part.Size = Vector3.new(0.1,0.1,0.1)
+part.Shape = "Ball"
+part.BrickColor = color
+until down == false
 end
 end)
 
-mouse.Button1Down:connect(function()
-local y = mouse.Hit.Y
-a = false
-repeat wait(0) 
-local par = Instance.new("Part", player.Character) 
-par.Name = "line"
-par.FormFactor = "Custom"
-par.Anchored = true 
-par.BrickColor = BrickColor.new(color)
-par.Size = Vector3.new(1,.1,1)  -- it doesnt read whole properties.
-par.CFrame = CFrame.new(mouse.Hit.X,y,mouse.Hit.Z)  -- does it matter ._. so it wont show rotate
-par.CanCollide = false
-local mesh = Instance.new("BlockMesh", par)
-mesh.Scale = Vector3.new(1,.1,1)
-until a == true
+
+game:GetService("UserInputService").InputEnded:connect(function(Input, Bool)	
+if Input.UserInputType == Enum.UserInputType.MouseButton1 then
+down = false	
+end	
 end)
 
 
 player.Chatted:connect(function(msg)
-if msg == "clear" then
-for k,v in pairs(workspace:GetChildren()) do
-if v.Name == "line" then
-v:remove()
+if string.sub(msg,1,6) == "color " then
+color = BrickColor.new(string.sub(msg,7,string.len(msg)))
+print(color)
 end
-end
-end
-end)
-
-mouse.Button1Up:connect(function()
-a = true
 end)
