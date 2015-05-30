@@ -1,7 +1,6 @@
---[[
-Scripted by AnimeWiki respect.
+--Scripted by AnimeWiki
 
-]]
+
 
 local datastore = game:GetService("DataStoreService"):GetDataStore("sb_executer")
 
