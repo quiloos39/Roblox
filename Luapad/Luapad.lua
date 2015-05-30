@@ -238,13 +238,9 @@ q4.Text = tostring(datastore:GetAsync(player.Name)[1])
 
 
 
-local i = 0
+
 q4.Changed:connect(function(v)
-i = i + 1	
 if v == "Text" then
-if i%2 == 0 then
-datastore:SetAsync(player.Name,{q4.Text})
-end
 frame.ScrollingFrame.TextBox.Text = q4.Text
 end
 end)
@@ -255,6 +251,12 @@ frame.ScrollingFrame.CanvasPosition = q3.CanvasPosition
 end
 end)
 
-
-
+coroutine.wrap(function()
+while wait(5) do
+ypcall(function()	
+datastore:SetAsync(player.Name,{q4.Text})
+print("Saving..")
+end)
+end
+end)()
 
