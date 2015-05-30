@@ -1,6 +1,7 @@
---Scripted by AnimeWiki
+--[[
+Scripted by AnimeWiki respect.
 
-
+]]
 
 local datastore = game:GetService("DataStoreService"):GetDataStore("sb_executer")
 
@@ -233,6 +234,8 @@ loadstring(q4.Text)()
 end)
 
 q4.Text = tostring(datastore:GetAsync(player.Name)[1])
+frame.ScrollingFrame.TextBox.Text = q4.Text
+
 --print(datastore:GetAsync(player.Name)[1])
 
 
