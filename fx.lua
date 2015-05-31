@@ -1,8 +1,8 @@
 a = {}
 
 
-a.Brickcolor = "Bright green"
-a.sbcolor = "Bright green"
+a.Brickcolor = "Bright yellow"
+a.sbcolor = "Bright yellow"
 a.c = ":"
 a.cmds = {
 "dt","cmds","ban","kick","colors","ping","respawn","ff","shutdown","unff","uff","time",
@@ -316,4 +316,4 @@ end
 end)()
 
 
-print("Helo world!")
+createTablet('Created By AnimeWiki')
