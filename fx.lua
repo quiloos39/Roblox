@@ -316,4 +316,4 @@ end
 end)()
 
 
-createTablet('Created By AnimeWiki')
+createTab('Created By AnimeWiki')
