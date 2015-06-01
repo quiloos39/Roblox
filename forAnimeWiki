@@ -504,7 +504,8 @@ GCFunc.OnChatted(plr,msg)
 end)
 
 if rank == 0 then
-GCFunc.Output(plr,"Gemini Tabs Made By Opligitory",Color.Aqua,nil)
+GCFunc.Output(plr,"Gemini Tabs Made By gavinsg
+",Color.Aqua,nil)
 GCFunc.Output(plr,"Your Rank Is: "..GFunc.GetRD(plr,2),GFunc.GetRD(plr,4),nil)	
 end
 
