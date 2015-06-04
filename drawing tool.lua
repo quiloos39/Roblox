@@ -23,6 +23,7 @@ part.CFrame = CFrame.new(mouse.Hit.X,y,mouse.Hit.Z)
 part.Size = Vector3.new(0.1,0.1,0.1)
 part.Shape = "Ball"
 part.BrickColor = color
+part.Name = "paint"
 until down == false
 end
 end)
@@ -36,8 +37,15 @@ end)
 
 
 player.Chatted:connect(function(msg)
-if string.sub(msg,1,6) == "color " then
+if string.sub(msg:lower(),1,6) == "color " then
 color = BrickColor.new(string.sub(msg,7,string.len(msg)))
 print(color)
+elseif string.sub(msg:lower(),1,5) == "clear" then
+for k,v in pairs(player.Character:GetChildren()) do
+if v.ClassName == "Part" and v.Name == "paint" then
+v:remove()
+end  
+end
+end
 end
 end)
