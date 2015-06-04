@@ -44,8 +44,9 @@ elseif string.sub(msg:lower(),1,5) == "clear" then
 for k,v in pairs(player.Character:GetChildren()) do
 if v.ClassName == "Part" and v.Name == "paint" then
 v:remove()
-end  
 end
+
 end
+
 end
 end)
