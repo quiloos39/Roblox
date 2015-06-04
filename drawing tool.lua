@@ -4,6 +4,7 @@ local down = false
 local color = BrickColor.new("White")
 game:GetService("UserInputService").InputBegan:connect(function(Input, Bool)	
 if Input.UserInputType == Enum.UserInputType.MouseButton1 and down == false then
+wait()
 down = true	
 local i = 0	
 local y = mouse.Hit.Y
