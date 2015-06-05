@@ -2,9 +2,10 @@ local player = game:GetService("Players").LocalPlayer or owner or game:GetServic
 player.Character:WaitForChild("Humanoid")
 
 
-local part = Instance.new("Part", game:GetService("Workspace"))
+local part = Instance.new("Part")
 
 local function setPart()
+part.Parent = game:GetService("Workspace")
 part.Shape = "Ball"
 part.FormFactor = "Custom"
 part.Locked = true
@@ -23,12 +24,11 @@ part.Changed:connect(setPart)
 game:GetService("Workspace").DescendantRemoving:connect(function(v)
 if v == part then
 part = v:Clone()
-part.Parent = game:GetService("Workspace")
+setPart()
 end	
 end)
 
 local point
-local debounce = false
 
 
 
@@ -51,13 +51,11 @@ trail:remove()
 end)()	
 end
 
-if player.Character and point == nil then
 point = player.Character:FindFirstChild("Torso")
-end
 
 
 part.CFrame = CFrame.new(point.CFrame.p) 
-*CFrame.fromEulerAnglesXYZ(math.sin(math.rad(i)),math.rad(i),0) 
+*CFrame.fromEulerAnglesXYZ(math.sin(math.rad(i)),math.rad(i),math.cos(math.rad(i))) 
 *CFrame.new(0,0,-5)	
 wait()
 end
