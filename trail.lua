@@ -3,6 +3,8 @@ player.Character:WaitForChild("Humanoid")
 
 
 local part = Instance.new("Part", game:GetService("Workspace"))
+
+local function setPart()
 part.Shape = "Ball"
 part.FormFactor = "Custom"
 part.Locked = true
@@ -10,12 +12,32 @@ part.Anchored = true
 part.CanCollide = false
 part.Size = Vector3.new(1,1,1)
 part.BottomSurface = "Smooth"
-part.TopSurface = "Smooth"
+part.TopSurface = "Smooth"	
+end
+
+
+setPart()
+
+part.Changed:connect(setPart)
+
+game:GetService("Workspace").DescendantRemoving:connect(function(v)
+if v == part then
+part = v:Clone()
+part.Parent = game:GetService("Workspace")
+end	
+end)
+
+local point
+local debounce = false
+
+
 
 coroutine.wrap(function()
 while wait() do
-for i=1,360,1.5 do
+for i=1,360,3 do
+
 if part then	
+
 if i%2 == 0 then
 local trail = part:Clone()
 trail.Shape = "Block"
@@ -28,17 +50,18 @@ wait(1)
 trail:remove()
 end)()	
 end
-local torso
-if player.Character then
-torso = player.Character:FindFirstChild("Torso").CFrame
-else
-torso = CFrame.new(0,0,0)
+
+if player.Character and point == nil then
+point = player.Character:FindFirstChild("Torso")
 end
-part.CFrame = CFrame.new(torso.p) 
+
+
+part.CFrame = CFrame.new(point.CFrame.p) 
 *CFrame.fromEulerAnglesXYZ(math.sin(math.rad(i)),math.rad(i),0) 
 *CFrame.new(0,0,-5)	
 wait()
 end
+
 end
 end
 end)()
