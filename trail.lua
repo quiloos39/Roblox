@@ -28,7 +28,8 @@ wait(1)
 trail:remove()
 end)()	
 end
-part.CFrame = CFrame.new(player.Character:FindFirstChild("Torso").CFrame.p or CFrame.new(0,0,0).p) 
+local torso = player.Character:FindFirstChild("Torso").CFrame.p or CFrame.new(0,0,0).p
+part.CFrame = CFrame.new(torso) 
 *CFrame.fromEulerAnglesXYZ(math.sin(math.rad(i)),math.rad(i),0) 
 *CFrame.new(0,0,-5)	
 wait()
