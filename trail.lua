@@ -13,7 +13,8 @@ part.Anchored = true
 part.CanCollide = false
 part.Size = Vector3.new(1,1,1)
 part.BottomSurface = "Smooth"
-part.TopSurface = "Smooth"	
+part.TopSurface = "Smooth"
+part.BrickColor = BrickColor.White()
 end
 
 
@@ -35,22 +36,18 @@ local point
 coroutine.wrap(function()
 while wait() do
 for i=1,360,3 do
-
 if part then	
-
-if i%2 == 0 then
 local trail = part:Clone()
 trail.Shape = "Block"
 trail.FormFactor = "Custom"
+trail.Transparency = 0.5
 trail.Size = Vector3.new(0.5,0.5,0.5)
 trail.BrickColor = BrickColor.Random()
 trail.Parent = game:GetService("Workspace")
 coroutine.wrap(function()
-wait(1)
+wait(0.50)
 trail:remove()
 end)()	
-end
-
 point = player.Character:FindFirstChild("Torso")
 
 
