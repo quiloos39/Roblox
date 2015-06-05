@@ -29,7 +29,7 @@ trail:remove()
 end)()	
 end
 local torso
-if player.Character:FindFirstChild("Torso") then
+if player.Character:FindFirstChild("Torso") ~=nil then
 torso = player.Character:FindFirstChild("Torso").CFrame
 else
 torso = CFrame.new(0,0,0)
