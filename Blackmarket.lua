@@ -34,7 +34,10 @@ print(v.his)
 end
 end
 elseif string.sub(message:lower(),1,5) == "clear" then
-index = {}	
+for k,v in pairs(index) do
+v.his = ""	
+end
+print("All history is cleared.")
 elseif string.sub(message:lower(),1,3) == "his" then
 local his = ""
 print("there is "..#index)	
