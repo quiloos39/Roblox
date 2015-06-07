@@ -8,8 +8,7 @@ It isn't hard that you think.
 
 
 
-*We need to define point.
-*Rotate ball at point
+*We need to define point and rotate ball at point.
 
 
     local player = game:GetService("Players").LocalPlayer -- Inside Local Script ofcourse.
