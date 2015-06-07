@@ -1,10 +1,5 @@
---[[
-Scripted by AnimeWiki
+--Scripted by AnimeWiki
 
-
-This is final and best version of wallhack.
-
---]]
 
 player = game:GetService("Players").LocalPlayer or owner;
 repeat wait() until  player.Character ~=nil;
