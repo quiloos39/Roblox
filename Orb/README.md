@@ -1,6 +1,6 @@
 #Making your orb#
 
-It's isn't hard that you think.
+It isn't hard that you think.
 
 ##Lets get started##
 
