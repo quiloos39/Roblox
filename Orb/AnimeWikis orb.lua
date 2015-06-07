@@ -1,3 +1,5 @@
+--Scripted by AnimeWiki
+
 local player = game:GetService("Players").LocalPlayer or owner
 player.Character:WaitForChild("Humanoid")
 
