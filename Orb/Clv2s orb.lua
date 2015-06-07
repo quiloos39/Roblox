@@ -31,9 +31,9 @@ function fade(p)
     end
 end
 
-function check()
-    if not workspace:FindFirstChild("
-end
+--function check()
+   -- if not workspace:FindFirstChild("
+--end
 
 spawn(function() while true do  
         Orb = workspace.Orb
