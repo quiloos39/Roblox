@@ -6,10 +6,13 @@ It isn't hard that you think.
 
 ###Writting code ###
 
+
+
 *We need to define point.
+*Rotate ball at point
 
 
-    local player = game:GetService("Players").LocalPlayer
+    local player = game:GetService("Players").LocalPlayer -- Inside Local Script ofcourse.
     local point = player.Character:WaitForChild("Torso")
     
     local orb = Instance.new("Part", game:GetService("Workspace"))
