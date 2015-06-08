@@ -5,6 +5,8 @@ player.Character:WaitForChild("Humanoid")
 
 local folder = Instance.new("Folder", game:GetService("Workspace"))
 folder.Name = "AnimeWiki's Orb"
+
+
 local part = Instance.new("Part")
 
 local function res()
@@ -25,7 +27,9 @@ res()
 
 game:GetService("Workspace").DescendantRemoving:connect(function(v)
 if v == folder then
-folder = v:Clone()
+folder = Instance.new("Folder")
+folder.Name = "AnimeWiki's Orb"
+part = Instance.new("Part")
 folder.Parent = game:GetService("Workspace")
 res()	
 end
