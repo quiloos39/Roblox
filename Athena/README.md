@@ -1,2 +1,0 @@
-# New Generation Admin
-Soon.
