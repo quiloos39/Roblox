@@ -32,3 +32,10 @@ It isn't hard that you think.
 	wait()
 	end
     until orb.Parent == nil
+
+**Result:**
+
+![alt text][1]
+
+
+  [1]: http://i.imgur.com/YyVYbBV.jpg
