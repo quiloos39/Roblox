@@ -33,7 +33,7 @@ print(options.size)
 elseif string.sub(message:lower(),1,4) == "hide" then
 part.Transparency = 1
 elseif string.sub(message:lower(),1,4) == "show" then
-part.Transparency = 0		
+part.Transparency = 0.5		
 elseif string.sub(message:lower(),1,6) == "color " then
 options.color = string.sub(message,7,string.len(message))
 print(options.color,#options.color)
