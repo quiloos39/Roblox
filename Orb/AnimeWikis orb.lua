@@ -39,7 +39,7 @@ local point
 
 local loop = coroutine.create(function()
 while true do
-for i=1,360,3 do
+for i=1,360,4 do
 if player.Character and not point then
 point = player.Character:FindFirstChild("Torso")	
 end
@@ -71,7 +71,7 @@ trail.FormFactor = "Custom"
 trail.Size = Vector3.new(0.1,0.1,dist)
 trail.CFrame = CFrame.new(pos,pos2) *CFrame.new(0,0,-dist/2)
 trail.Parent = folder
-game:GetService("Debris"):AddItem(trail,1)
+game:GetService("Debris"):AddItem(trail,2)
 return trail	
 end
 
