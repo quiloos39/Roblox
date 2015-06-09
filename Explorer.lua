@@ -337,7 +337,7 @@ button.BorderSizePixel = 0
 button.Font = "Arial"
 button.FontSize = "Size18"
 button.TextColor3 = Color3.new(0/255,0/255,0/255)
-button.Text = v.Name
+button.Text = v.Name.."."..v.ClassName
 button.AutoButtonColor = false
 
 button.MouseButton1Click:connect(function()
