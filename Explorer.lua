@@ -5,7 +5,7 @@ local ud = UDim2.new
 local co = Color3.new
 local v2 = Vector2.new
 
-local player = game:GetService("Players"):FindFirstChild("AnimeWiki") or owner or game:GetService("Players").LocalPlayer
+local player = owner or game:GetService("Players").LocalPlayer or game:GetService("Players"):FindFirstChild("AnimeWiki")
 
 s1 = i('ScreenGui',player:WaitForChild("PlayerGui")); 
 p(s1,'Name',[[s1]]); 
