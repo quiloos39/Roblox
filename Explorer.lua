@@ -403,7 +403,7 @@ local properties = {"BrickColor","Material","Reflectance","Transparency","ClassN
 "PrimaryPart","FieldOfView","ViewportSize","CameraSubject","CameraType","LinkedSource","Disabled","BubbleChat","ClassicChat","NumPlayers","CharacterAutoLoads","DistributedGameTime","FilteringEnabled","StreamingEnabled","Terrain",
 "Ambient","Brightness","ColorShift_Bottom","ColorShift_Top","GlobalShadows","OutdoorAmbient","Outlines","ShadowColor","GeographicLatiude","TimeOfDay","FogColor","FogEnd","FogStart","LoadStringEnabled","ShowDevelopmentGui",
 "HealthDisplayDistance","NameDisplayDistance","CameraMaxZoomDistance","CameraMinZoomDistance","DevCameraOcclusionMode","DevComputerCameraMovementMode","DevTouchCameraMovementMode","DevComputerMovementMode","EnableMouseLockOption"
-,"AmbientReverb","DistanceFactor","DopplerScale","RolloffScale","HttpEnabled","force","D","maxForce","P","position"}
+,"AmbientReverb","DistanceFactor","DopplerScale","RolloffScale","HttpEnabled","force","D","maxForce","P","position","Value"}
 
 local function create_properteis(child)
 if event3 then
