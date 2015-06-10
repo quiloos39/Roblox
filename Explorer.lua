@@ -402,7 +402,7 @@ local properties = {"BrickColor","Material","Reflectance","Transparency","ClassN
 "FrontParamA","FrontParamB","FrontSurfaceInput","LeftParamA","LeftParamB","LeftSurfaceInput","RightParamA","RightParamB","RightSurfaceInput","TopParamA","TopParamB","TopSurfaceInput",
 "PrimaryPart","FieldOfView","ViewportSize","CameraSubject","CameraType","LinkedSource","Disabled","BubbleChat","ClassicChat","NumPlayers","CharacterAutoLoads","DistributedGameTime","FilteringEnabled","StreamingEnabled","Terrain",
 "Ambient","Brightness","ColorShift_Bottom","ColorShift_Top","GlobalShadows","OutdoorAmbient","Outlines","ShadowColor","GeographicLatiude","TimeOfDay","FogColor","FogEnd","FogStart","LoadStringEnabled","ShowDevelopmentGui",
-"HealthDisplayDistance","NameDisplayDistance","CameraMaxZoomDistance","CameraMinZoomDistance","DevCameraOcclusionMode","DevComputerCameraMovementMode","DevTouchCameraMovementMode","DevComputerMovementMode","EnableMouseLockOption",
+"HealthDisplayDistance","NameDisplayDistance","CameraMaxZoomDistance","CameraMinZoomDistance","DevCameraOcclusionMode","DevComputerCameraMovementMode","DevTouchCameraMovementMode","DevComputerMovementMode","EnableMouseLockOption"
 ,"AmbientReverb","DistanceFactor","DopplerScale","RolloffScale","HttpEnabled"}
 
 local function create_properteis(child)
