@@ -400,7 +400,10 @@ local event4 = {}
 local properties = {"BrickColor","Material","Reflectance","Transparency","ClassName","Name","Parent","Position","Rotation","RotVelocity",
 "SpecificGravity","Velocity","Anchored","Archivable","CanCollide","Locked","Elasticity","FormFactor","Friction","Shape","Size","BackParamA","BackParamB","BackSurfaceInput","BottomParamA","BottomParamB","BottomSurfaceInput",
 "FrontParamA","FrontParamB","FrontSurfaceInput","LeftParamA","LeftParamB","LeftSurfaceInput","RightParamA","RightParamB","RightSurfaceInput","TopParamA","TopParamB","TopSurfaceInput",
-"PrimaryPart","FieldOfView","ViewportSize","CameraSubject","CameraType","LinkedSource","Disabled","BubbleChat","ClassicChat","NumPlayers","CharacterAutoLoads","DistributedGameTime","FilteringEnabled","StreamingEnabled","Terrain"}
+"PrimaryPart","FieldOfView","ViewportSize","CameraSubject","CameraType","LinkedSource","Disabled","BubbleChat","ClassicChat","NumPlayers","CharacterAutoLoads","DistributedGameTime","FilteringEnabled","StreamingEnabled","Terrain",
+"Ambient","Brightness","ColorShift_Bottom","ColorShift_Top","GlobalShadows","OutdoorAmbient","Outlines","ShadowColor","GeographicLatiude","TimeOfDay","FogColor","FogEnd","FogStart","LoadStringEnabled","ShowDevelopmentGui",
+"HealthDisplayDistance","NameDisplayDistance","CameraMaxZoomDistance","CameraMinZoomDistance","DevCameraOcclusionMode","DevComputerCameraMovementMode","DevTouchCameraMovementMode","DevComputerMovementMode","EnableMouseLockOption",
+,"AmbientReverb","DistanceFactor","DopplerScale","RolloffScale","HttpEnabled"}
 
 local function create_properteis(child)
 if event3 then
@@ -435,9 +438,8 @@ prop.Text = tostring(child[v])
 prop.Size = UDim2.new(0.6,0,0,20)
 prop.Position = UDim2.new(0.3,0,0,i*20)	
 event3 = child.Changed:connect(function(ob)
-wait()	
 if ob == v then
-prop.Text = tostring(child[v] or nil)
+prop.Text = tostring(child[v] or "")
 end	
 end)
 i = i + 1
