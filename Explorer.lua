@@ -368,7 +368,7 @@ p(s16,'TextWrapped',true);
 p(s16,'TextXAlignment',Enum.TextXAlignment.Left); 
 p(s16,'TextYAlignment',Enum.TextYAlignment.Center); 
 p(s16,'Text',[[Search object]]); 
-p(s16,'ClearTextOnFocus',false); 
+p(s16,'ClearTextOnFocus',true); 
 p(s16,'MultiLine',false); 
 
 
@@ -400,7 +400,7 @@ local event4 = {}
 local properties = {"BrickColor","Material","Reflectance","Transparency","ClassName","Name","Parent","Position","Rotation","RotVelocity",
 "SpecificGravity","Velocity","Anchored","Archivable","CanCollide","Locked","Elasticity","FormFactor","Friction","Shape","Size","BackParamA","BackParamB","BackSurfaceInput","BottomParamA","BottomParamB","BottomSurfaceInput",
 "FrontParamA","FrontParamB","FrontSurfaceInput","LeftParamA","LeftParamB","LeftSurfaceInput","RightParamA","RightParamB","RightSurfaceInput","TopParamA","TopParamB","TopSurfaceInput",
-"PrimaryPart"}
+"PrimaryPart","FieldOfView","ViewportSize","CameraSubject","CameraType","LinkedSource","Disabled","BubbleChat","ClassicChat","NumPlayers","CharacterAutoLoads","DistributedGameTime","FilteringEnabled","StreamingEnabled","Terrain"}
 
 local function create_properteis(child)
 if event3 then
