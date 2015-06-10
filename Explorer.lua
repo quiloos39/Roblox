@@ -329,7 +329,7 @@ local selected = false
 local frame
 --script.Parent.CanvasSize = Vector3.new(0,0,0,#index*20)
 local button = Instance.new("TextButton")
-button.Size = UDim2.new(0,150,0,20)
+button.Size = UDim2.new(1,0,0,20)
 button.BackgroundColor3 = Color3.new(98/255,142/255,214/255)
 button.BackgroundTransparency = 1
 button.BorderColor3 = Color3.new(86/255,125/255,188/255)
