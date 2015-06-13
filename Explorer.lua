@@ -439,7 +439,8 @@ prop.Size = UDim2.new(0.6,0,0,20)
 prop.Position = UDim2.new(0.3,0,0,i*20)	
 event3 = child.Changed:connect(function(ob)
 if ob == v then
-prop.Text = tostring(child[v] or "")
+print(v)
+prop.Text = tostring(child[v])
 end	
 end)
 i = i + 1
