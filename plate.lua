@@ -31,7 +31,6 @@ for k,v in pairs(game:GetService("Workspace"):GetChildren()) do
 if v:FindFirstChild("Humanoid") ~=nil and v:FindFirstChild("Torso") ~=nil then
 local mag = (part.CFrame.p - v:FindFirstChild("Torso").CFrame.p).Magnitude		
 if mag < 30 and v ~= player.Character and not hit[v.Name] then
-print(v.Name)
 hit[v.Name] = true
 local bodypos = Instance.new("BodyPosition", v:FindFirstChild("Torso"))
 bodypos.maxForce = Vector3.new(math.huge,math.huge,math.huge)
