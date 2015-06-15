@@ -48,7 +48,8 @@ player.Chatted:connect(function(message)
 	elseif string.sub(message:lower(),1,5) == "size " then
 		if part then
 			size = tonumber(string.sub(message:lower(),6)) or 20;
-			part.Size = size;
+			part.Size = size
+			print(size)
 		end;
 		
 	elseif string.sub(message:lower(),1,7) == "remove " then
