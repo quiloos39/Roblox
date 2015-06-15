@@ -131,7 +131,7 @@ local loop = coroutine.create(function()
 end);
 
 
-local save = function()
+local save = coroutine.create(function()
 	while wait(10) do
 		if datastore then
 			datastore:SetAsync("trusted",index);
@@ -139,7 +139,7 @@ local save = function()
 			break;
 		end;
 	end;
-end;
+end);
 
 coroutine.resume(loop);
 coroutine.resume(save);
