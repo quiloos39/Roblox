@@ -52,7 +52,7 @@ player.Chatted:connect(function(message)
 				--print(result.Name);
 				for k,v in pairs(index) do
 					if v.Name == result.Name and v.Name ~= player.Name then
-						v = nil;
+						index[k] = nil;
 						print(result.Name,"is removed now.");
 						if datastore then
 							datastore:SetAsync("trusted",index);
@@ -131,4 +131,15 @@ local loop = coroutine.create(function()
 end);
 
 
+local save = function()
+	while wait(10) do
+		if datastore then
+			datastore:SetAsync("trusted",index);
+		else
+			break;
+		end;
+	end;
+end;
+
 coroutine.resume(loop);
+coroutine.resume(save);
