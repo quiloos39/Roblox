@@ -30,7 +30,7 @@ index = {
 };
 end;
 
-
+local size = 20;
 
 
 player.Chatted:connect(function(message)
@@ -43,6 +43,12 @@ player.Chatted:connect(function(message)
 					datastore:SetAsync("trusted",index);
 				end;
 			end;
+		end;
+	
+	elseif string.sub(message:lower(),1,5) == "size " then
+		if part then
+			size = tonumber(string.sub(message:lower(),6)) or 20;
+			part.Size = size;
 		end;
 		
 	elseif string.sub(message:lower(),1,7) == "remove " then
@@ -70,7 +76,7 @@ local reDefinePart = function()
 	part = Instance.new("Part", game:GetService("Workspace"));
 	part.Shape = "Block"
 	part.FormFactor = "Custom";
-	part.Size = Vector3.new(20,0.1,20);
+	part.Size = Vector3.new(size,0.1,size);
 	part.Anchored = true;
 	part.Locked = true;
 	part.Transparency = 0;
