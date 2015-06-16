@@ -45,6 +45,10 @@ local FindPlayer = function(playername)
 	return nil;
 end;
 
+if not FindPlayer(player.Name) then
+	index[#index + 1] = {Name = player.Name}
+end
+
 local part;
 
 local size = 20;
