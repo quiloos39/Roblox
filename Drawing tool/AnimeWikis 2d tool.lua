@@ -39,6 +39,8 @@ wait()
 local pos2 = mouse.Hit.p
 local dist = (pos - pos2).magnitude
 local pallet = Instance.new("Part", folder)
+part.Shape = "Block"
+part.FormFactor = "Custom"
 pallet.Size = Vector3.new(options.size,options.size,dist)
 pallet.Anchored = true
 pallet.Locked = true
