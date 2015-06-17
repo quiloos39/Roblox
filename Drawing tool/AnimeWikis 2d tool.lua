@@ -1,62 +1,64 @@
---Scripted by AnimeWiki 08-06-2015
+--[[
+--//Scripted by AnimeWiki
 
-local player = game:GetService("Players").LocalPlayer
-player.Character:WaitForChild("Humanoid")
+--//Before editing script please remember my all script's might be open sourced but i am doing it for purpose to show people how good open source is.
+--//Please make your scripts open sourced too so our community can grow up and help other people to. 
 
 
+--//06.17.2015
 
-local options = {
-color = "White",
-size = 0.2
-}
+]]
 
-local mouse = player:GetMouse()
+local player = game:FindService("Players").LocalPlayer;
+player.Character:WaitForChild("Humanoid");
 
-local folder = Instance.new("Folder", player.Character)
+local mouse = player:GetMouse();
+
+local color = "White";
+local size = 0.1;
+
+local down = false;
+
+local folder = Instance.new("Folder", player.Character);
+folder.Name = "Layers";
+
+game:GetService("UserInputService").InputBegan:connect(function(v,b)
+	if v.UserInputType == Enum.UserInputType.MouseButton1 then
+		down = true;
+		repeat 
+			local pos = mouse.Hit.p
+			wait();
+			local pos2 = mouse.Hit.p
+				if mouse.Target then
+				local part = Instance.new("Part", folder);
+				part.Anchored=  true;
+				part.Locked = true;
+				part.CanCollide = false;
+				part.Shape = Enum.PartType.Block;
+				part.FormFactor = Enum.FormFactor.Custom;
+				part.BrickColor = BrickColor.new(color);
+				part.TopSurface = Enum.SurfaceType.Smooth;
+				part.BottomSurface = Enum.SurfaceType.Smooth;
+				local dist = (pos - pos2).magnitude;
+				part.Size = Vector3.new(size,size,dist);
+				part.CFrame = CFrame.new(pos,pos2) *CFrame.new(0,0,-dist/2)
+			end;
+		until down == false;
+	end;
+end);
+
+
+game:GetService("UserInputService").InputEnded:connect(function(v,b)
+	if v.UserInputType == Enum.UserInputType.MouseButton1 then	
+		--print("done");
+		down = false;
+	end;
+end);
 
 player.Chatted:connect(function(message)
-if string.sub(message:lower(),1,5) == "clear" then
-folder:ClearAllChildren()
-print("Cleared")
-elseif string.sub(message:lower(),1,5) == "size " then
-options.size = tonumber(string.sub(message,6,string.len(message))) or 0.2
-print(options.size)
-elseif string.sub(message:lower(),1,6) == "color " then
-options.color = string.sub(message,7,string.len(message))
-print(options.color,#options.color)
-end
-end)
-
-local button1down = false
-
-game:GetService("UserInputService").InputBegan:connect(function(Input, Bool)
-if Input.UserInputType == Enum.UserInputType.MouseButton1 then	
-if mouse.Target then	
-button1down = false
-repeat 
-local pos = mouse.Hit.p	
-wait() 
-local pos2 = mouse.Hit.p
-local dist = (pos - pos2).magnitude
-local pallet = Instance.new("Part", folder)
-part.Shape = "Block"
-part.FormFactor = "Custom"
-pallet.Size = Vector3.new(options.size,options.size,dist)
-pallet.Anchored = true
-pallet.Locked = true
-pallet.TopSurface = "Smooth"
-pallet.BottomSurface = "Smooth"
-pallet.CanCollide = false
-pallet.BrickColor = BrickColor.new(options.color)
-pallet.CFrame = CFrame.new(pos,pos2) *CFrame.new(0,0,-dist/2)
-until button1down == true
-end
-end
-end)
-
-
-game:GetService("UserInputService").InputEnded:connect(function(Input, Bool)
-if Input.UserInputType == Enum.UserInputType.MouseButton1 then	
-button1down = true
-end
-end)
+	if string.sub(message:lower(),1,6) == "color " then
+		color = string.sub(message,7);
+	elseif string.sub(message:lower(),1,5) == "size " then
+		size = string.sub(message,6);
+	end;
+end);
