@@ -1,4 +1,11 @@
--- Rescripted by AnimeSource desinged by Nws18
+--[[
+--//Scripted by AnimeWiki and Nws18
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?ID=71436898
+--//http://www.roblox.com/User.aspx?id=9134945
+]]
+
+
 local player=owner or game:service'Players'.localPlayer or game:service'Players'.AnimeSource;
 local char=player.Character;
 for Portion in next,{Head=true,LeftArm=true,LeftLeg=true,RightArm=true,RightLeg=true,Torso=true}do

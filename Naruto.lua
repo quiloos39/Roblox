@@ -1,3 +1,9 @@
+--[[
+--//Scripted by AnimeWiki
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?ID=71436898
+]]
+
 local player = owner or  game:GetService("Players").LocalPlayer
 local _time = tick()
 local i = 0

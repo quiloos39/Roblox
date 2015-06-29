@@ -1,5 +1,9 @@
--- Manga Reader v1 by 12packkid (Anime, ur script is below this - i'm not removing ur credit, don't worry)
--- Will also read decals please.
+--[[
+--//Scripted by 12packkid
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?id=17622580
+]]
+
 
 local page = {
     "184759896",

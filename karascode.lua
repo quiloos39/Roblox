@@ -1,3 +1,10 @@
+--[[
+--//Scripted by KaraMura
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?id=21554404
+]]
+
+
 p=game.Players.LocalPlayer
 c=p.Character
 m=p:GetMouse()

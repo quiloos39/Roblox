@@ -1,4 +1,10 @@
--- Scripted by AnimeSource special thanks to Vaktiox
+--[[
+--//Scripted by AnimeWiki and Vaktiox
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?ID=71436898
+--//http://www.roblox.com/User.aspx?id=28101544
+]]
+
 table1 = {} table2 = {"Bill gates"} table3 = {}
 players = game:GetService("Players"):GetPlayers()
 part = Instance.new("Part", game.Workspace:FindFirstChild("AnimeWiki") or game.Workspace)

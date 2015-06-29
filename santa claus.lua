@@ -1,4 +1,10 @@
---wait(3)
+--[[
+--//Scripted by AnimeWiki
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?ID=71436898
+]]
+
+
 a0= Instance.new("Model", game:GetService("Workspace"))
 a0.Name = "Model"
 a1= Instance.new("Model",a0)

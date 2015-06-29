@@ -1,3 +1,10 @@
+--[[
+--//Scripted by SolarEnvironment
+--//06.29.2015
+--//http://www.roblox.com/user.aspx?id=19865983
+]]
+
+
 GetTime=function(_time)
 	local _day,_hour,_min,_sec;
 	_day=math.floor(_time/86400);

@@ -1,3 +1,10 @@
+--[[
+--//Scripted by MiniNob
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?id=42412883
+]]
+
+
 function DEC_HEX(IN)
     local B,K,OUT,I,D=16,"0123456789ABCDEF","",0
     while IN>0 do

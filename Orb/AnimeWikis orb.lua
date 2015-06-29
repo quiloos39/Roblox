@@ -1,4 +1,10 @@
---Scripted by AnimeWiki all thanks to clv2 to teach me how to do it.
+--[[
+--//Scripted by AnimeWiki and clv2
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?ID=71436898
+--//http://www.roblox.com/User.aspx?id=19690989
+]]
+
 
 local player = game:GetService("Players").LocalPlayer or owner or game:GetService("Players"):WaitForChild("Player")
 player.Character:WaitForChild("Humanoid")

@@ -1,12 +1,7 @@
 --[[
 --//Scripted by AnimeWiki
-
---//Before editing script please remember my all script's might be open sourced but i am doing it for purpose to show people how good open source is.
---//Please make your scripts open sourced too so our community can grow up and help other people to. 
-
-
 --//06.16.2015
-
+--//http://www.roblox.com/User.aspx?ID=71436898
 ]]
 
 local datastore;

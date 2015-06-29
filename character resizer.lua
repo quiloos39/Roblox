@@ -1,4 +1,10 @@
---Character Resize
+--[[
+--//Scripted by MiniNob
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?id=42412883
+]]
+
+
 pl=game.Players.LocalPlayer
 char=pl.Character
 torso=char.Torso

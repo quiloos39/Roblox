@@ -1,3 +1,8 @@
+--[[
+--//Scripted by AnimeWiki
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?ID=71436898
+]]
 
 local deb,frame = false
 

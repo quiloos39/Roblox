@@ -1,4 +1,10 @@
-wait()
+--[[
+--//Scripted by AnimeWiki
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?ID=71436898
+]]
+
+
 player = game.Players.LocalPlayer
 player.Character:WaitForChild("Humanoid")
 mouse = player:GetMouse()

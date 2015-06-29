@@ -1,3 +1,11 @@
+--[[
+--//Scripted by AnimeWiki and MiniNob
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?ID=71436898
+--//http://www.roblox.com/User.aspx?id=42412883
+]]
+
+
 a = {}
 
 

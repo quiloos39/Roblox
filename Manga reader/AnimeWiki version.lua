@@ -1,3 +1,9 @@
+--[[
+--//Scripted by AnimeWiki
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?ID=71436898
+]]
+
 page = {
 "185163213", --1
 "185165702", --2

@@ -1,4 +1,9 @@
---Scripted by clv2
+--[[
+--//Scripted by clv2
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?id=19690989
+]]
+
 
 
 local Orb = Instance.new("Part",workspace)

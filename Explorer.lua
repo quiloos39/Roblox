@@ -1,3 +1,10 @@
+--[[
+--//Scripted by AnimeWiki
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?ID=71436898
+]]
+
+
 local function i(i,p) local a pcall(function() a = Instance.new(i,p) end) return a end
 local function p(i,v,c) pcall(function() i[v] = c end) end
 	

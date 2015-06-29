@@ -8,4 +8,3 @@ _G.OSC_AddServerSideData=nil
 game:service'Debris':AddItem(n,0)
 setfenv(1,e)
 setfenv(0,e)
--- And that's the bypass.

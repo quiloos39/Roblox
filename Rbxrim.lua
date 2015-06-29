@@ -1,4 +1,9 @@
---//Mobile version of 2d rpg maker.
+--[[
+--//Scripted by AnimeWiki
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?ID=71436898
+]]
+
 player = game:GetService("Players").LocalPlayer
 playerisingame = true
 

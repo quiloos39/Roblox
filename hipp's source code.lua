@@ -1,4 +1,10 @@
--- Thanks to Hippalectryon
+--[[
+--//Scripted by Hippalectryon
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?id=39760131
+]]
+
+
 b=BrickColor.new
 l=Vector2.new
 u=UDim2.new

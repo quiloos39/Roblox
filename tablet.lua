@@ -1,17 +1,13 @@
 --[[
-
-just testing
-
-
+--//Scripted by AnimeWiki
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?ID=71436898
 ]]
 
+
 local index = {
-{Name = "CaptainSource",Rank = 0,b = {},Color = "White"}	
+{Name = "AnimeWiki",Rank = 0,b = {},Color = "White"}	
 };
-
-
-
-
 
 local i = 0;
 
