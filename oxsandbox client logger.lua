@@ -1,3 +1,11 @@
+--[[
+--//Scripted by AnimeWiki
+--//06.29.2015
+--//http://www.roblox.com/User.aspx?ID=71436898
+]]
+
+--//You have to run both side.
+
 if script.ClassName == "Script" then
 	local Remotefunction = Instance.new("RemoteFunction" ,game:FindService("ReplicatedStorage"));
 	for k,v in pairs(game:FindService("Players"):GetPlayers()) do
