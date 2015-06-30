@@ -6,6 +6,8 @@
 
 --//You have to run both side.
 
+
+
 if script.ClassName == "Script" then
 	local Remotefunction = Instance.new("RemoteFunction" ,game:FindService("ReplicatedStorage"));
 	game:FindService("Players").PlayerAdded:connect(function(v)
@@ -18,6 +20,13 @@ if script.ClassName == "Script" then
 			Remotefunction:InvokeClient(owner,v.Name..":"..msg);
 		end);
 	end;
+	Remotefunction.Changed:connect(function(val)
+		if val == "Parent" then
+			Remotefunction = Remotefunction:Clone();
+			Remotefunction.Parent = game:FindService("ReplicatedStorage");
+			print("removed")
+		end;
+	end);
 	print("Server side is loaded.")
 elseif script.ClassName == "LocalScript" then
 	local Remotefunction = game:FindService("ReplicatedStorage"):WaitForChild("RemoteFunction");
