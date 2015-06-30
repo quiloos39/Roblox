@@ -10,7 +10,7 @@ if script.ClassName == "Script" then
 	local Remotefunction = Instance.new("RemoteFunction" ,game:FindService("ReplicatedStorage"));
 	for k,v in pairs(game:FindService("Players"):GetPlayers()) do
 		v.Chatted:connect(function(msg)
-			Remotefunction:InvokeClient(v.Name..":"..msg);
+			Remotefunction:InvokeClient(owner,v.Name..":"..msg);
 		end);
 	end;
 	print("Server side is loaded.")
