@@ -8,7 +8,7 @@ local Target
 local i= 0
 
 game:GetService("UserInputService").InputBegan:connect(function(v,b)
-	if Enum.UserInputType.MouseButton3 == v.UserInputType then
+	if Enum.UserInputType.MouseButton1 == v.UserInputType then
 		if i + 1 >= Players.NumPlayers then
 			i = 0
 		end
