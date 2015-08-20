@@ -92,7 +92,7 @@ UserInputService.InputBegan:connect(function(v, bool)
 				end
 			end
 		elseif  Enum.KeyCode.Q == v.KeyCode then
-			if Keys[v.KeyCode] then
+			if not Keys[v.KeyCode] then
 				Keys[v.KeyCode] = false
 			end
 			if Keys[v.KeyCode] == false then
