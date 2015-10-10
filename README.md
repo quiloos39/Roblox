@@ -1,12 +1,8 @@
-#Welcome to my GitHub#
+#Hello world#
 
-From beginning i was protecting open sourced codes and i am gonna continue protecting it. Simply because when i get confused at some point of my script i was looking at forum, free models and etc..  it wasn't easy to find what i need. So i decided to create repo and share all my knowledge with my scripts so people can learn new things.
+From beginning i was huge fan of open source coding and i was thinking if there was place where i can see other people code and improve myself. I started making this repository to help beginners with Roblox Lua so they can make their imagination,dreams come true
 
-##READ Before using it##
+#Before using it#
 
-Before you started using my scripts please don't forget to make your's script open sourced too so other people can use it.
-
-
-
-
+Don't forget to there is someone who needs help on his simple code making let's make their life easier.
 
