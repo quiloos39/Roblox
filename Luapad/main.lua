@@ -39,31 +39,64 @@ Background.Parent = SurfaceGui
 
 
 
-local Keywords = {"local","return","function","if","else","elseif","then","math","rad","end","for","in","do"}
+local Keywords = {"local","return","function","if","else","elseif","true","then","math","rad","end","for","in","do"}
 
 
 local y = 0
 local width = 5
 
+
+--Nick Gammon
+
+
+function getlines (str)
+
+  local pos = 0
+
+  -- the for loop calls this for every iteration
+  -- returning nil terminates the loop
+  local function iterator (s)
+
+    if not pos then
+      return nil
+    end -- end of string, exit loop
+
+    local oldpos = pos + 1  -- step past previous newline
+    pos = string.find (s, "\n", oldpos) -- find next newline
+
+    if not pos then  -- no more newlines, return rest of string
+      return string.sub (s, oldpos)
+    end -- no newline
+
+    return string.sub (s, oldpos, pos - 1)
+
+  end -- iterator
+
+  return iterator, str
+end -- getlines
+
 local Display = function(text)
-	for Paragraph in string.gmatch(text, "[^\n]+") do
+	for Paragraph in getlines(text) do
+		print(Paragraph)
 		local x = 0
 		for Word in string.gmatch(Paragraph, "[^ ]+") do
 			local TextColor = ColorScheme.textcolor
-			for k,v in pairs(Keywords) do
-				if Word:gsub("\9", ""):sub(1, #v) == v then
-					TextColor = ColorScheme.keywords
-				end
-			end
-			
+
 			if Paragraph:gsub("\9", ""):sub(1, 2) == "--" then
 				TextColor = ColorScheme.comments
+			else
+				for k,v in pairs(Keywords) do
+					if Word:gsub("\9", ""):sub(1, #v) == v then
+						TextColor = ColorScheme.keywords
+					end
+				end
 			end
 			
 			local Label = Instance.new("TextLabel")
 			Label.Font = Enum.Font.Arial
 			Label.FontSize = Enum.FontSize.Size36
 			Label.BackgroundTransparency = 1
+			Label.TextWrapped = true
 			Label.TextColor3 = TextColor
 			Label.Text = Word
 			Label.Parent = Background
@@ -78,8 +111,9 @@ local Display = function(text)
 	end
 end
 
--- code down here..
+
 local code = [=[
+
 ]=]
 
 Display(code)
