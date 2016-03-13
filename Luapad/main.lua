@@ -56,7 +56,7 @@ Background.Parent = SurfaceGui
 
 
 
-local Keywords = {"local","return","function","if","else","elseif","true","then","math","rad","end","for","in","do"}
+local Keywords = {"until","local","return","function","if","else","elseif","true","then","math","rad","end","for","in","do"}
 
 
 local y = 0
