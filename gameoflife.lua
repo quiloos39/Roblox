@@ -77,7 +77,7 @@ end
 
 init()
 
-function countNeighbours(c, r)
+local function countNeighbours(c, r)
   local n = 0
   
   local cy = c
