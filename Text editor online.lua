@@ -37,7 +37,7 @@ Box.TextXAlignment = Enum.TextXAlignment.Left
 Box.TextYAlignment = Enum.TextYAlignment.Top
 Box.Parent = Screen
 
-local Server = "Potato"
+local Server = "Potato" -- Name of server
 
 if Network.Settings.Parent:FindFirstChild(Server) == nil then
 	Network.start(Server)
