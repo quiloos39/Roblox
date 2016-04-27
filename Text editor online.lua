@@ -33,11 +33,12 @@ local Box = Instance.new("TextBox")
 Box.Size = ud(200, 200)
 Box.ClearTextOnFocus = false
 Box.MultiLine = true
+Box.Text = "print'Hello world!'"
 Box.TextXAlignment = Enum.TextXAlignment.Left
 Box.TextYAlignment = Enum.TextYAlignment.Top
 Box.Parent = Screen
 
-local Server = "Potato" -- Name of server
+local Server = "Potato"
 
 if Network.Settings.Parent:FindFirstChild(Server) == nil then
 	Network.start(Server)
@@ -55,7 +56,7 @@ end
 
 
 local up = newStat("BoolValue", "Updated", false)
-local str = newStat("StringValue", "Text", "print'Hello world!'")
+local str = newStat("StringValue", "Text", "")
 
 local updated = false
 Box.Changed:connect(function(value)
