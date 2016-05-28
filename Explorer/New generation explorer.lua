@@ -160,7 +160,7 @@ NewLabel(game:GetService("ReplicatedStorage"), 15)
 
 
 game:GetService("RunService").RenderStepped:connect(function()
-	sc.CanvasSize = UDim2.new(0, MaxWidth, 0, #Cache*18)	
+	sc.CanvasSize = UDim2.new(0, MaxWidth, 0, #Cache*FontSize)	
 	for i = 1, #Cache do
 		local v = Cache[i]
 		if v then
