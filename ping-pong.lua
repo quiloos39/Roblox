@@ -23,6 +23,7 @@ Part.Parent = Player.Character
 local Camera = workspace.CurrentCamera
 
 Camera.CameraSubject = Part
+Camera.CoordinateFrame = Part.CFrame *CFrame.Angles(0, math.pi, 0) *CFrame.new(0, 0, 10) 
 Camera.CameraType = Enum.CameraType.Scriptable
 
 local Height = 600
