@@ -11,6 +11,7 @@ until Player.Character
 
 Player.Character:WaitForChild("Humanoid").WalkSpeed = 0
 
+
 local Part = Instance.new("Part")
 Part.Anchored = true
 Part.Locked = true
@@ -19,7 +20,10 @@ Part.Size = Vector3.new(15, 10, 0.1)
 Part.CFrame = Player.Character:WaitForChild("Torso").CFrame *CFrame.new(0, Part.Size.Y/2, -5)
 Part.Parent = Player.Character
 
-workspace.CurrentCamera.CameraSubject = Part
+local Camera = workspace.CurrentCamera
+
+Camera.CameraSubject = Part
+Camera.CameraType = Enum.CameraType.Scriptable
 
 local Height = 600
 local Width = 600
