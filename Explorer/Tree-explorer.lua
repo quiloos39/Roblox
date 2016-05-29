@@ -89,15 +89,6 @@ function NewLabel(Object, wrap)
 	end
 	
 	local Childs = {}
-	
-	function t.close()
-		t.Visible = false
-		for k,v in pairs(Childs) do
-			v:Destroy()
-		end
-		Childs = {}				
-	end	
-				
 				
 	Object.ChildAdded:connect(function(Object)
 		if t.Visible == true then
@@ -142,10 +133,15 @@ function NewLabel(Object, wrap)
 					Childs[k] = Frame
 				end
 			else
-				t.close()
+				t.Visible = false
+				for k,v in pairs(Cache) do
+					if v.Object ~= Object and string.find(v.Object:GetFullName(), Object.Name) and v.Object:GetFullName():sub(1, 2) == Object:GetFullName():sub(1, 2) then				
+						--print()		
+						v.Frame:Destroy()
+					end			
+				end	
 			end
-		end
-		
+		end		
 		d = tick()
 	end)
 	
