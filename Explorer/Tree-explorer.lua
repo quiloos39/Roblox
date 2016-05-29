@@ -11,7 +11,7 @@ scr.Parent = PlayerGui
 local fr = Instance.new("Frame")
 fr.Name = "Explorer"
 fr.Active = true
-fr.Size = UDim2.new(0.2, 0, 0.5, 0)
+fr.Size = UDim2.new(0.15, 0, 0.3, 0)
 fr.Draggable = true
 fr.Parent = scr
 
