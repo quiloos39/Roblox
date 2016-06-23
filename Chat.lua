@@ -11,7 +11,7 @@ end
 local DefaultFont = Enum.Font.SourceSansLight
 local DefaultFontSize = Enum.FontSize.Size24
 local DefaultColor = c3(255, 255, 255)
-local DefaultText = "To chat click here or press '.' key"
+local DefaultText = "To chat click here or press 'return' key"
 
 local Emotions = {
 	Angry = c3(255, 0, 0),
