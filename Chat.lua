@@ -8,10 +8,10 @@ local function c3(r, g, b)
 	return Color3.new(r/255, g/255, b/255)
 end
 
-local DefaultFont = Enum.Font.SourceSansLight
+local DefaultFont = Enum.Font.SourceSans
 local DefaultFontSize = Enum.FontSize.Size24
 local DefaultColor = c3(255, 255, 255)
-local DefaultText = "To chat click here or press 'return' key"
+local DefaultText = "To chat click here or press '.' key"
 
 local Emotions = {
 	Angry = c3(255, 0, 0),
