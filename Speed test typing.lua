@@ -26,9 +26,11 @@ Sound.Parent = ScreenGui
 
 Sound:Play()
 
+local Part = workspace:FindFirstChild("leaderboard")
 
-if not workspace:FindFirstChild("leaderboard") then
-	local Part = Instance.new("Part")
+if not Part then
+	Part = Instance.new("Part")
+	Part.Name = "leaderboard"
 	Part.Anchored = true
 	Part.Locked = true
 	Part.FormFactor = Enum.FormFactor.Custom
@@ -42,8 +44,12 @@ if not workspace:FindFirstChild("leaderboard") then
 	SurfaceGui.Parent = Part
 	local Scroll = Instance.new("ScrollingFrame")
 	Scroll.Size = ud(1920, 1080)
+	Scroll.ScrollBarThickness = 40
 	Scroll.Parent = SurfaceGui
 end
+
+
+
 
 local bg = Instance.new("Frame")
 bg.Size = UDim2.new(1, 0, 1, 0)
@@ -55,9 +61,7 @@ local Width = bg.AbsoluteSize.X
 local Height = bg.AbsoluteSize.Y
 
 
-local parag = [[The first place that I can well remember was a large pleasant meadow with a pond of clear water in it. Some shady trees leaned over it, and rushes and water-lilies grew at the deep end. Over the hedge on one side we looked into a plowed field, and on the other we looked over a gate at our master's house, which stood by the roadside; at the top of the meadow was a grove of fir trees, and at the bottom a running brook overhung by a steep bank. While I was young I lived upon my mother's milk, as I could not eat grass. In the daytime I ran by her side, and at night I lay down close by her.]]
-
-
+local parag = [[]]
 local Letters = {}
 
 local LastLetterY = 0 
@@ -209,12 +213,31 @@ end)
 local speed = 2
 local net = 0
 
+local function addScore(Name, Score)
+	local Scroll = Part.SurfaceGui.ScrollingFrame
+	local Label = Instance.new("TextLabel")
+	Label.Text = Name..": "..tostring(Score)
+	Label.Size = UDim2.new(1, 0, 0, 48) 
+	Label.Position = UDim2.new(0, 0, 0, #Scroll:GetChildren()*24)
+	Label.TextXAlignment = Enum.TextXAlignment.Left	
+	Label.Font = DefaultFont
+	Label.FontSize = Enum.FontSize.Size48
+	Label.Parent = Scroll
+end
+
+local function gameend()
+		gameover = true	
+		print(net)
+		addScore(Player.Name, net)
+		ScreenGui:Destroy()		
+end
+
+--gameend()
 
 local function handlegame()
 	local Text = Box.Text
 	if Text:len() >= parag:len() then
-		print(gameover)
-		gameover = true
+		gameend()
 	end
 	local min = (tick() - CurrentTime)/60
 	local gross = Text:len()/5
