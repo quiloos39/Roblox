@@ -1,112 +1,243 @@
 local Player = game:GetService("Players").LocalPlayer
 local PlayerGui = Player:WaitForChild("PlayerGui")
 
-local Screen = Instance.new("ScreenGui")
-Screen.Parent = PlayerGui
+local function ud(x, y)
+	return UDim2.new(0, x, 0, y)
+end
 
 local function c3(r, g, b)
 	return Color3.new(r/255, g/255, b/255)
+end
+
+local DefaultFont = Enum.Font.Arial
+local DefaultFontSize = Enum.FontSize.Size24
+local DefaultColor = c3(245, 253, 198)
+local WrongColor = c3(255, 0, 0)
+local TrueColor = c3(0, 255, 0)
+local StarCount = 40
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = PlayerGui
+
+local Sound = Instance.new("Sound")
+Sound.SoundId = "rbxassetid://224349976"
+Sound.Looped = true
+Sound.Parent = ScreenGui
+
+Sound:Play()
+
+
+if not workspace:FindFirstChild("leaderboard") then
+	local Part = Instance.new("Part")
+	Part.Anchored = true
+	Part.Locked = true
+	Part.FormFactor = Enum.FormFactor.Custom
+	Part.Size = Vector3.new(10, 10, 0.1)
+	Part.CFrame = CFrame.new(0, Part.Size.Y, 0)
+	Part.TopSurface = Enum.SurfaceType.Smooth
+	Part.BottomSurface = Enum.SurfaceType.Smooth
+	Part.Parent = workspace
+	local SurfaceGui = Instance.new("SurfaceGui")
+	SurfaceGui.CanvasSize = Vector2.new(1920, 1080)
+	SurfaceGui.Parent = Part
+	local Scroll = Instance.new("ScrollingFrame")
+	Scroll.Size = ud(1920, 1080)
+	Scroll.Parent = SurfaceGui
 end
 
 local bg = Instance.new("Frame")
 bg.Size = UDim2.new(1, 0, 1, 0)
 bg.BackgroundColor3 = c3(0, 0, 0)
 bg.BorderColor3 = c3(0, 0, 0)
-bg.Parent = Screen
+bg.Parent = ScreenGui
 
-local read = Instance.new("TextLabel")
-read.TextXAlignment = Enum.TextXAlignment.Left
-read.TextYAlignment = Enum.TextYAlignment.Top
-read.Size = UDim2.new(0.5, 0, 0.5, 0)
-read.Position = UDim2.new(0.25, 0, 0.25, 0)
-read.TextColor3 = c3(255, 0, 0)
-read.Text = [[asd]]
-read.BackgroundTransparency = 1
-read.Font = Enum.Font.Arial
-read.FontSize = Enum.FontSize.Size24
-read.TextWrapped = true
-read.Parent = Screen
+local Width = bg.AbsoluteSize.X
+local Height = bg.AbsoluteSize.Y
 
 
-local box = Instance.new("TextBox")
-box.Size = UDim2.new(0.5, 0, 0.5, 0)
-box.Position = UDim2.new(0.25, 0, 0.25, 0)
-box.Font = Enum.Font.Arial
-box.FontSize = Enum.FontSize.Size24
-box.Text = ""
-box.BackgroundTransparency = 1
-box.TextColor3 = c3(255, 255, 255)
-box.TextXAlignment = Enum.TextXAlignment.Left
-box.TextYAlignment = Enum.TextYAlignment.Top
-box.TextWrapped = true
-box:CaptureFocus()
-box.Parent = Screen
-
-local TypingSpeed = 0
+local parag = [[The first place that I can well remember was a large pleasant meadow with a pond of clear water in it. Some shady trees leaned over it, and rushes and water-lilies grew at the deep end. Over the hedge on one side we looked into a plowed field, and on the other we looked over a gate at our master's house, which stood by the roadside; at the top of the meadow was a grove of fir trees, and at the bottom a running brook overhung by a steep bank. While I was young I lived upon my mother's milk, as I could not eat grass. In the daytime I ran by her side, and at night I lay down close by her.]]
 
 
-local Score = Instance.new("TextLabel")
+local Letters = {}
 
-Score.BackgroundTransparency = 1
-Score.Position = UDim2.new(0.25, 0, 0, 0)
-Score.Size = UDim2.new(0.5, 0, 0.25, 0)
-Score.Font = Enum.Font.Arial
-Score.FontSize = Enum.FontSize.Size24
-Score.TextColor3 = c3(255, 255, 255)
-Score.Parent = Screen
+local LastLetterY = 0 
+local LastLetterX = 70
+local Space = 0
+local LetterHeight = tonumber(tostring(DefaultFontSize):sub(-2))
 
-local Stars = {}
-
-
-
-
-for i = 1, 50 do
-	local x = math.random(1, 10)
-	local y = math.random(1, 10)
-	local Frame = Instance.new("Frame")
+for i = 1, parag:len() do
+	local Letter = parag:sub(i, i)
+	local Frame = Instance.new("TextLabel")
 	Frame.BackgroundColor3 = c3(255, 255, 255)
-	Frame.Position = UDim2.new(x/10, 0, y/10, 0)
-	Frame.Size = UDim2.new(0, 1, 0, 1)
-	Frame.Parent = Screen
-	Stars[i] = Frame
+	Frame.Position = UDim2.new(0, LastLetterX, 0.25, LastLetterY)
+	Frame.Font = DefaultFont
+	Frame.FontSize = DefaultFontSize
+	Frame.Name = Letter
+	Frame.Text = Letter
+	Frame.TextColor3 = DefaultColor
+	Frame.BackgroundTransparency = 1
+	Frame.Parent = ScreenGui
+	Frame.Size = ud(Frame.TextBounds.X, LetterHeight)
+	LastLetterX = Frame.Size.X.Offset + Space + Frame.Position.X.Offset
+	if LastLetterX >= Width - 70 then
+		LastLetterY = LastLetterY + LetterHeight
+		LastLetterX = 70
+	end
+	Letters[i] = Frame
 end
 
 
-local speed = 0.001
-local gross = 0
-local net = 0
-local cur = tick()
-local ended = false
+--[[
+local Paragraph = Instance.new("TextLabel")
+Paragraph.BackgroundTransparency = 1
+Paragraph.Size = UDim2.new(0.5, 0, 0.5, 0)
+Paragraph.Position = UDim2.new(0.25, 0, 0.25, 0)
+Paragraph.TextColor3 = c3(255, 0, 0)
+Paragraph.Text = parag
+Paragraph.Font = Enum.Font.Arial
+Paragraph.FontSize = Enum.FontSize.Size24
+Paragraph.TextWrapped = true
+Paragraph.TextXAlignment = Enum.TextXAlignment.Left
+Paragraph.TextYAlignment = Enum.TextYAlignment.Top
+Paragraph.Parent = ScreenGui
+--]]
 
-game:GetService("RunService").RenderStepped:connect(function(dt)
-	if ended == false then	
-		if box.Text:len() >= read.Text:len() then
-				ended = true
-				local Hint = Instance.new("Hint")
-				Hint.Text = Player.Name.." typing speed is :"..net
-				Hint.Parent = workspace
-				game:GetService("Debris"):AddItem(Hint, 2)
-				Screen:Destroy()
-		end	
-		local k = 0	
-		local min = (tick() - cur)/60
-		for i = 1, #box.Text do
-			if read.Text:sub(i, i) ~= box.Text:sub(i, i) then
-				k = k + 1
-			end
-		end	
-		gross = box.Text:len()/5
-		net = (gross - k)/min
-		if net < 0 then
-			net = 0
+local Box = Instance.new("TextBox")
+Box.Size = ud(1, 1)
+Box.Position = UDim2.new(1, 0, 1, 0)
+Box.Font = DefaultFont
+Box.FontSize = DefaultFontSize
+Box.Text = ""
+Box.BackgroundTransparency = 1
+Box.TextTransparency = 1
+Box.TextColor3 = c3(255, 255, 255)
+Box.ClearTextOnFocus = false
+Box.TextXAlignment = Enum.TextXAlignment.Left
+Box.TextYAlignment = Enum.TextYAlignment.Top
+Box.TextWrapped = true
+Box.Parent = ScreenGui
+
+local WritingLock = Instance.new("TextLabel")
+WritingLock.Parent = ScreenGui
+
+local lastLetter = Letters[#Letters]
+WritingLock.Position = lastLetter.Position + ud(lastLetter.Size.X.Offset, 0)
+WritingLock.TextColor3 = c3(255, 0, 0)
+WritingLock.Text = "Focus Lost"
+WritingLock.Font = DefaultFont
+WritingLock.FontSize = DefaultFontSize
+WritingLock.Parent = ScreenGui
+WritingLock.Size = ud(WritingLock.TextBounds.X, LetterHeight)
+
+
+Box.FocusLost:connect(function()
+	WritingLock.TextColor3 = c3(255, 0, 0)
+	WritingLock.Text = "Focus Lost!"
+	WritingLock.Size = ud(WritingLock.TextBounds.X, LetterHeight)
+end)
+
+game:GetService("UserInputService").InputBegan:connect(function(value, bool)
+	if not bool then
+		if Enum.KeyCode.Return == value.KeyCode then
+			WritingLock.TextColor3 = c3(0, 255, 0)
+			WritingLock.Text = "Focusing."
+			WritingLock.Size = ud(WritingLock.TextBounds.X, LetterHeight)		
+			Box:CaptureFocus()		
 		end
-		TypingSpeed = math.floor(net)	
-		for k,v in pairs(Stars) do
-			v.Position = v.Position + UDim2.new(speed, 0, 0, 0)
-			if v.AbsolutePosition.X > bg.AbsoluteSize.X then
-				v.Position = UDim2.new(0, 0, v.Position.Y.Scale, 0)
-			end 
-		end
-		Score.Text = TypingSpeed.." WPM"
 	end
+end)
+
+
+
+
+local Score = Instance.new("TextLabel")
+Score.BackgroundTransparency = 1
+Score.Position = UDim2.new(0.25, 0, 0, 0)
+Score.Size = UDim2.new(0.5, 0, 0.25, 0)
+Score.Font = DefaultFont
+Score.FontSize = DefaultFontSize
+Score.TextColor3 = DefaultColor
+Score.Parent = ScreenGui
+
+
+
+local Stars = {}
+
+for i = 1, StarCount do
+
+	local x = math.random(1, Width)
+	local y = math.random(1, Height)
+
+	local Frame = Instance.new("Frame")
+	Frame.BorderColor3 = c3(255, 255, 255)
+	Frame.BackgroundColor3 = c3(255, 255, 255)
+	Frame.Position = UDim2.new(0, x, 0, y)
+	Frame.Size = UDim2.new(0, 1, 0, 1)
+	Frame.Parent = ScreenGui
+	Stars[i] = Frame
+
+end
+
+local CurrentTime = tick()
+
+local GlobalMistake = 0
+
+local gameover = false
+
+Box.Changed:connect(function(value)
+	if value == "Text" and not gameover then
+		local Text = Box.Text	
+		local Mistakes = 0
+		for k,v in pairs(Letters) do
+			v.TextColor3 = DefaultColor
+		end
+		for i = 1, Text:len() do
+			if Text:sub(i, i) ~= parag:sub(i, i) then
+				--print(Paragraph.Text:sub(i, i))
+				--print(Text:sub(i, i), Paragraph.Text:sub(i, i))			
+				Letters[i].TextColor3 = WrongColor			
+				Mistakes = Mistakes + 1
+			else
+				Letters[i].TextColor3 = TrueColor
+			end 
+		end	
+		GlobalMistake = Mistakes
+	end
+	--print(GlobalMistake)
+end)
+
+local speed = 2
+local net = 0
+
+
+local function handlegame()
+	local Text = Box.Text
+	if Text:len() >= parag:len() then
+		print(gameover)
+		gameover = true
+	end
+	local min = (tick() - CurrentTime)/60
+	local gross = Text:len()/5
+	--print(gross,GlobalMistake)
+	net = (gross - GlobalMistake)/min
+	if net <= 0 then
+		net = 0
+	end
+end
+
+local function handlestars()
+	for k,v in pairs(Stars) do
+		if v.Position.X.Offset >= Width then
+			v.Position = ud(0, v.Position.Y.Offset)
+		end
+		v.Position = v.Position + ud(speed, 0)
+	end	
+end
+
+game:GetService("RunService").RenderStepped:connect(function()	
+	if not gameover then
+		handlestars()
+		handlegame()
+	end
+	Score.Text = "Your typing speed is: "..net.." WPM"
 end)
