@@ -61,7 +61,7 @@ for y = 1, ScreenSize do
 		Part.CFrame = CFrame.new(TorsoPosition.p - Vector3.new(0, TorsoPosition.Y, 0)) * CFrame.new((x - 1)*Pixel.Width, 1, (y - 1)*Pixel.Height)
 		Part.BrickColor = Pixel.Color
 		Part.TopSurface = Enum.SurfaceType.Smooth
-		Part.Parent = workspace
+		Part.Parent = workspace.Terrain
 		Pixels[y][x] = Part
 	end
 end
