@@ -84,6 +84,8 @@ local function GenerateTool(Name)
 end
 
 
+local Logs = {}
+
 local Pencil = GenerateTool("Pencil")
 Pencil.Parent = Backpack
 
@@ -91,13 +93,18 @@ Pencil.Equipped:connect(function(Mouse)
 	local Holding = false
 	Mouse.Button1Down:connect(function()
 		Holding = true
+		local Cache = {}
 		repeat
 			local Target = Mouse.Target
 			if findPixel(Target) then
+				if not Cache[Target] then
+					Cache[Target] = Target.BrickColor			
+				end				
 				Target.BrickColor = Brush
 			end
 			wait()
 		until Holding == false
+		Logs[#Logs + 1] = Cache
 	end)
 	Mouse.Button1Up:connect(function()
 		Holding = false
@@ -110,15 +117,20 @@ EreaseTool.Parent = Backpack
 
 EreaseTool.Equipped:connect(function(Mouse)
 	local Holding = false
+	local Cache = {}
 	Mouse.Button1Down:connect(function()
 		Holding = true
 		repeat
 			local Target = Mouse.Target
 			if findPixel(Target) then
-				Target.BrickColor = Pixel.Color
+				if not Cache[Target] then
+					Cache[Target] = Target.BrickColor
+				end				
+				Target.BrickColor = Pixel.Color								
 			end
 			wait()
 		until Holding == false
+		Logs[#Logs + 1] = Cache
 	end)
 	Mouse.Button1Up:connect(function()
 		Holding = false
@@ -130,26 +142,30 @@ local PaintBucket = GenerateTool("Paint Bucket")
 PaintBucket.Parent = Backpack
 	
 PaintBucket.Equipped:connect(function(Mouse)
-
+	local Cache = {}
+	
 	function FloodFill(x, y, prevc, newc)
 		if Pixels[y] and Pixels[y][x] then
 			if Pixels[y][x].BrickColor == prevc then
+				Cache[Pixels[y][x]] = prevc
 				Pixels[y][x].BrickColor = newc
-				else
-					return
+			else
+				return
 			end
 		else
 			return
 		end
+		
 		FloodFill(x + 1, y, prevc, newc)
 		FloodFill(x - 1, y, prevc, newc)
 		FloodFill(x, y + 1, prevc, newc)
 		FloodFill(x, y - 1, prevc, newc)
+		Logs[#Logs + 1] = Cache
+		Cache = {}
 		--FloodFill(x + 1, y + 1, prevc, newc)
 	end
 
 	local Holding = false
-
 	Mouse.Button1Down:connect(function()
 		local Target = Mouse.Target
 		local x,y = findPixel(Target)
@@ -167,6 +183,20 @@ ColorPicker.Equipped:connect(function(Mouse)
 		local Target = Mouse.Target
 		if findPixel(Target) then
 			Brush = Target.BrickColor
+		end
+	end)
+end)
+
+local Undo = GenerateTool("Undo")
+Undo.Parent = Backpack
+
+Undo.Equipped:connect(function(Mouse)
+	Mouse.Button1Down:connect(function()
+		if #Logs > 0 then
+			for Target,prevc in pairs(Logs[#Logs]) do
+				Target.BrickColor = prevc
+			end
+			table.remove(Logs, #Logs)
 		end
 	end)
 end)
