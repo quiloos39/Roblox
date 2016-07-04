@@ -112,7 +112,6 @@ Tool.Equipped:connect(function(Mouse)
 				if x then
 					if coll(x, y) then
 						add(x ,y)
-						print(x,y)
 					end
 				end
 			end
