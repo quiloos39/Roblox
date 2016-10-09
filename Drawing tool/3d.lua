@@ -1,133 +1,153 @@
---[[
-**Scripted by Quiloos39
-8/7/2015
---]]
-
-if not script:IsA("LocalScript") then
-	script:Destroy()
-	error("Run it in a LocalScript.")
-end
-
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
 local PlayerGui = Player:WaitForChild("PlayerGui")
-while not Player.Character do
-	wait()
-end
-local Character = Player.Character
-local Humanoid = Character:WaitForChild("Humanoid")
-local Mouse = Player:GetMouse()
-local UserInputService = game:GetService("UserInputService")
 
-local Options = {
-	Color = BrickColor.new("White"),
-	Size = 1	
-}
+local function HSV(H,S,V) 
+    H = H % 360 
+    local C = V * S 
+    local H2 = H/60 
+    local X = C * (1 - math.abs((H2 %2) -1)) 
+    local color = Color3.new(0,0,0) 
+    if H2 <= 0 then 
+        color = Color3.new(C,0,0) 
+    elseif 0 <= H2 and H2 <= 1 then 
+        color = Color3.new(C,X,0) 
+    elseif 1 <= H2 and H2 <= 2 then 
+        color = Color3.new(X,C,0) 
+    elseif 2 <= H2 and H2 <= 3 then 
+        color = Color3.new(0,C,X) 
+    elseif 3 <= H2 and H2 <= 4 then 
+        color = Color3.new(0,X,C) 
+    elseif 4 <= H2 and H2 <= 5 then 
+        color = Color3.new(X,0,C) 
+    elseif 5 <= H2 and H2 <= 6 then 
+        color = Color3.new(C,0,X) 
+    end 
+    local m = V - C
+   return Color3.new(color.r + m, color.g + m, color.b + m) 
+end
+
+local function c3(r, g, b)
+	return Color3.new(r/255, g/255, b/255)
+end
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = PlayerGui
+
+local Pallete = {}
+Pallete.Color = c3(255, 255, 255)
+Pallete.Size = Vector3.new(0.1, 0.1, 1)
+
+local h = 1
+local w = 15
+
+for i = 1, 360 do
+	local Frame = Instance.new("TextButton")
+	Frame.Size = UDim2.new(0, w, 0, h)
+	Frame.Position = UDim2.new(1, -w, 0, (i - 1)*h + 50)
+	Frame.BackgroundColor3 = HSV(i, 1, 1)
+	Frame.BorderColor3 = HSV(i, 1, 1)
+	Frame.Text = ""
+	Frame.Parent = ScreenGui
+	Frame.MouseButton1Click:connect(function()
+		Pallete.Color = HSV(i, 1, 1)
+	end)
+	Frame.MouseEnter:connect(function()
+		Frame.BorderColor3 = c3(255, 255, 255)
+	end)
+	Frame.MouseLeave:connect(function()
+		Frame.BorderColor3 = HSV(i, 1, 1)
+	end)
+end
+
+local EnumFaces = {"Front", "Bottom", "Top", "Left", "Right", "Back"}
+
 local Cache = {}
 
-
-local Folder = Instance.new("Folder", Character)
-Folder.Name = "Trash"
-
-
-local Event = Folder.Changed:connect(function(v)
-	if v == "Parent" then
-		while not Folder.Parent do
-			wait()
-			Folder.Parent = Character
-		end
-	end
-end)
-	
-	
-
-
-local Draw = function(pos, pos2)
+local Trash = Instance.new("Folder")
+Trash.Parent = workspace
+local draw = function(target, source, color)
+	local mag = (source - target).magnitude
 	local Part = Instance.new("Part")
 	Part.Anchored = true
 	Part.CanCollide = false
 	Part.Locked = true
-	Part.Shape = Enum.PartType.Block
-	Part.FormFactor = Enum.FormFactor.Custom
 	Part.TopSurface = Enum.SurfaceType.Smooth
 	Part.BottomSurface = Enum.SurfaceType.Smooth
-	Part.BrickColor = Options["Color"]
-	if #Cache > 1 then
-		local mag = (pos - pos2).magnitude
-		Part.Size = Vector3.new(Options["Size"]/10, Options["Size"]/10, mag)
-		Part.CFrame = CFrame.new(pos, pos2) *CFrame.new(0, 0, -mag/2)
-	else
-		Part.Size = Vector3.new(Options["Size"]/10, Options["Size"]/10, Options["Size"]/10)
-		Part.CFrame = CFrame.new(pos)
+	Part.FormFactor = Enum.FormFactor.Custom
+	Part.Size = Pallete.Size * Vector3.new(1, 1, mag)
+	Part.CFrame = CFrame.new(source, target) *CFrame.new(0, 0, -mag/2)
+	Part.Transparency = 1
+	for i = 1, 6 do
+		local SurfaceGui = Instance.new("SurfaceGui")
+		SurfaceGui.Parent = Part
+		SurfaceGui.Face = EnumFaces[i]
+		local Frame = Instance.new("Frame")
+		Frame.BackgroundColor3 = Pallete.Color
+		Frame.BorderColor3 = Pallete.Color
+		Frame.Size = UDim2.new(1, 0, 1, 0)
+		Frame.Parent = SurfaceGui
 	end
-	Part.Parent = Folder
-	table.insert(Cache, Part)
+	Part.Parent = Trash
+	Cache[#Cache + 1] = Part
 end
 
 
-local Keys = {}
+local function NewTool(name)
+	local Tool = Instance.new("Tool")
+	Tool.Name = name
+	Tool.RequiresHandle = false
+	return Tool
+end
 
-UserInputService.InputBegan:connect(function(v, bool)
-	if bool == false then
-		if Enum.UserInputType.MouseButton1 == v.UserInputType then
-			if not Keys[v.UserInputType] then
-				Keys[v.UserInputType] = false
-			end
-			if Keys[v.UserInputType] == false then
-				Keys[v.UserInputType] = true
-				while Keys[v.UserInputType] == true do
-					local Target = Mouse.Target
-					if Target then
-						--local Sealevel = Mouse.Target.CFrame.p.Y + Mouse.Target.Size.Y/2 + Options["Size"]/10
-						--local pos = Vector3.new(Mouse.Hit.p.X, Sealevel, Mouse.Hit.p.Z)
-						local pos = Mouse.Hit.p
-						wait(0)
-						--local pos2 = Vector3.new(Mouse.Hit.p.X, Sealevel, Mouse.Hit.p.Z)
-						local pos2 = Mouse.Hit.p
-						Draw(pos, pos2)
-					else
-						wait(0)
-					end
-					
-				end
-			end
-		elseif  Enum.KeyCode.Q == v.KeyCode then
-			if not Keys[v.KeyCode] then
-				Keys[v.KeyCode] = false
-			end
-			if Keys[v.KeyCode] == false then
-				Keys[v.KeyCode] = true
-				while Keys[v.KeyCode] == true and #Cache > 0 do
-					Cache[#Cache]:Destroy()
-					table.remove(Cache, #Cache)
-					wait(0)
-				end
-			end	
+local Backpack = Player:WaitForChild("Backpack")
+local Pencil = NewTool("Pencil")
+Pencil.Parent = Backpack
+
+Pencil.Equipped:connect(function(Mouse)
+	local MouseisDown = false
+	local LastCoordinates = nil
+	Mouse.Button1Down:connect(function()
+		MouseisDown = true
+		if Mouse.Target then
+			draw(Mouse.Hit.p, Mouse.Hit.p + Vector3.new(0.1, 0, 0.1))
 		end
-	end
-end)
-
-UserInputService.InputEnded:connect(function(v, bool)
-	if bool == false then
-		if Enum.UserInputType.MouseButton1 == v.UserInputType then
-			Keys[v.UserInputType] = false
-		elseif Enum.KeyCode.Q == v.KeyCode then
-			Keys[v.KeyCode] = false
-		end
-	end
-end)
-
-
-local Screen = Instance.new("ScreenGui", PlayerGui)
-
-local y = 0
-for i=1,63,1 do
-	local Frame = Instance.new("ImageButton")
-	Frame.BackgroundColor3 = BrickColor.palette(i).Color
-	Frame.Size = UDim2.new(1/63, 0, 0, 20)
-	Frame.Position = UDim2.new(i/63 - 1/63, 0, 0, 0)
-	Frame.Parent = Screen
-	Frame.MouseButton1Click:connect(function()
-		Options["Color"] = BrickColor.palette(i)
 	end)
-end
+	Mouse.Button1Up:connect(function()
+		MouseisDown = false
+		LastCoordinates = nil
+	end)
+	Mouse.Move:connect(function()
+		if MouseisDown and Mouse.Target then
+			if not LastCoordinates then
+				LastCoordinates = Mouse.Hit.p
+			end
+			local mag = (LastCoordinates - Mouse.Hit.p).magnitude
+			if mag >= 0.5 then
+				draw(Mouse.Hit.p, LastCoordinates)
+				LastCoordinates = Mouse.Hit.p
+			end
+		end
+	end)
+end)
+
+local Undo = NewTool("Undo")
+Undo.Parent = Backpack
+Undo.Equipped:connect(function(Mouse)
+	local MouseisDown = false
+	Mouse.Button1Down:connect(function()
+		MouseisDown = true
+		repeat
+			if #Cache > 0 then
+				Cache[#Cache]:Destroy()
+				table.remove(Cache, #Cache)
+				wait()
+			else
+				break
+			end
+		until MouseisDown == false
+	end)
+	Mouse.Button1Up:connect(function()
+		MouseisDown = false
+	end)
+end)
