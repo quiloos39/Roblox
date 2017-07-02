@@ -1,4 +1,9 @@
 local Player = game:GetService("Players").LocalPlayer
+repeat
+	wait()
+until Player.Character
+local Head = Player.Character:WaitForChild("Head")
+local ChatService = game:GetService("Chat")
 local PlayerGui = Player:WaitForChild("PlayerGui")
 
 local ScreenGui = Instance.new("ScreenGui")
@@ -47,6 +52,7 @@ Box.FocusLost:connect(function()
 			Font = DefaultFont,
 			FontSize = DefaultFontSize,
 		})
+		Chat:Chat(Head, Box.Text)
 	end
 	Box.Text = DefaultText
 end)
