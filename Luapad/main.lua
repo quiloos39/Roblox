@@ -14,7 +14,7 @@ Part.CFrame = CFrame.new(0, Part.Size.Y, 0)
 Part.CanCollide = true
 Part.Anchored = true
 Part.Locked = true
-Part.Parent = Player and Player.Character or workspace
+Part.Parent = workspace
 
 
 local radi = math.rad
