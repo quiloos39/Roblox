@@ -1,14 +1,14 @@
-#Making your orb#
+# Making a new orb
 
 It isn't hard that you think.
 
-##Lets get started##
+## Let's get started
 
-###Writting code ###
+### Writting code
 
 
 
-*We need to define point and rotate ball at point.
+First we need to define point and rotate ball at point.
 
 
     local player = game:GetService("Players").LocalPlayer -- Inside Local Script ofcourse.
@@ -33,8 +33,7 @@ It isn't hard that you think.
 	end
     until orb.Parent == nil
 
-**Result:**
-
+## Result:
 ![alt text][1]
 
 
