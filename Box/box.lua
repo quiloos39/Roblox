@@ -1,4 +1,4 @@
-local scale = 5
+local scale = 1
 local thickness = 0.1
 local offset = CFrame.new(0, 3*scale + thickness/2, 0)
 
