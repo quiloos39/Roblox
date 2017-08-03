@@ -102,7 +102,7 @@ local MouseIsDown = false
 local LastPosition = nil
 local LockYAxis = false
 local LastY = nil
-local CurrentTool = "Ereaser"
+local CurrentTool = "Pencil"
 local History = {}
 UserInputService.InputBegan:connect(function(input, gameProcessed)
 	if gameProcessed == false and input.UserInputType == Enum.UserInputType.MouseButton1 then
