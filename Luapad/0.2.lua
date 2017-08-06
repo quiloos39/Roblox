@@ -176,7 +176,7 @@ local function newKeyWord(text, size, pos, color, index, parent)
 	local keyWordLabel = Instance.new("TextLabel")
 	keyWordLabel.TextXAlignment = settings.TextXAlignment
 	keyWordLabel.TextYAlignment = settings.TextYAlignment
-	keyWordLabel.BackgroundTransparency = 0
+	keyWordLabel.BackgroundTransparency = 1
 	keyWordLabel.Position = pos
 	keyWordLabel.Size = ud(20, settings.textSize)
 	keyWordLabel.Text = text
