@@ -372,7 +372,27 @@ local function display(player, str)
 	end)
 
 
-	local maxHeight = total*settings.textSize
+	pcall(function()
+		local lastWord = 1
+		for word in string.gmatch(str, "['].-[']") do
+			--print(word)
+			local b,e = str:find(word, lastWord)
+			if b then
+				local pos,size = getOffset(str, b, e)
+				newKeyWord(word, size, pos + offset, color(0, 255, 0), 3, ScrollingFrame)
+				lastWord = e + 1
+			end
+		end	
+	end)
+
+
+	local maxHeight = 0
+	
+	if total*settings.textSize > settings.Height then
+		maxHieght = total*settings.textSize
+	else
+		maxHeight = settings.Height
+	end
 
 	LeftBar.Size = ud(maxWidthOfBar, maxHeight)
 	Code.Position = offset
