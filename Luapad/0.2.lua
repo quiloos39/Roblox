@@ -388,11 +388,12 @@ local function display(player, str)
 
 	local maxHeight = 0
 	
-	if total*settings.textSize > settings.Height then
-		maxHieght = total*settings.textSize
+	if total*settings.textSize > maxHeight then
+		maxHeight = total*settings.textSize
 	else
 		maxHeight = settings.Height
 	end
+	--print(maxHeight, maxWidth)
 
 	LeftBar.Size = ud(maxWidthOfBar, maxHeight)
 	Code.Position = offset
