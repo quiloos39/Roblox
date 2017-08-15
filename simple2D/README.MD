@@ -1,5 +1,7 @@
-#Example
+# How to use it
+All you need to do is require it.
 
+# Example
 ````lua
 local simple2D = require("simple2D")
 
