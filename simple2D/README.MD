@@ -14,5 +14,4 @@ simple2D.setParent(workspace)
 local text = simple2D.print("Some text", 0, 0, 100, 100)
 --text.Parent = workspace or simple2D.setParent both are fine
 simple2D.clear() -- clears all changes you made
---
 ```

@@ -51,7 +51,7 @@ function simple2D.textAlign(axisX, axisY)
 	end
 end
 
-function simple2D.newParent(path)
+function simple2D.setParent(path)
 	Settings.Parent = path
 end
 
