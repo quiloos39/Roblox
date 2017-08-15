@@ -32,6 +32,10 @@ function simple2D.bgColor3(r, g, b)
 	Settings.BackgroundColor3 = Color3.fromRGB(r, g, b)
 end
 
+function simple2D.textSize(size)
+	Settings.FontSize = size
+end
+
 function simple2D.textAlign(axisX, axisY)
 	if axisX == "Right" then
 		Settings.TextXAlignment = Enum.TextXAlignment.Right
@@ -58,7 +62,24 @@ end
 function simple2D.newFont(font, size)
 	Settings.Font = font
 	if size then
-		Settings.TextSize = size
+		simple2D.textSize(size)
+	end
+end
+
+function simple2D.setup(type, w, h)
+	local Gui = nil
+	if type == "ScreenGui" then
+		Gui = Instance.new("ScreenGui")
+	elseif type == "SurfaceGui" then
+		Gui = Instance.new("SurfaceGui")
+		Gui.CanvasSize = Vector2.new(w, h)
+	elseif type == "BillboardGui" then
+		Gui = Instance.new("BillboardGui")
+		Gui.Size = UDim2.new(0, w, 0, h)
+	end
+	if Gui then
+		Default.Parent = Gui
+		Settings.Parent = Default.Parent
 	end
 end
 
@@ -98,7 +119,16 @@ function simple2D.scroll(x, y, w, h)
 	return scroll
 end
 
-
+function simple2D.image(url, x, h, w, h)
+	local image = Instance.new("ImageButton")
+	image.AutoButtonColor = false
+	image.Position = UDim2.new(0, x, 0, y)
+	image.Size = UDim2.new(0, w, 0, h)
+	image.Image = url
+	if Settings.Parent then
+		image.Parent = Settings.Parent
+	end
+end
 function simple2D.rectangle(x, y, w, h)
 	local rectangle = Instance.new("ImageButton")
 	rectangle.ImageTransparency = 1
