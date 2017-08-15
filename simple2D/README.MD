@@ -2,7 +2,7 @@
 All you need to do is require it.
 
 # Example
-````lua
+```lua
 local simple2D = require("simple2D")
 
 simple2D.bgTransparency(0.3)
