@@ -10,7 +10,7 @@ local Screen = simple2D.setup("ScreenGui")
 simple2D.bgTransparency(0.3)
 simple2D.bgColor3(21, 21, 21)
 simple2D.textAlign("Left", "Top")
-simple2D.newFont(Enum.Font.Legacy, 24)
+simple2D.newFont("Legacy", 24)
 --simple2D.setParent(workspace) Isn't neccesary since we run setup function.
 -- so on...
 

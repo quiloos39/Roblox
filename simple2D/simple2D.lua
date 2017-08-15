@@ -1,7 +1,7 @@
 local simple2D = {}
 
 local Default = {}
-Default.Font = Enum.Font.Arial
+Default.Font = "Arial"
 Default.TextSize = 16
 Default.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Default.TextColor3 = Color3.fromRGB(255, 255, 255)
