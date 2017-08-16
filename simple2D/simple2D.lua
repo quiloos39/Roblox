@@ -59,6 +59,10 @@ function simple2D.setParent(path)
 	Settings.Parent = path
 end
 
+function simple2D.textColor(r, g, b)
+	Settings.TextColor3 = Color3.fromRGB(r, g, b)
+end
+
 function simple2D.newFont(font, size)
 	Settings.Font = font
 	if size then
@@ -81,11 +85,13 @@ function simple2D.setup(type, w, h)
 		Default.Parent = Gui
 		Settings.Parent = Default.Parent
 	end
+	return Gui
 end
 
 function simple2D.print(text, x, y, w, h)
 	local label = Instance.new("TextButton")
 	label.TextSize = Settings.TextSize
+	label.TextColor3 = Settings.TextColor3
 	label.BackgroundColor3 = Settings.BackgroundColor3
 	label.Font = Settings.Font
 	label.Text = text

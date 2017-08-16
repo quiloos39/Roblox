@@ -7,7 +7,7 @@ if PlayerGui:FindFirstChild("Explorer") then
 	PlayerGui.Explorer:Destroy()
 end
 
-local ScreenGui = Instance.new("ScreenGui")
+local ScreenGui = simple2D.setup("ScreenGui")
 ScreenGui.Name = "Explorer"
 ScreenGui.Parent = PlayerGui
 
@@ -19,7 +19,6 @@ simple2D.bgColor3(21, 21, 21)
 
 local Background = simple2D.scroll(width - 300, height - 400, 300, 400)
 Background.Name = "Background"
-Background.Parent = ScreenGui
 
 simple2D.clear()
 
@@ -32,43 +31,48 @@ local function getChildren(object, process)
 	end
 end
 
-local function list()	
-	local k = 0
+local function list()
+	for k,v in pairs(Cache) do
+		getChildren(v)
+	end
 	for i = 1, #Cache do
-		getChildren(Cache[i], function(self)
-			local offset = nil
-			if self.parent then
-				offset = self.parent.label.Position.X.Offset + 20
-			else
-				offset = 0
-			end
-				self.label.Position = Cache[i].label.Position + UDim2.new(0,offset, 0, k*16)
-				k = k + 1
-		end)
-		print(k)
+		if i > 1 then
+			Cache[i].label.Position = UDim2.new(0, 0, 0, (i - 1)*16) + UDim2.new(0, 0, 0, #Cache[i - 1].children*16)
+		else
+			Cache[i].label.Position = UDim2.new(0, 0, 0, 0)
+		end
 	end
 end
 
 local function new(object, parent)
 	
 	simple2D.bgColor3(240, 240, 240)
-	simple2D.bgTransparency(0)
+	simple2D.bgTransparency(1)
+	simple2D.textColor(255, 255, 255)
 	simple2D.textAlign("Left")
 
 	local button = simple2D.print(object.Name, 0, 0, Background.Size.X.Offset - Background.ScrollBarThickness, 16)
 	button.Name = object.Name	
-	button.AutoButtonColor = true	
 	button.Parent = Background
-
 	
-	local self = {object = object, label = button, ChildrenCount = 0, parent = parent, children = {}}
+	simple2D.clear()
 	
+	local self = {object = object, label = button, parent = parent, children = {}}
+	
+	local clicked = false
 	button.MouseButton1Click:connect(function()
-		for k,childObject in pairs(object:GetChildren()) do
-			local child = new(childObject, self)
-			self.ChildrenCount = self.ChildrenCount + 1
-			self.children[#self.children + 1] = child
+		if clicked == false then
+			for k,childObject in pairs(object:GetChildren()) do
+				local child = new(childObject, self)
+				self.children[#self.children + 1] = child
+			end
+		else
+			for k,v in pairs(self.children) do
+				v.label:Destroy()
+			end
+			self.children = {}
 		end
+		clicked = not clicked
 		list()
 	end)
 	
