@@ -16,9 +16,6 @@ simple2D.bgColor3(21, 21, 21)
 simple2D.textAlign("Left", "Top")
 simple2D.newFont("Legacy", 24)
 
---simple2D.setParent(workspace) It isn't neccesary since we ran setup function and defined parent of it. Now all instances that created by it will be parented to screen.
--- and so on...
-
 local text = simple2D.print("Some text", 0, 0, 100, 100)
 simple2D.clear() -- clears all changes you made 
 
