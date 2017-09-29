@@ -1,13 +1,17 @@
 local Player = game:GetService("Players").LocalPlayer
-repeat
-	wait()
-until Player.Character
-local Head = Player.Character:WaitForChild("Head")
-local ChatService = game:GetService("Chat")
+local Character = player.Character or player.CharacterAdded:Wait() -- if player.Character doesn't exist, wait for it...
+local Head = Character:WaitForChild("Head")
 local PlayerGui = Player:WaitForChild("PlayerGui")
 
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Parent = PlayerGui
+------------------------------------------------------------------------
+-- Services
+local ChatService = game:GetService("Chat")
+local StarterGui = game:GetService("StarterGui")
+
+------------------------------------------------------------------------
+-- Initialize
+
+local ScreenGui = Instance.new("ScreenGui", PlayerGui)
 
 local function c3(r, g, b)
 	return Color3.new(r/255, g/255, b/255)
@@ -23,6 +27,9 @@ local Emotions = {
 	Joke = c3(0, 255, 0)
 }
 
+
+------------------------------------------------------------------------
+
 local Box = Instance.new("TextBox")
 Box.Font = Enum.Font.Arial
 Box.FontSize = Enum.FontSize.Size18
@@ -35,11 +42,13 @@ Box.Position = UDim2.new(0, 0, 1, -24)
 Box.Size = UDim2.new(1, 0, 0, 24)
 Box.Parent = ScreenGui
 
-local StarterGui = game:GetService("StarterGui")
+
+------------------------------------------------------------------------
 
 
-Box.FocusLost:connect(function()
-	if Box.Text ~= DefaultText then
+Box.FocusLost:Connect(function(enterPressed)
+	if not enterPressed then return end -- We should only send the message if enter was pressed. not if they just lost focus
+	if not Box.Text == DefaultText then
 		local Color = DefaultColor
 		if Box.Text:match("*") then
 			Color = Emotions.Joke
@@ -58,9 +67,16 @@ Box.FocusLost:connect(function()
 end)
 
 
+Box.Focused:Connect(function()
+	if Box.Text == DefaultText then
+		Box.Text = ""	-- If the box gets focused on and we don't already have text in there (other than the default), erase all text
+	end
+end)
+
+
 game:GetService("UserInputService").InputBegan:connect(function(value, bool)
 	if not bool then
-		if Enum.KeyCode.Return == value.KeyCode then
+		if value.KeyCode == Enum.KeyCode.Slash then -- keep it user-friendly and don't change settings up on them
 			Box:CaptureFocus()
 		end
 	end
