@@ -64,14 +64,25 @@ end
 
 init()
 
-local mouseDown = false
+local mouse1Down = false
+local mouse2Down = false
+
+
 
 Mouse.Button1Down:connect(function()
-	mouseDown = true
+	mouse1Down = true
 end)
 
 Mouse.Button1Up:connect(function()
-	mouseDown = false
+	mouse1Down = false
+end)
+
+Mouse.Button2Down:connect(function()
+	mouse2Down = true
+end)
+
+Mouse.Button2Up:connect(function()
+	mouse2Down = false
 end)
 
 local function fill(x, y, color)
@@ -99,11 +110,17 @@ local function isEmpty(x, y)
 end
 
 local function mouseControl()
-	if (mouseDown) then
+	if (mouse1Down) then
 		local x = floor(Mouse.Hit.X) + 1
 		local y = floor(Mouse.Hit.Z) + 1
 		if (isEmpty(x, y)) then
 			fill(x, y, selectedColor)
+		end
+	elseif (mouse2Down) then
+		local x = floor(Mouse.Hit.X) + 1
+		local y = floor(Mouse.Hit.Z) + 1
+		if (check(x, y) and not isEmpty(x, y)) then
+			unfill(x, y, Color3.fromRGB(0, 0, 0))
 		end
 	end
 end
@@ -126,9 +143,11 @@ local function update()
 			else
 				--allFilled = false
 			end
+			--[[			
 			if (allFilled) then
-				--table.remove(GRID, y)
+				table.remove(GRID, y)
 			end
+			--]]
 		end
 	end
 end
