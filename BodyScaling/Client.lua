@@ -3,6 +3,7 @@
 
 local bin = Instance.new("ScreenGui",game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"))
 local Slider = require(script:WaitForChild("Slider"))
+bin.Name = "BodySliders"
 bin.ResetOnSpawn = false -- sliders wont go away when character dies
 
 local RunService = game:GetService("RunService")
