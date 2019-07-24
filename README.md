@@ -1,7 +1,7 @@
-# Welcome to my repository
+# Welcome to My Repository
 
-From beginning i was huge fan of open source coding and i was thinking if there was place where i can see other people code and improve myself. I started making this repository to help beginners with Roblox Lua so they can make their imagination come true.
+From beginning, I was a huge fan of open-source coding.  I was thinking: if there was place where I can see other people's code, I could very well improve my own practices.  I started making this repository to help beginners with [Roblox Lua](http://developer.roblox.com), so they can help continue Powering Imagination™.
 
-## Before using it
+## Before Using It
 
-Don't forget to there is someone who needs help on his simple code making let's make their life easier.
+Don't forget that there are people out there who need scripting  help, so *let's make sure to make their experience an educational one*.
