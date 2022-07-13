@@ -12,7 +12,7 @@ local players = game:GetService("Players")
 local runservice = game:GetService("RunService")
 local userinputservice = game:GetService("UserInputService")
 
-local player = players.LocalPlayer
+local player = players.LocalPlayer or getfenv(0).owner
 local character
 while typeof(character) ~= 'Instance' do
 	character = player.Character
